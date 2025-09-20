@@ -34,7 +34,7 @@
 <a class="hover:text-indigo-700" href="#faq">שאלות</a>
 </nav>
 </div>
-</header>
+</header><div class="bg-yellow-100 text-yellow-900 text-center py-2 text-sm"><noscript>כדי לראות את כל האפשרויות ולהשלים תרומה, נא לאפשר JavaScript בדפדפן.</noscript></div>
 <main>
 <!-- HERO -->
 <section class="bg-white">
@@ -67,7 +67,7 @@
 <span class="w-2 h-2 rounded-full bg-emerald-500"></span> ניתן לבטל בכל עת
             </span>
 </div>
-<div class="flex flex-wrap gap-2" id="amountPresets"></div>
+<div class="flex flex-wrap gap-2" id="amountPresets"><button class="pill" type="button">₪100</button><button class="pill" type="button">₪180</button><button class="pill" type="button">₪360</button><button class="pill" type="button">₪555</button><button class="pill" type="button">₪1000</button><button class="pill" type="button">סכום אחר</button></div>
 <div class="hidden" id="customWrap">
 <label class="block text-xs text-slate-500 mb-1">סכום (₪)</label>
 <input class="w-full rounded-2xl border-2 px-4 py-3 text-base" id="customAmount" min="10" placeholder="לדוגמה: 250" step="10" type="number"/>
@@ -417,7 +417,7 @@
 </div>
 </div>
 <script>
-console.log('[seeing-local] script loaded');
+console.log('[seeing-local] script loaded v2');
 
 document.addEventListener('DOMContentLoaded', () => {
   // ---- tiny helpers
@@ -433,18 +433,44 @@ document.addEventListener('DOMContentLoaded', () => {
     selections: []
   };
 
-  // ---- build amount pills
+  
+  // ---- build/bind amount pills
   function buildPresets() {
     const wrap = $('amountPresets');
     if (!wrap) return;
-
-    wrap.innerHTML = ''; // clear if re-run
+    // If pills already exist (server-rendered), just bind:
+    let pills = Array.from(wrap.querySelectorAll('button.pill'));
+    if (pills.length) {
+      // Ensure labels map to values:
+      const map = {'₪100':100,'₪180':180,'₪360':360,'₪555':555,'₪1000':1000,'סכום אחר':'סכום אחר'};
+      // Default selection: 180
+      let defaultSet = false;
+      pills.forEach((b) => {
+        const txt = b.textContent.trim();
+        const val = map.hasOwnProperty(txt) ? map[txt] : txt;
+        b.addEventListener('click', () => {
+          state.amount = val;
+          pills.forEach((p) => p.classList.remove('sel'));
+          b.classList.add('sel');
+          const customWrap = $('customWrap');
+          if (customWrap) customWrap.classList.toggle('hidden', val !== 'סכום אחר');
+          recalc();
+        });
+        if (!defaultSet && val === 180) {
+          b.classList.add('sel');
+          defaultSet = true;
+          state.amount = 180;
+        }
+      });
+      return;
+    }
+    // Else: build from state
+    wrap.innerHTML = '';
     state.amountPresets.forEach((a) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'pill' + (a === state.amount ? ' sel' : '');
       b.textContent = typeof a === 'number' ? '₪' + a.toLocaleString('he-IL') : a;
-
       b.onclick = () => {
         state.amount = a;
         wrap.querySelectorAll('.pill').forEach((p) => p.classList.remove('sel'));
@@ -453,7 +479,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (customWrap) customWrap.classList.toggle('hidden', a !== 'סכום אחר');
         recalc();
       };
-
       wrap.appendChild(b);
     });
   }
