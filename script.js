@@ -249,14 +249,6 @@ document.addEventListener('DOMContentLoaded',()=>{document.body.insertAdjacentHT
 #cbSubmit { padding:0.75rem 1.25rem; white-space:normal; text-align:center; }
 </style>
 `);});
-
-
-  // ---- Lottie loader (optional)
-  function initLottie() {
-    if (!window.lottie) {
-      console.warn('lottie-web not found; using SVG fallbacks.');
-      return;
-    }
     document.querySelectorAll('[data-lottie-path]').forEach((el) => {
       const path = el.getAttribute('data-lottie-path');
       if (!path) return;
@@ -273,3 +265,61 @@ document.addEventListener('DOMContentLoaded',()=>{document.body.insertAdjacentHT
       }
     });
   }
+
+
+  // ---- Lottie loader (lazy, with reduced-motion support)
+  function initLottie() {
+    const items = Array.from(document.querySelectorAll('[data-lottie-path]'));
+    if (!items.length) return;
+
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      // Respect users who prefer reduced motion: don't autoplay; keep SVG fallbacks.
+      console.warn('Reduced motion enabled; skipping Lottie autoplay.');
+      return;
+    }
+
+    if (!window.lottie) {
+      console.warn('lottie-web not found; using SVG fallbacks.');
+      return;
+    }
+
+    function loadOnce(el) {
+      if (el.__lottieLoaded) return;
+      const path = el.getAttribute('data-lottie-path');
+      if (!path) return;
+      try {
+        window.lottie.loadAnimation({
+          container: el,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path
+        });
+        el.__lottieLoaded = true;
+      } catch (e) {
+        console.error('Lottie failed for', path, e);
+      }
+    }
+
+    // Expose manual trigger if needed later
+    window.loadLottieOnce = loadOnce;
+
+    // Lazy load with IntersectionObserver
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loadOnce(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { root: null, rootMargin: '120px', threshold: 0.1 });
+
+      items.forEach((el) => io.observe(el));
+    } else {
+      // Fallback: eager load
+      items.forEach(loadOnce);
+    }
+  }
+
