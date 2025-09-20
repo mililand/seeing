@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     selections: []
   };
 
-  // ---- build amount pills
+  // ---- build amount pills1
   function buildPresets() {
     const wrap = $('amountPresets');
     if (!wrap) return;
