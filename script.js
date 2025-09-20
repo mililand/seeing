@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- state
   const state = {
     freq: 'monthly',
-    amountPresets: [50, 100, 180, 360, 1000, 'סכום אחר'],
+    amountPresets: [100, 180, 360, 555, 1000, 'סכום אחר'],
     amount: 180,
     custom: 0,
     selections: []
   };
 
-  // ---- build amount pills1
+  // ---- build amount pills
   function buildPresets() {
     const wrap = $('amountPresets');
     if (!wrap) return;
