@@ -1,5 +1,5 @@
-Place your Lottie JSON animations here, matching the data-lottie-path values in index.html.
-Suggested filenames:
+Place Lottie JSON animation files here to enable animations.
+Suggested names (match data-lottie-path in the HTML):
 - puppy-food.json
 - gear-kit.json
 - bowl.json
