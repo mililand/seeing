@@ -237,6 +237,7 @@ function initFreqToggle() {
   initDedication();
   initModal();
   recalc(); // initial render
+  initLottie();
 });
 
 
@@ -248,3 +249,27 @@ document.addEventListener('DOMContentLoaded',()=>{document.body.insertAdjacentHT
 #cbSubmit { padding:0.75rem 1.25rem; white-space:normal; text-align:center; }
 </style>
 `);});
+
+
+  // ---- Lottie loader (optional)
+  function initLottie() {
+    if (!window.lottie) {
+      console.warn('lottie-web not found; using SVG fallbacks.');
+      return;
+    }
+    document.querySelectorAll('[data-lottie-path]').forEach((el) => {
+      const path = el.getAttribute('data-lottie-path');
+      if (!path) return;
+      try {
+        window.lottie.loadAnimation({
+          container: el,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path
+        });
+      } catch (e) {
+        console.error('Lottie failed for', path, e);
+      }
+    });
+  }
