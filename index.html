@@ -27,6 +27,24 @@ main { position: relative; z-index: 0; }
 .pill, button, [role="button"] { pointer-events: auto; }
 #cardsTrack { position: relative; z-index: 0; }
 #slidePrev, #slideNext { z-index: 20; }
+
+/* Slider polish */
+#cardsTrack { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+#cardsTrack > .card { scroll-snap-align: center; transition: transform .25s ease, box-shadow .25s ease; transform-origin: center bottom; }
+#cardsTrack > .card.is-active { transform: scale(1.02); box-shadow: 0 12px 30px rgba(2,6,23,.15); }
+#cardsDots .dot { width:10px; height:10px; border-radius:9999px; background:#e5e7eb; display:inline-block; }
+#cardsDots .dot.active { background:#4338ca; }
+/* Edge fade (desktop) */
+.slider-fade { pointer-events:none; position:absolute; top:0; bottom:0; width:64px; }
+.slider-fade.start { inset-inline-start:0; background:linear-gradient(to right, rgba(248,250,252,1), rgba(248,250,252,0)); }
+.slider-fade.end { inset-inline-end:0; background:linear-gradient(to left, rgba(248,250,252,1), rgba(248,250,252,0)); }
+/* Decision meters */
+.meters { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:.5rem; margin-top:.5rem; }
+.meter { display:flex; align-items:center; gap:.35rem; font-size:.75rem; color:#4b5563; }
+.meter .dots { display:inline-flex; gap:4px; }
+.meter .dot { width:8px; height:8px; border-radius:9999px; background:#e5e7eb; }
+.meter .dot.on { background:#4338ca; }
+.badge-urgent { display:inline-flex; align-items:center; gap:.3rem; font-size:.75rem; color:#b91c1c; background:#fee2e2; border:1px solid #fecaca; padding:.2rem .45rem; border-radius:.5rem; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -148,7 +166,7 @@ main { position: relative; z-index: 0; }
 <small class="text-slate-500">בחרו ונוסיף לסיכום התרומה</small>
 </div>
 <p class="explain-shopping text-slate-600 mb-6">כאן תוכלו לסגור לנו פינה — צרכים נקודתיים שהעמותה זקוקה להם. כל האפשרויות הן תרומה חד־פעמית, כמו רכישה של מוצר ספציפי ללא מחויבות.</p>
-<div class="relative"><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -start-4 top-1/2 -translate-y-1/2 z-20" id="slidePrev" onclick="window._slide &amp;&amp; window._slide('prev')">‹</button><div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth" id="cardsTrack"><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+<div class="relative"><div class="slider-fade start hidden md:block"></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -start-4 top-1/2 -translate-y-1/2 z-20" id="slidePrev" onclick="window._slide &amp;&amp; window._slide('prev')">‹</button><div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth" id="cardsTrack"><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="5" data-usage="4" data-wear="3">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/puppy-food.json">
 <!-- SVG fallback -->
@@ -157,15 +175,15 @@ main { position: relative; z-index: 0; }
 <path d="M22 44c4-10 16-10 20 0-6 6-14 6-20 0z"></path>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">מזון לגורים (חודש)</h3>
-<p class="text-sm text-slate-600 leading-6">מזון איכותי ומאוזן לתקופת הגדילה — בסיס לבריאות וחוסן.</p>
+<h3 class="font-extrabold text-lg mb-1">מזון לגורים (חודש)</h3><span class="badge-urgent ms-2">נחוץ עכשיו</span>
+<p class="text-sm text-slate-600 leading-6">מזון איכותי ומאוזן לתקופת הגדילה — בסיס לבריאות וחוסן.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪120</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="120" onclick="window._addItem &amp;&amp; window._addItem('מזון לגורים (חודש)', 120)" title="מזון לגורים (חודש)">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="4" data-usage="4" data-wear="3">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/gear-kit.json">
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
@@ -173,14 +191,14 @@ main { position: relative; z-index: 0; }
 </svg>
 </div>
 <h3 class="font-extrabold text-lg mb-1">ערכת ציוד</h3>
-<p class="text-sm text-slate-600 leading-6">רתמות, רצועות וציוד בטיחות — יסודות להתניידות בטוחה.</p>
+<p class="text-sm text-slate-600 leading-6">רתמות, רצועות וציוד בטיחות — יסודות להתניידות בטוחה.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪250</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="250" onclick="window._addItem &amp;&amp; window._addItem('ערכת ציוד', 250)" title="ערכת ציוד">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="3" data-usage="5" data-wear="4">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/bowl.json">
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
@@ -188,14 +206,14 @@ main { position: relative; z-index: 0; }
 </svg>
 </div>
 <h3 class="font-extrabold text-lg mb-1">כלי אוכל + קערת מים</h3>
-<p class="text-sm text-slate-600 leading-6">סט קערות איכותיות לשתייה ואוכל — עמיד ונוח לניקוי.</p>
+<p class="text-sm text-slate-600 leading-6">סט קערות איכותיות לשתייה ואוכל — עמיד ונוח לניקוי.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪80</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="80" onclick="window._addItem &amp;&amp; window._addItem('כלי אוכל + קערת מים', 80)" title="כלי אוכל + קערת מים">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="3" data-usage="3" data-wear="3">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/blanket.json">
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
@@ -205,14 +223,14 @@ main { position: relative; z-index: 0; }
 </svg>
 </div>
 <h3 class="font-extrabold text-lg mb-1">שמיכה חמה לאימונים</h3>
-<p class="text-sm text-slate-600 leading-6">שמיכה מחממת ומרופדת לשמירה על חום ונוחות.</p>
+<p class="text-sm text-slate-600 leading-6">שמיכה מחממת ומרופדת לשמירה על חום ונוחות.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪100</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="100" onclick="window._addItem &amp;&amp; window._addItem('שמיכה חמה לאימונים', 100)" title="שמיכה חמה לאימונים">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="4" data-usage="3" data-wear="2">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/kennel.json">
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
@@ -220,29 +238,29 @@ main { position: relative; z-index: 0; }
 </svg>
 </div>
 <h3 class="font-extrabold text-lg mb-1">מלונה לכלב מתאמן</h3>
-<p class="text-sm text-slate-600 leading-6">מקום מוגן למנוחה והסתגלות בתהליכי האימון.</p>
+<p class="text-sm text-slate-600 leading-6">מקום מוגן למנוחה והסתגלות בתהליכי האימון.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪600</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="600" onclick="window._addItem &amp;&amp; window._addItem('מלונה לכלב מתאמן', 600)" title="מלונה לכלב מתאמן">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="5" data-usage="3" data-wear="2">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/stethoscope.json">
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
 <path d="M16 10v14a8 8 0 0 0 16 0V10"></path><path d="M32 24v8a12 12 0 0 0 24 0v-6"></path><circle cx="56" cy="20" r="4"></circle>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">ביקור וטרינר</h3>
-<p class="text-sm text-slate-600 leading-6">בדיקות שוטפות וחיסונים — שמירה על בריאות מיטבית.</p>
+<h3 class="font-extrabold text-lg mb-1">ביקור וטרינר</h3><span class="badge-urgent ms-2">נחוץ עכשיו</span>
+<p class="text-sm text-slate-600 leading-6">בדיקות שוטפות וחיסונים — שמירה על בריאות מיטבית.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪250</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="250" onclick="window._addItem &amp;&amp; window._addItem('ביקור וטרינר', 250)" title="ביקור וטרינר">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="4" data-usage="4" data-wear="4">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/toys.json">
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
@@ -250,14 +268,14 @@ main { position: relative; z-index: 0; }
 </svg>
 </div>
 <h3 class="font-extrabold text-lg mb-1">ערכת צעצועים וחשיפה</h3>
-<p class="text-sm text-slate-600 leading-6">כדורים, חבלים ומשחקים לפיתוח סקרנות וביטחון.</p>
+<p class="text-sm text-slate-600 leading-6">כדורים, חבלים ומשחקים לפיתוח סקרנות וביטחון.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪150</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="150" onclick="window._addItem &amp;&amp; window._addItem('ערכת צעצועים וחשיפה', 150)" title="ערכת צעצועים וחשיפה">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="3" data-usage="5" data-wear="1">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/outreach-doc.json">
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
@@ -265,14 +283,14 @@ main { position: relative; z-index: 0; }
 </svg>
 </div>
 <h3 class="font-extrabold text-lg mb-1">חומרי הסברה והדרכה</h3>
-<p class="text-sm text-slate-600 leading-6">הדפסה והפצה של מדריכים ומודעות לציבור.</p>
+<p class="text-sm text-slate-600 leading-6">הדפסה והפצה של מדריכים ומודעות לציבור.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪200</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="200" onclick="window._addItem &amp;&amp; window._addItem('חומרי הסברה והדרכה', 200)" title="חומרי הסברה והדרכה">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="4" data-usage="5" data-wear="4">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/harness.json">
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
@@ -280,14 +298,14 @@ main { position: relative; z-index: 0; }
 </svg>
 </div>
 <h3 class="font-extrabold text-lg mb-1">רתמה מקצועית</h3>
-<p class="text-sm text-slate-600 leading-6">רתמת עבודה תקנית לבטיחות ונוחות בהליכה מודרכת.</p>
+<p class="text-sm text-slate-600 leading-6">רתמת עבודה תקנית לבטיחות ונוחות בהליכה מודרכת.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪420</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="420" onclick="window._addItem &amp;&amp; window._addItem('רתמה מקצועית', 420)" title="רתמה מקצועית">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card" data-need="4" data-usage="5" data-wear="5">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/leash.json">
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
@@ -295,14 +313,14 @@ main { position: relative; z-index: 0; }
 </svg>
 </div>
 <h3 class="font-extrabold text-lg mb-1">רצועת אימון חזקה</h3>
-<p class="text-sm text-slate-600 leading-6">רצועה עמידה לאימונים בתנאי שטח ועיר.</p>
+<p class="text-sm text-slate-600 leading-6">רצועה עמידה לאימונים בתנאי שטח ועיר.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div></div>
 </div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪90</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="90" onclick="window._addItem &amp;&amp; window._addItem('רצועת אימון חזקה', 90)" title="רצועת אימון חזקה">הוספה</button></div>
-</div></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2 z-20" id="slideNext" onclick="window._slide &amp;&amp; window._slide('next')">›</button></div>
+</div></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2 z-20" id="slideNext" onclick="window._slide &amp;&amp; window._slide('next')">›</button><div class="slider-fade end hidden md:block"></div></div><div class="flex items-center justify-center gap-2 mt-4" id="cardsDots"></div>
 <!-- Summary -->
 <div class="max-w-md mt-6 rounded-2xl border-2 bg-white shadow-xl">
 <div class="p-4 border-b-2"><strong class="text-lg">הבחירות שלכם וסיכום התרומה</strong></div>
