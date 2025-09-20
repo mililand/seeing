@@ -43,15 +43,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- freq toggle
-  function initFreqToggle() {
-    const toggle = $('freqToggle');
-    if (!toggle) return;
-    toggle.querySelectorAll('button').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        toggle.querySelectorAll('button').forEach((b) => b.classList.remove('bg-indigo-700', 'text-white'));
-        btn.classList.add('bg-indigo-700', 'text-white');
+  
+function initFreqToggle() {
+  const toggle = $('freqToggle');
+  if (!toggle) return;
+  const buttons = toggle.querySelectorAll('button');
+  function setActive(btn) {
+    buttons.forEach((b) => {
+      b.classList.remove('bg-indigo-700','text-white');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('bg-indigo-700','text-white');
+    btn.setAttribute('aria-pressed', 'true');
+    state.freq = btn.dataset.freq || 'monthly';
+  }
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => setActive(btn));
+    // Initialize aria
+    btn.setAttribute('role','button');
+    btn.setAttribute('aria-pressed', btn.classList.contains('bg-indigo-700') ? 'true' : 'false');
+  });
+}
+);
+        btn.classList.remove('bg-white','text-slate-900');
+        btn.classList.add('bg-indigo-700','text-white');
         state.freq = btn.dataset.freq || 'monthly';
-      });
+    });
     });
   }
 
@@ -182,8 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cbPolicy = $('cbPolicy');
     const cbSubmit = $('cbSubmit');
 
-    function openM() { if (callModal) callModal.classList.remove('hidden'); }
-    function closeM() { if (callModal) callModal.classList.add('hidden'); }
+    function openM() { if (callModal) { callModal.classList.remove('hidden'); callModal.classList.add('flex'); } }
+    function closeM() { if (callModal) { callModal.classList.add('hidden'); callModal.classList.remove('flex'); } }
 
     if (callBtn) callBtn.addEventListener('click', openM);
     if (closeBtn) closeBtn.addEventListener('click', closeM);
@@ -221,3 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initModal();
   recalc(); // initial render
 });
+
+
+// Inject extra CSS for modal fix
+document.addEventListener('DOMContentLoaded',()=>{document.body.insertAdjacentHTML('beforeend', `
+<style>
+#callModal { display:flex !important; align-items:center; justify-content:center; }
+#callDialog { margin:0 auto; }
+#cbSubmit { padding:0.75rem 1.25rem; white-space:normal; text-align:center; }
+</style>
+`);});
