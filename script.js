@@ -1,3 +1,4 @@
+console.log('[seeing] script loaded');
 /* script.js — Seeing Eyes donation page
    - Renders amount presets
    - Updates impact counters
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- state
   const state = {
     freq: 'monthly',
-    amountPresets: [100, 180, 360, 555, 1000, 'סכום אחר'],
+    amountPresets: [50, 100, 180, 360, 1000, 'סכום אחר'],
     amount: 180,
     custom: 0,
     selections: []
@@ -43,32 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- freq toggle
-  
-function initFreqToggle() {
-  const toggle = $('freqToggle');
-  if (!toggle) return;
-  const buttons = toggle.querySelectorAll('button');
-  function setActive(btn) {
-    buttons.forEach((b) => {
-      b.classList.remove('bg-indigo-700','text-white');
-      b.setAttribute('aria-pressed', 'false');
-    });
-    btn.classList.add('bg-indigo-700','text-white');
-    btn.setAttribute('aria-pressed', 'true');
-    state.freq = btn.dataset.freq || 'monthly';
-  }
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => setActive(btn));
-    // Initialize aria
-    btn.setAttribute('role','button');
-    btn.setAttribute('aria-pressed', btn.classList.contains('bg-indigo-700') ? 'true' : 'false');
-  });
-}
-);
-        btn.classList.remove('bg-white','text-slate-900');
-        btn.classList.add('bg-indigo-700','text-white');
+  function initFreqToggle() {
+    const toggle = $('freqToggle');
+    if (!toggle) return;
+    toggle.querySelectorAll('button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        toggle.querySelectorAll('button').forEach((b) => b.classList.remove('bg-indigo-700', 'text-white'));
+        btn.classList.add('bg-indigo-700', 'text-white');
         state.freq = btn.dataset.freq || 'monthly';
-    });
+      });
     });
   }
 
@@ -199,8 +183,8 @@ function initFreqToggle() {
     const cbPolicy = $('cbPolicy');
     const cbSubmit = $('cbSubmit');
 
-    function openM() { if (callModal) { callModal.classList.remove('hidden'); callModal.classList.add('flex'); } }
-    function closeM() { if (callModal) { callModal.classList.add('hidden'); callModal.classList.remove('flex'); } }
+    function openM() { if (callModal) callModal.classList.remove('hidden'); }
+    function closeM() { if (callModal) callModal.classList.add('hidden'); }
 
     if (callBtn) callBtn.addEventListener('click', openM);
     if (closeBtn) closeBtn.addEventListener('click', closeM);
@@ -237,89 +221,4 @@ function initFreqToggle() {
   initDedication();
   initModal();
   recalc(); // initial render
-  initLottie();
 });
-
-
-// Inject extra CSS for modal fix
-document.addEventListener('DOMContentLoaded',()=>{document.body.insertAdjacentHTML('beforeend', `
-<style>
-#callModal { display:flex !important; align-items:center; justify-content:center; }
-#callDialog { margin:0 auto; }
-#cbSubmit { padding:0.75rem 1.25rem; white-space:normal; text-align:center; }
-</style>
-`);});
-    document.querySelectorAll('[data-lottie-path]').forEach((el) => {
-      const path = el.getAttribute('data-lottie-path');
-      if (!path) return;
-      try {
-        window.lottie.loadAnimation({
-          container: el,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path
-        });
-      } catch (e) {
-        console.error('Lottie failed for', path, e);
-      }
-    });
-  }
-
-
-  // ---- Lottie loader (lazy, with reduced-motion support)
-  function initLottie() {
-    const items = Array.from(document.querySelectorAll('[data-lottie-path]'));
-    if (!items.length) return;
-
-    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
-      // Respect users who prefer reduced motion: don't autoplay; keep SVG fallbacks.
-      console.warn('Reduced motion enabled; skipping Lottie autoplay.');
-      return;
-    }
-
-    if (!window.lottie) {
-      console.warn('lottie-web not found; using SVG fallbacks.');
-      return;
-    }
-
-    function loadOnce(el) {
-      if (el.__lottieLoaded) return;
-      const path = el.getAttribute('data-lottie-path');
-      if (!path) return;
-      try {
-        window.lottie.loadAnimation({
-          container: el,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path
-        });
-        el.__lottieLoaded = true;
-      } catch (e) {
-        console.error('Lottie failed for', path, e);
-      }
-    }
-
-    // Expose manual trigger if needed later
-    window.loadLottieOnce = loadOnce;
-
-    // Lazy load with IntersectionObserver
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            loadOnce(entry.target);
-            io.unobserve(entry.target);
-          }
-        });
-      }, { root: null, rootMargin: '120px', threshold: 0.1 });
-
-      items.forEach((el) => io.observe(el));
-    } else {
-      // Fallback: eager load
-      items.forEach(loadOnce);
-    }
-  }
-
