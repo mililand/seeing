@@ -77,7 +77,7 @@ main { position: relative; z-index: 0; }
 <span class="w-2 h-2 rounded-full bg-emerald-500"></span> ניתן לבטל בכל עת
             </span>
 </div>
-<div class="flex flex-wrap gap-2" id="amountPresets"><button class="pill" type="button">₪100</button><button class="pill" type="button">₪180</button><button class="pill" type="button">₪360</button><button class="pill" type="button">₪555</button><button class="pill" type="button">₪1000</button><button class="pill" type="button">סכום אחר</button></div>
+<div class="flex flex-wrap gap-2" id="amountPresets"><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount(100, this)" type="button">₪100</button><button class="pill sel" onclick="window._pickAmount &amp;&amp; window._pickAmount(180, this)" type="button">₪180</button><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount(360, this)" type="button">₪360</button><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount(555, this)" type="button">₪555</button><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount(1000, this)" type="button">₪1000</button><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount('other', this)" type="button">סכום אחר</button></div>
 <div class="hidden" id="customWrap">
 <label class="block text-xs text-slate-500 mb-1">סכום (₪)</label>
 <input class="w-full rounded-2xl border-2 px-4 py-3 text-base" id="customAmount" min="10" placeholder="לדוגמה: 250" step="10" type="number"/>
@@ -164,7 +164,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪120</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="120" title="מזון לגורים (חודש)">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="120" onclick="window._addItem &amp;&amp; window._addItem('מזון לגורים (חודש)', 120)" title="מזון לגורים (חודש)">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/gear-kit.json">
@@ -179,7 +179,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪250</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="250" title="ערכת ציוד">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="250" onclick="window._addItem &amp;&amp; window._addItem('ערכת ציוד', 250)" title="ערכת ציוד">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/bowl.json">
@@ -194,7 +194,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪80</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="80" title="כלי אוכל + קערת מים">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="80" onclick="window._addItem &amp;&amp; window._addItem('כלי אוכל + קערת מים', 80)" title="כלי אוכל + קערת מים">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/blanket.json">
@@ -211,7 +211,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪100</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="100" title="שמיכה חמה לאימונים">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="100" onclick="window._addItem &amp;&amp; window._addItem('שמיכה חמה לאימונים', 100)" title="שמיכה חמה לאימונים">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/kennel.json">
@@ -226,7 +226,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪600</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="600" title="מלונה לכלב מתאמן">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="600" onclick="window._addItem &amp;&amp; window._addItem('מלונה לכלב מתאמן', 600)" title="מלונה לכלב מתאמן">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/stethoscope.json">
@@ -241,7 +241,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪250</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="250" title="ביקור וטרינר">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="250" onclick="window._addItem &amp;&amp; window._addItem('ביקור וטרינר', 250)" title="ביקור וטרינר">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/toys.json">
@@ -256,7 +256,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪150</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="150" title="ערכת צעצועים וחשיפה">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="150" onclick="window._addItem &amp;&amp; window._addItem('ערכת צעצועים וחשיפה', 150)" title="ערכת צעצועים וחשיפה">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/outreach-doc.json">
@@ -271,7 +271,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪200</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="200" title="חומרי הסברה והדרכה">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="200" onclick="window._addItem &amp;&amp; window._addItem('חומרי הסברה והדרכה', 200)" title="חומרי הסברה והדרכה">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/harness.json">
@@ -286,7 +286,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪420</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="420" title="רתמה מקצועית">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="420" onclick="window._addItem &amp;&amp; window._addItem('רתמה מקצועית', 420)" title="רתמה מקצועית">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/leash.json">
@@ -301,7 +301,7 @@ main { position: relative; z-index: 0; }
 <div class="text-sm text-slate-600">פעם אחת</div>
 <div class="text-xl font-black">₪90</div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="90" title="רצועת אימון חזקה">הוספה</button></div>
+<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="90" onclick="window._addItem &amp;&amp; window._addItem('רצועת אימון חזקה', 90)" title="רצועת אימון חזקה">הוספה</button></div>
 </div></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2 z-20" id="slideNext" onclick="window._slide &amp;&amp; window._slide('next')">›</button></div>
 <!-- Summary -->
 <div class="max-w-md mt-6 rounded-2xl border-2 bg-white shadow-xl">
@@ -404,11 +404,11 @@ main { position: relative; z-index: 0; }
 <div class="max-w-6xl mx-auto px-4 py-6 text-center text-slate-500 text-sm">© 2025 עיניים מנחות לעיוור · כל הזכויות שמורות</div>
 </footer>
 <!-- Callback modal -->
-<div aria-modal="true" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4" id="callModal" role="dialog">
+<div aria-modal="true" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4" id="callModal" onclick="if(event.target===this){ window._closeM &amp;&amp; window._closeM(); }" role="dialog">
 <div class="bg-white rounded-2xl shadow-xl w-full max-w-md" id="callDialog">
 <div class="p-4 border-b flex items-center justify-between">
 <strong>השארת פרטים לשיחה חוזרת</strong>
-<button aria-label="סגירה" class="text-2xl" id="callClose">×</button>
+<button aria-label="סגירה" class="text-2xl" id="callClose" onclick="window._closeM &amp;&amp; window._closeM()">×</button>
 </div>
 <div class="p-4 space-y-3">
 <div class="grid md:grid-cols-2 gap-3">
@@ -426,10 +426,13 @@ main { position: relative; z-index: 0; }
 </div>
 </div>
 </div>
-<script>
-// minimal bootstrap to guarantee clickability even if later JS fails
+<script>// minimal bootstrap to guarantee clickability even if later JS fails
 (function(){
   function $(id){return document.getElementById(id)}
+  function fmt(n){ n = Number(n)||0; return '₪' + n.toLocaleString('he-IL') }
+  // Fallback state (used if main script fails)
+  window.__ui = window.__ui || { freq:'monthly', amount:180, custom:0, selections:[] };
+
   window._setFreq = function(mode){
     try{
       var buttons = document.querySelectorAll('#freqToggle button');
@@ -444,22 +447,99 @@ main { position: relative; z-index: 0; }
         sel.classList.add('bg-indigo-700','text-white');
         sel.setAttribute('aria-pressed','true');
       }
-      window.state = window.state || {}; window.state.freq = mode;
+      window.__ui.freq = mode;
     }catch(e){ console.error(e); }
   };
-  window._slide = function(dir){
+
+  window._pickAmount = function(val, el){
     try{
-      var track = $('cardsTrack'); if(!track) return;
-      var step = 340;
-      track.scrollBy({left: dir==='prev' ? -step : step, behavior: 'smooth'});
+      var wrap = $('amountPresets');
+      if(wrap){
+        wrap.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('sel'); });
+        el && el.classList.add('sel');
+      }
+      var customWrap = $('customWrap');
+      if(val === 'other'){
+        if(customWrap) customWrap.classList.remove('hidden');
+        window.__ui.amount = window.__ui.custom || 0;
+      }else{
+        if(customWrap) customWrap.classList.add('hidden');
+        window.__ui.amount = Number(val)||0;
+      }
+      _recalc();
     }catch(e){ console.error(e); }
   };
+
+  window._bindCustom = function(){
+    var input = $('customAmount');
+    if(!input) return;
+    input.addEventListener('input', function(e){
+      window.__ui.custom = Number(e.target.value)||0;
+      var sel = document.querySelector('#amountPresets .pill.sel');
+      if(sel && sel.textContent.trim()==='סכום אחר'){ window.__ui.amount = window.__ui.custom; _recalc(); }
+    });
+  };
+
+  window._addItem = function(title, price){
+    try{
+      window.__ui.selections.push({title:title, price:Number(price)||0});
+      _renderList();
+      _recalc();
+    }catch(e){ console.error(e); }
+  };
+
+  window._rmItem = function(idx){
+    try{
+      window.__ui.selections.splice(idx,1);
+      _renderList();
+      _recalc();
+    }catch(e){ console.error(e); }
+  };
+
+  function _renderList(){
+    var list = $('list'); var empty = $('emptyList');
+    if(!list || !empty) return;
+    list.innerHTML = '';
+    if(!window.__ui.selections.length){ empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+    window.__ui.selections.forEach(function(it, i){
+      var li = document.createElement('li');
+      li.className = 'flex items-center justify-between';
+      li.innerHTML = '<span>'+it.title+'</span><span>'+fmt(it.price)+' <button class="bg-white border rounded-xl px-2 py-1 text-xs" onclick="window._rmItem('+i+')">הסרה</button></span>';
+      list.appendChild(li);
+    });
+  }
+
+  function _impact(total){
+    var meals = Math.floor(total/25)*10;
+    var weeks = Math.floor(total/360);
+    var vet = Math.floor(total/250);
+    var ibMeals = $('ibMeals'); var ibTraining = $('ibTraining'); var ibVet = $('ibVet');
+    if(ibMeals) ibMeals.textContent = (meals>0 ? meals.toLocaleString('he-IL') : '0') + '+';
+    if(ibTraining) ibTraining.textContent = weeks;
+    if(ibVet) ibVet.textContent = vet;
+  }
+
+  window._recalc = function(){
+    var sum = (Number(window.__ui.amount)||0) + window.__ui.selections.reduce(function(s,it){return s + (Number(it.price)||0)},0);
+    var sumEl = $('sumTotal'); if(sumEl) sumEl.textContent = fmt(sum);
+    _impact(sum);
+  };
+
   window._openM = function(){
-    try{
-      var m = $('callModal'); if(!m) return;
-      m.classList.remove('hidden'); m.classList.add('flex');
-    }catch(e){ console.error(e); }
+    try{ var m=$('callModal'); if(!m) return; m.classList.remove('hidden'); m.classList.add('flex'); }catch(e){ console.error(e); }
   };
+  window._closeM = function(){
+    try{ var m=$('callModal'); if(!m) return; m.classList.add('hidden'); m.classList.remove('flex'); }catch(e){ console.error(e); }
+  };
+
+  // initial binds (fallback)
+  _bindCustom();
+  try{
+    var pills = document.querySelectorAll('#amountPresets .pill');
+    pills.forEach(function(b){ if(b.textContent.trim()==='₪180'){ b.classList.add('sel'); } });
+  }catch(e){}
+  _recalc();
 })();</script><script>
 console.log('[seeing-local] script loaded v2');
 
@@ -532,20 +612,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggle = $('freqToggle');
     if (!toggle) return;
     const buttons = toggle.querySelectorAll('button');
-    
     function setActive(btn) {
-      const buttons = document.querySelectorAll('#freqToggle button');
       buttons.forEach((b) => {
         b.classList.remove('bg-indigo-700','text-white');
         if (!b.classList.contains('bg-white')) b.classList.add('bg-white');
         b.setAttribute('aria-pressed', 'false');
       });
       btn.classList.remove('bg-white');
-      btn.classList.add('bg-indigo-700','text-white');
-      btn.setAttribute('aria-pressed', 'true');
-      state.freq = btn.dataset.freq || 'monthly';
-    }
-        );
       btn.classList.add('bg-indigo-700','text-white');
       btn.setAttribute('aria-pressed', 'true');
       state.freq = btn.dataset.freq || 'monthly';
@@ -557,7 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- custom amount
+// ---- custom amount
   function initCustom() {
     const input = $('customAmount');
     if (input) {
