@@ -17,7 +17,17 @@
     .pill{display:inline-block;border:1px solid #e5e7eb;border-radius:.75rem;padding:.5rem .75rem;font-weight:700;cursor:pointer}
     .pill.sel{background:#4338ca;color:#fff;border-color:#4338ca}
     .icon-wrap svg{width:64px;height:64px}
-  </style>
+  
+/* Clickability hardening */
+#callModal { pointer-events: none; }
+#callModal.flex { pointer-events: auto; }
+#callModal.hidden { display: none !important; }
+.tooltip .tip { pointer-events: none; }
+main { position: relative; z-index: 0; }
+.pill, button, [role="button"] { pointer-events: auto; }
+#cardsTrack { position: relative; z-index: 0; }
+#slidePrev, #slideNext { z-index: 20; }
+</style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
@@ -138,7 +148,7 @@
 <small class="text-slate-500">בחרו ונוסיף לסיכום התרומה</small>
 </div>
 <p class="explain-shopping text-slate-600 mb-6">כאן תוכלו לסגור לנו פינה — צרכים נקודתיים שהעמותה זקוקה להם. כל האפשרויות הן תרומה חד־פעמית, כמו רכישה של מוצר ספציפי ללא מחויבות.</p>
-<div class="relative"><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -start-4 top-1/2 -translate-y-1/2" id="slidePrev">‹</button><div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth" id="cardsTrack"><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
+<div class="relative"><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -start-4 top-1/2 -translate-y-1/2 z-20" id="slidePrev">‹</button><div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth" id="cardsTrack"><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start">
 <div class="p-4 border-b-2">
 <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/puppy-food.json">
 <!-- SVG fallback -->
@@ -292,7 +302,7 @@
 <div class="text-xl font-black">₪90</div>
 </div>
 <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="90" title="רצועת אימון חזקה">הוספה</button></div>
-</div></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2" id="slideNext">›</button></div>
+</div></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2 z-20" id="slideNext">›</button></div>
 <!-- Summary -->
 <div class="max-w-md mt-6 rounded-2xl border-2 bg-white shadow-xl">
 <div class="p-4 border-b-2"><strong class="text-lg">הבחירות שלכם וסיכום התרומה</strong></div>
