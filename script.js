@@ -5,14 +5,14 @@ console.log('[seeing] script loaded');
    - Handles "call me" modal with validation
 */
 document.addEventListener('DOMContentLoaded', () => {
-  // ---- tiny helpers1
+  // ---- tiny helpers
   const $ = (id) => document.getElementById(id);
   const fmt = (n) => '₪' + (Number(n) || 0).toLocaleString('he-IL');
 
   // ---- state
   const state = {
     freq: 'monthly',
-    amountPresets: [50, 100, 180, 360, 1000, 'סכום אחר'],
+    amountPresets: [100, 180, 360, 555, 1000, 'סכום אחר'],
     amount: 180,
     custom: 0,
     selections: []
