@@ -5,7 +5,7 @@ console.log('[seeing] script loaded');
    - Handles "call me" modal with validation
 */
 document.addEventListener('DOMContentLoaded', () => {
-  // ---- tiny helpers
+  // ---- tiny helpers1
   const $ = (id) => document.getElementById(id);
   const fmt = (n) => '₪' + (Number(n) || 0).toLocaleString('he-IL');
 
