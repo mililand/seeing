@@ -46,15 +46,18 @@ main { position: relative; z-index: 0; }
 .meter .dot.on { background:#4338ca; }
 .badge-urgent { display:inline-flex; align-items:center; gap:.3rem; font-size:.75rem; color:#b91c1c; background:#fee2e2; border:1px solid #fecaca; padding:.2rem .45rem; border-radius:.5rem; }
 
-/* Equal-height cards */
-#cardsTrack > .card { display:flex; flex-direction:column; height:100%; }
-#cardsTrack > .card .hdr { height: 360px; display:flex; flex-direction:column; }
-#cardsTrack > .card .hdr .body { overflow:auto; }
-#cardsTrack > .card .add-wrap { margin-top:auto; }
+/* === Requested tweaks === */
+/* meters vertical + orange dots */
+.meters { display:flex !important; flex-direction:column !important; gap:.5rem !important; margin-top:.5rem; }
+.meter .dot.on { background:#f59e0b !important; } /* amber-500 */
+/* ensure equal-height cards and bottom-aligned add button */
+#cardsTrack > .card { display:flex !important; flex-direction:column !important; height:100% !important; }
+#cardsTrack > .card .add-wrap { margin-top:auto !important; }
+/* hide any edge-fade overlays completely */
+.slider-fade { display:none !important; }
 
-/* Hide horizontal scrollbar under the slider */
-#cardsTrack { -ms-overflow-style: none; scrollbar-width: none; }
-#cardsTrack::-webkit-scrollbar { display: none; height: 0; background: transparent; }
+/* A4 preview proportions */
+#certificatePreview { aspect-ratio: 210 / 297; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -79,7 +82,7 @@ main { position: relative; z-index: 0; }
 <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-start">
 <div>
 <h1 class="text-3xl md:text-5xl font-black text-indigo-700 leading-tight">תרומה שאפשר לראות את התוצאות שלה</h1>
-<p class="mt-3 text-lg">הביקוש לכלבי נחייה בישראל גבוה מההיצע. הכלבים ניתנים ללא עלות, והתרומה שלכם מקצרת זמני המתנה ומכשירה צוותים נוספים.</p>
+<p class="mt-3 text-lg">בכל שנה מאבדים XX אנשים את מאור עיניהם. הביקוש לכלבי נחייה בישראל גבוה מההיצע. הכלבים ניתנים ללא עלות, והתרומה שלכם מקצרת זמני המתנה, מאפשרת להכשיר צוותים נוספים ומעניקה עצמאות ובטיחות לאנשים עם עיוורון. בחרו סכום ותרמו עכשיו — כל שקל עושה הבדל.</p>
 <ul class="mt-4 space-y-1 text-sm text-slate-700">
 <li>• כלבי נחייה ללא עלות למקבל/ת השירות</li>
 <li>• התאמה, הכשרה וליווי מתמשך</li>
@@ -176,20 +179,20 @@ main { position: relative; z-index: 0; }
 <small class="text-slate-500">בחרו ונוסיף לסיכום התרומה</small>
 </div>
 <p class="explain-shopping text-slate-600 mb-6">כאן תוכלו לסגור לנו פינה — צרכים נקודתיים שהעמותה זקוקה להם. כל האפשרויות הן תרומה חד־פעמית, כמו רכישה של מוצר ספציפי ללא מחויבות.</p>
-<div class="relative"><div class="slider-fade start hidden md:block"></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -start-4 top-1/2 -translate-y-1/2 z-20" id="slidePrev" onclick="window._slide &amp;&amp; window._slide('prev')">‹</button><div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth" id="cardsTrack"><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="5" data-usage="4" data-wear="3">
+<div class="relative"><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -start-4 top-1/2 -translate-y-1/2 z-20" id="slidePrev" onclick="window._slide &amp;&amp; window._slide('prev')">‹</button><div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth" id="cardsTrack"><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="5" data-usage="4" data-wear="3">
 <div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/puppy-food.json">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/puppy-food.json">
 <!-- SVG fallback -->
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
 <circle cx="20" cy="26" r="6"></circle><circle cx="32" cy="22" r="6"></circle><circle cx="44" cy="26" r="6"></circle>
 <path d="M22 44c4-10 16-10 20 0-6 6-14 6-20 0z"></path>
 </svg>
-</div>
-<h3 class="font-extrabold text-lg mb-1">מזון לגורים (חודש)</h3><span class="badge-urgent ms-2">נחוץ עכשיו</span>
-<p class="text-sm text-slate-600 leading-6">מזון איכותי ומאוזן לתקופת הגדילה — בסיס לבריאות וחוסן.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div>
+<span class="badge-urgent ms-2 absolute right-2 top-2 z-10">נחוץ עכשיו</span></div>
+<h3 class="font-extrabold text-lg mb-1">מזון לגורים (חודש)</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">מזון איכותי ומאוזן לתקופת הגדילה — בסיס לבריאות וחוסן.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪120</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="120" onclick="window._addItem &amp;&amp; window._addItem('מזון לגורים (חודש)', 120)" title="מזון לגורים (חודש)">הוספה</button></div>
@@ -200,11 +203,11 @@ main { position: relative; z-index: 0; }
 <path d="M12 28h40l-4 16H16l-4-16z"></path><path d="M18 28l4-12h20l4 12"></path><path d="M20 44v8M44 44v8"></path>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">ערכת ציוד</h3>
-<p class="text-sm text-slate-600 leading-6">רתמות, רצועות וציוד בטיחות — יסודות להתניידות בטוחה.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div>
+<h3 class="font-extrabold text-lg mb-1">ערכת ציוד</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">רתמות, רצועות וציוד בטיחות — יסודות להתניידות בטוחה.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪250</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="250" onclick="window._addItem &amp;&amp; window._addItem('ערכת ציוד', 250)" title="ערכת ציוד">הוספה</button></div>
@@ -215,11 +218,11 @@ main { position: relative; z-index: 0; }
 <path d="M10 36c2 12 14 20 22 20s20-8 22-20H10z"></path><path d="M6 36h52"></path>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">כלי אוכל + קערת מים</h3>
-<p class="text-sm text-slate-600 leading-6">סט קערות איכותיות לשתייה ואוכל — עמיד ונוח לניקוי.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
-</div>
+<h3 class="font-extrabold text-lg mb-1">כלי אוכל + קערת מים</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">סט קערות איכותיות לשתייה ואוכל — עמיד ונוח לניקוי.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪80</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="80" onclick="window._addItem &amp;&amp; window._addItem('כלי אוכל + קערת מים', 80)" title="כלי אוכל + קערת מים">הוספה</button></div>
@@ -232,11 +235,11 @@ main { position: relative; z-index: 0; }
 <path d="M10 26h44M10 38h44" stroke-dasharray="4 6"></path>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">שמיכה חמה לאימונים</h3>
-<p class="text-sm text-slate-600 leading-6">שמיכה מחממת ומרופדת לשמירה על חום ונוחות.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div>
+<h3 class="font-extrabold text-lg mb-1">שמיכה חמה לאימונים</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">שמיכה מחממת ומרופדת לשמירה על חום ונוחות.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪100</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="100" onclick="window._addItem &amp;&amp; window._addItem('שמיכה חמה לאימונים', 100)" title="שמיכה חמה לאימונים">הוספה</button></div>
@@ -247,26 +250,26 @@ main { position: relative; z-index: 0; }
 <path d="M8 28 32 12l24 16v22H8V28z"></path><path d="M24 62V40a8 8 0 0 1 16 0v22"></path><circle cx="32" cy="44" r="3"></circle>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">מלונה לכלב מתאמן</h3>
-<p class="text-sm text-slate-600 leading-6">מקום מוגן למנוחה והסתגלות בתהליכי האימון.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div>
+<h3 class="font-extrabold text-lg mb-1">מלונה לכלב מתאמן</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">מקום מוגן למנוחה והסתגלות בתהליכי האימון.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪600</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="600" onclick="window._addItem &amp;&amp; window._addItem('מלונה לכלב מתאמן', 600)" title="מלונה לכלב מתאמן">הוספה</button></div>
 </div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="5" data-usage="3" data-wear="2">
 <div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/stethoscope.json">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/stethoscope.json"><span class="badge-urgent absolute right-2 top-2 z-10">נחוץ עכשיו</span>
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 64 64" width="64">
 <path d="M16 10v14a8 8 0 0 0 16 0V10"></path><path d="M32 24v8a12 12 0 0 0 24 0v-6"></path><circle cx="56" cy="20" r="4"></circle>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">ביקור וטרינר</h3><span class="badge-urgent ms-2">נחוץ עכשיו</span>
-<p class="text-sm text-slate-600 leading-6">בדיקות שוטפות וחיסונים — שמירה על בריאות מיטבית.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div>
+<h3 class="font-extrabold text-lg mb-1">ביקור וטרינר</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">בדיקות שוטפות וחיסונים — שמירה על בריאות מיטבית.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪250</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="250" onclick="window._addItem &amp;&amp; window._addItem('ביקור וטרינר', 250)" title="ביקור וטרינר">הוספה</button></div>
@@ -277,11 +280,11 @@ main { position: relative; z-index: 0; }
 <circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">ערכת צעצועים וחשיפה</h3>
-<p class="text-sm text-slate-600 leading-6">כדורים, חבלים ומשחקים לפיתוח סקרנות וביטחון.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
-</div>
+<h3 class="font-extrabold text-lg mb-1">ערכת צעצועים וחשיפה</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">כדורים, חבלים ומשחקים לפיתוח סקרנות וביטחון.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪150</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="150" onclick="window._addItem &amp;&amp; window._addItem('ערכת צעצועים וחשיפה', 150)" title="ערכת צעצועים וחשיפה">הוספה</button></div>
@@ -292,11 +295,11 @@ main { position: relative; z-index: 0; }
 <path d="M16 10h24l8 8v36H16z"></path><path d="M40 10v8h8"></path><path d="M22 30h20M22 38h20M22 46h14"></path>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">חומרי הסברה והדרכה</h3>
-<p class="text-sm text-slate-600 leading-6">הדפסה והפצה של מדריכים ומודעות לציבור.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div>
+<h3 class="font-extrabold text-lg mb-1">חומרי הסברה והדרכה</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">הדפסה והפצה של מדריכים ומודעות לציבור.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪200</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="200" onclick="window._addItem &amp;&amp; window._addItem('חומרי הסברה והדרכה', 200)" title="חומרי הסברה והדרכה">הוספה</button></div>
@@ -307,11 +310,11 @@ main { position: relative; z-index: 0; }
 <path d="M12 28h40l-4 16H16l-4-16z"></path><path d="M18 28l4-12h20l4 12"></path><path d="M20 44v8M44 44v8"></path>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">רתמה מקצועית</h3>
-<p class="text-sm text-slate-600 leading-6">רתמת עבודה תקנית לבטיחות ונוחות בהליכה מודרכת.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
-</div>
+<h3 class="font-extrabold text-lg mb-1">רתמה מקצועית</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">רתמת עבודה תקנית לבטיחות ונוחות בהליכה מודרכת.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪420</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="420" onclick="window._addItem &amp;&amp; window._addItem('רתמה מקצועית', 420)" title="רתמה מקצועית">הוספה</button></div>
@@ -322,15 +325,15 @@ main { position: relative; z-index: 0; }
 <path d="M10 40c8-10 18-6 26-2s14 6 18-2"></path><circle cx="12" cy="42" r="6"></circle><path d="M50 22a6 6 0 1 1 0 12"></path>
 </svg>
 </div>
-<h3 class="font-extrabold text-lg mb-1">רצועת אימון חזקה</h3>
-<p class="text-sm text-slate-600 leading-6">רצועה עמידה לאימונים בתנאי שטח ועיר.</p><div class="meters"><div class="meter" title="נחיצות"><span>נחיצות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="שימושיות"><span>שימושיות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div></div>
-</div>
+<h3 class="font-extrabold text-lg mb-1">רצועת אימון חזקה</h3><div class="body grow">
+<p class="text-sm text-slate-600 leading-6">רצועה עמידה לאימונים בתנאי שטח ועיר.</p><div class="meters"><div class="meter" title="תדירות"><span>תדירות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="meter" title="חשיבות"><span>חשיבות</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div></div>
+</div></div>
 <div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
+<div class="text-sm text-slate-600">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪90</div>
 </div>
 <div class="p-4 pt-0 add-wrap mt-auto"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="90" onclick="window._addItem &amp;&amp; window._addItem('רצועת אימון חזקה', 90)" title="רצועת אימון חזקה">הוספה</button></div>
-</div></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2 z-20" id="slideNext" onclick="window._slide &amp;&amp; window._slide('next')">›</button><div class="slider-fade end hidden md:block"></div></div><div class="flex items-center justify-center gap-2 mt-4" id="cardsDots"></div>
+</div></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2 z-20" id="slideNext" onclick="window._slide &amp;&amp; window._slide('next')">›</button></div>
 <!-- Summary -->
 <div class="max-w-md mt-6 rounded-2xl border-2 bg-white shadow-xl">
 <div class="p-4 border-b-2"><strong class="text-lg">הבחירות שלכם וסיכום התרומה</strong></div>
@@ -393,14 +396,14 @@ main { position: relative; z-index: 0; }
 <section class="max-w-6xl mx-auto px-4 py-12" id="dedication">
 <h2 class="text-2xl font-black text-indigo-700 mb-3">תרומה לזכרם</h2>
 <div class="grid md:grid-cols-2 gap-6">
-<div class="rounded-xl border bg-white shadow p-5 text-center">
+<div class="rounded-xl border bg-white shadow p-5 text-center" id="certificatePreview"><div class="text-xs text-slate-500 mb-2">תאריך: <span id="certDate"></span><span> · </span><span id="certDateHebrew"></span></div>
 <div class="w-14 h-14 rounded-full bg-indigo-50 mx-auto mb-2"></div>
-<h4 class="font-bold">תעודת הוקרה</h4>
+<h4 class="font-bold">תעודת הוקרה</h4><p class="text-slate-600 text-sm mt-1">תודה על תרומתכם — בזכותכם עוד אדם זוכה לביטחון ועצמאות.</p>
 <div class="h-px bg-slate-200 my-3"></div>
-<div class="text-xl font-black text-indigo-700" id="certName">לזכר/לע"נ: —</div>
+<div class="text-xl font-black text-indigo-700" id="certName">שם המוקדש/ת: —</div>
 <p class="text-slate-500">בשם התורם/ת: <span id="certDonor">—</span></p>
 <div class="h-px bg-slate-200 my-3"></div>
-<small class="text-slate-500">עמותת עיניים מנחות לעיוור · תאריך: <span id="certDate"></span></small>
+
 </div>
 <div class="rounded-xl border bg-white shadow">
 <div class="p-4 border-b font-bold">מלאו פרטי הקדשה</div>
@@ -409,7 +412,7 @@ main { position: relative; z-index: 0; }
 <div><label class="block text-xs text-slate-500 mb-1">שם התורם/ת</label><input class="w-full border rounded-xl px-3 py-2" id="dedDonor" placeholder="שמך המלא"/></div>
 <div><label class="block text-xs text-slate-500 mb-1">סוג ההקדשה</label>
 <select class="w-full border rounded-xl px-3 py-2" id="dedType">
-<option>לזכר/לע"נ</option><option>לרפואה שלמה</option><option>לכבוד</option>
+<option>לזכר</option><option>לרפואה שלמה</option><option>לכבוד</option>
 </select>
 </div>
 <div><label class="block text-xs text-slate-500 mb-1">הודעה קצרה (אופציונלי)</label><input class="w-full border rounded-xl px-3 py-2" id="dedMsg" placeholder="מילים לזכר/ברכה"/></div>
@@ -763,8 +766,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function upd() {
       const name = dn ? dn.value.trim() : '';
       const donor = ddn ? ddn.value.trim() : '';
-      const type = dt ? dt.value : 'לזכר/לע"נ';
-      if (cn) cn.textContent = 'ל' + type + ': ' + (name || '—');
+      if (cn) cn.textContent = 'שם המוקדש/ת: ' + (name || '—');
       if (cd) cd.textContent = donor || '—';
     }
     if (dn) dn.addEventListener('input', upd);
@@ -875,5 +877,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (next) next.addEventListener('click', () => track.scrollBy({left: step, behavior: 'smooth'}));
   }
         </script>
-</body>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.meters').forEach(m => {
+    m.querySelectorAll('.meter').forEach(mt => {
+      const t = (mt.getAttribute('title') || '').trim();
+      if (t !== 'בלאי') mt.remove();
+    });
+  });
+});
+</script><script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const d = new Date();
+    const gy = d.getFullYear();
+    const gm = d.getMonth() + 1;
+    const gd = d.getDate();
+    const g = `${String(gd).padStart(2,'0')}.${String(gm).padStart(2,'0')}.${gy}`;
+    const gEl = document.getElementById('certDate');
+    if (gEl) gEl.textContent = g;
+    const url = `https://www.hebcal.com/converter?cfg=json&gy=${gy}&gm=${gm}&gd=${gd}&g2h=1&strict=1`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Hebcal fetch failed');
+    const j = await res.json();
+    const heb = j.hebrew || '';
+    const hEl = document.getElementById('certDateHebrew');
+    if (hEl) hEl.textContent = heb;
+  } catch (e) {
+    console.warn('Hebrew date lookup failed', e);
+    const hEl = document.getElementById('certDateHebrew');
+    if (hEl) hEl.textContent = '';
+  }
+});
+</script></body>
 </html>
