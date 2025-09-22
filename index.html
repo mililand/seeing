@@ -58,6 +58,10 @@ main { position: relative; z-index: 0; }
 
 /* A4 preview proportions */
 #certificatePreview { aspect-ratio: 210 / 297; }
+
+/* Hide horizontal scrollbar under the slider */
+#cardsTrack { -ms-overflow-style: none; scrollbar-width: none; }
+#cardsTrack::-webkit-scrollbar { display: none; height: 0; background: transparent; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -403,7 +407,6 @@ main { position: relative; z-index: 0; }
 <div class="text-xl font-black text-indigo-700" id="certName">שם המוקדש/ת: —</div>
 <p class="text-slate-500">בשם התורם/ת: <span id="certDonor">—</span></p>
 <div class="h-px bg-slate-200 my-3"></div>
-
 </div>
 <div class="rounded-xl border bg-white shadow">
 <div class="p-4 border-b font-bold">מלאו פרטי הקדשה</div>
