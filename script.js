@@ -673,3 +673,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (hEl) hEl.textContent = '';
   }
 });
+
+
+// === Accessibility additions (2025-10-19 15:38) ===
+(function(){ 
+  try {
+    var slider = document.getElementById('donation-slider');
+    var prevBtn = document.getElementById('slidePrev');
+    var nextBtn = document.getElementById('slideNext');
+    if (slider && prevBtn && nextBtn) {
+      slider.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight') { nextBtn.click(); e.preventDefault(); }
+        if (e.key === 'ArrowLeft')  { prevBtn.click(); e.preventDefault(); }
+      });
+    }
+    var priceBtns = document.querySelectorAll('button[data-price]');
+    priceBtns.forEach(function(btn){
+      var p = btn.getAttribute('data-price');
+      if (p && !btn.hasAttribute('aria-label')) {
+        var amt = Number(p).toLocaleString('he-IL');
+        btn.setAttribute('aria-label', 'הוספה לסל – ₪' + amt);
+      }
+      if (!btn.hasAttribute('type')) {
+        btn.setAttribute('type','button');
+      }
+    });
+  } catch(e){ console && console.warn && console.warn('a11y init', e); }
+})();
