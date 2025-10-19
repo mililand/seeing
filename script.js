@@ -39,21 +39,25 @@ function recalc() {
   const base = (state.amount === 'סכום אחר') ? Number(state.custom||0) : Number(state.amount||0);
   const extras = state.selections.reduce((s, it) => s + Number(it.price||0), 0);
 
-  const imp = impactFrom(base);
-  const ibMeals = $('ibMeals');
-  const ibTraining = $('ibTraining');
-  const ibVet = $('ibVet');
-  if (ibMeals)    ibMeals.textContent    = (imp.meals > 0 ? imp.meals.toLocaleString('he-IL') : '0') + '+';
-  if (ibTraining) ibTraining.textContent = imp.hours;
-  if (ibVet)      ibVet.textContent      = imp.vet;
+  // Impact from BASE only
+  const meals = Math.floor(base / 20);
+  const hours = Math.floor(base / 300);
+  const vet   = Math.floor(base / 500);
+  const ibMeals = $('ibMeals'), ibTraining = $('ibTraining'), ibVet = $('ibVet');
+  if (ibMeals)    ibMeals.textContent    = (meals > 0 ? meals.toLocaleString('he-IL') : '0') + '+';
+  if (ibTraining) ibTraining.textContent = hours;
+  if (ibVet)      ibVet.textContent      = vet;
 
+  // Bottom total = EXTRAS only
   const sumEl = $('sumTotal');
-  if (sumEl) sumEl.textContent = fmt(extras);
+  if (sumEl) sumEl.textContent = '₪' + (extras||0).toLocaleString('he-IL');
 }
-
 // Public fallback for legacy inline calls
 window._recalc = function(){
-  recalc();
+  var base = (window.__ui.amount === 'סכום אחר' ? Number(window.__ui.custom)||0 : Number(window.__ui.amount)||0);
+  var extras = window.__ui.selections.reduce(function(s,it){return s + (Number(it.price)||0)},0);
+  var sumEl = $('sumTotal'); if(sumEl) sumEl.textContent = '₪' + (extras||0).toLocaleString('he-IL');
+  _impact(base);
 };
 
 // ------------------------------

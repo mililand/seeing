@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
-<link rel="stylesheet" href="style.css?v=6"> 
+<link rel="stylesheet" href="style.css?v=5"> 
 
-<link id="themeStyles" rel="stylesheet" href="" media="all"><script src="script.js?v=6" defer></script>
+<link id="themeStyles" rel="stylesheet" href="" media="all"><script src="script.js?v=5" defer></script>
 
 <!-- saved from url=(0034)https://mililand.github.io/seeing/ -->
 <html dir="rtl" lang="he"><head>
@@ -14,10 +14,6 @@
 <!-- Lottie (optional) -->
 <script src="./עמוד תרומה — עיניים מנחות לעיוור (גרסה מקומית)_files/lottie.min.js"></script>
 
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="bg-slate-50 text-slate-900">
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
@@ -68,12 +64,12 @@
             </span>
 </div>
 <div class="flex flex-wrap gap-2" id="amountPresets">
-<button class="pill" type="button" onclick="window._pickAmount && window._pickAmount(75, this)">₪75</button>
-<button class="pill sel" type="button" onclick="window._pickAmount && window._pickAmount(180, this)">₪180</button>
-<button class="pill" type="button" onclick="window._pickAmount && window._pickAmount(250, this)">₪250</button>
-<button class="pill" type="button" onclick="window._pickAmount && window._pickAmount(360, this)">₪360</button>
-<button class="pill" type="button" onclick="window._pickAmount && window._pickAmount(500, this)">₪500</button>
-<button class="pill" type="button" onclick="window._pickAmount && window._pickAmount('סכום אחר', this)">סכום אחר</button>
+<button class="pill" type="button" onclick="_pickAmount(75,this)">₪75</button>
+<button class="pill sel" type="button" onclick="_pickAmount(180,this)">₪180</button>
+<button class="pill" type="button" onclick="_pickAmount(250,this)">₪250</button>
+<button class="pill" type="button" onclick="_pickAmount(360,this)">₪360</button>
+<button class="pill" type="button" onclick="_pickAmount(500,this)">₪500</button>
+<button class="pill" type="button" onclick="_pickAmount('סכום אחר',this)">סכום אחר</button>
 </div>
 <div class="hidden" id="customWrap">
 <label class="block text-xs text-slate-500 mb-1">סכום (₪)</label>
@@ -146,14 +142,9 @@
 </div>
 <p class="explain-shopping text-slate-800 mb-6">כאן תוכלו לסגור לנו פינה — צרכים נקודתיים שהעמותה זקוקה להם. כל האפשרויות הן תרומה חד־פעמית, כמו רכישה של מוצר ספציפי ללא מחויבות.</p>
 <div class="relative" id="donation-slider" role="region" aria-label="סליידר בחירת תרומות" tabindex="0"><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -start-4 top-1/2 -translate-y-1/2 z-20" id="slidePrev" onclick="window._slide &amp;&amp; window._slide(&#39;prev&#39;)" aria-label="הקודם בסליידר">‹</button><div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth" id="cardsTrack">
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-  <div class="p-4 border-b-2">
-    <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/harness.json">
-      
-      <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-        <circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-      </svg>
-    </div>
+<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4">
+  <div class="p-4 head">
+    <div class="w-full aspect-[16/9] bg-yellow-100 rounded-xl mb-3 icon-wrap relative"></div>
     <h3 class="font-extrabold text-lg mb-1">ריתמה</h3>
     <div class="body grow">
       <p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p>
@@ -164,18 +155,13 @@
     <div class="text-xl font-black price" dir="ltr">₪550</div>
   </div>
   <div class="p-4 pt-0 add-wrap mt-auto">
-    <button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add data-price="550" onclick="window._addItem && window._addItem('ריתמה', 550)" title="ריתמה" aria-label="הוספה לסל – ₪550">הוספה</button>
+    <button type="button" class="btn btn-primary" data-add data-price="550" onclick="_addItem('ריתמה', 550)" title="ריתמה" aria-label="הוספה לסל – ₪550">הוספה</button>
   </div>
 </div>
 
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-  <div class="p-4 border-b-2">
-    <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/leash.json">
-      
-      <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-        <circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-      </svg>
-    </div>
+<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4">
+  <div class="p-4 head">
+    <div class="w-full aspect-[16/9] bg-yellow-100 rounded-xl mb-3 icon-wrap relative"></div>
     <h3 class="font-extrabold text-lg mb-1">רצועת הולכה לכלב נחייה</h3>
     <div class="body grow">
       <p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p>
@@ -186,18 +172,13 @@
     <div class="text-xl font-black price" dir="ltr">₪350</div>
   </div>
   <div class="p-4 pt-0 add-wrap mt-auto">
-    <button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add data-price="350" onclick="window._addItem && window._addItem('רצועת הולכה לכלב נחייה', 350)" title="רצועת הולכה לכלב נחייה" aria-label="הוספה לסל – ₪350">הוספה</button>
+    <button type="button" class="btn btn-primary" data-add data-price="350" onclick="_addItem('רצועת הולכה לכלב נחייה', 350)" title="רצועת הולכה לכלב נחייה" aria-label="הוספה לסל – ₪350">הוספה</button>
   </div>
 </div>
 
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-  <div class="p-4 border-b-2">
-    <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/gear-kit.json">
-      
-      <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-        <circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-      </svg>
-    </div>
+<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4">
+  <div class="p-4 head">
+    <div class="w-full aspect-[16/9] bg-yellow-100 rounded-xl mb-3 icon-wrap relative"></div>
     <h3 class="font-extrabold text-lg mb-1">ערכת ציוד מלא לגור כולל רצועה, קולר, צלחת, מלונה</h3>
     <div class="body grow">
       <p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p>
@@ -208,18 +189,13 @@
     <div class="text-xl font-black price" dir="ltr">₪2,200</div>
   </div>
   <div class="p-4 pt-0 add-wrap mt-auto">
-    <button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add data-price="2200" onclick="window._addItem && window._addItem('ערכת ציוד מלא לגור כולל רצועה, קולר, צלחת, מלונה', 2200)" title="ערכת ציוד מלא לגור כולל רצועה, קולר, צלחת, מלונה" aria-label="הוספה לסל – ₪2,200">הוספה</button>
+    <button type="button" class="btn btn-primary" data-add data-price="2200" onclick="_addItem('ערכת ציוד מלא לגור כולל רצועה, קולר, צלחת, מלונה', 2200)" title="ערכת ציוד מלא לגור כולל רצועה, קולר, צלחת, מלונה" aria-label="הוספה לסל – ₪2,200">הוספה</button>
   </div>
 </div>
 
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-  <div class="p-4 border-b-2">
-    <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/kennel.json">
-      
-      <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-        <circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-      </svg>
-    </div>
+<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4">
+  <div class="p-4 head">
+    <div class="w-full aspect-[16/9] bg-yellow-100 rounded-xl mb-3 icon-wrap relative"></div>
     <h3 class="font-extrabold text-lg mb-1">מלונה</h3>
     <div class="body grow">
       <p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p>
@@ -230,18 +206,13 @@
     <div class="text-xl font-black price" dir="ltr">₪1,200</div>
   </div>
   <div class="p-4 pt-0 add-wrap mt-auto">
-    <button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add data-price="1200" onclick="window._addItem && window._addItem('מלונה', 1200)" title="מלונה" aria-label="הוספה לסל – ₪1,200">הוספה</button>
+    <button type="button" class="btn btn-primary" data-add data-price="1200" onclick="_addItem('מלונה', 1200)" title="מלונה" aria-label="הוספה לסל – ₪1,200">הוספה</button>
   </div>
 </div>
 
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-  <div class="p-4 border-b-2">
-    <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/outreach-doc.json">
-      
-      <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-        <circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-      </svg>
-    </div>
+<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4">
+  <div class="p-4 head">
+    <div class="w-full aspect-[16/9] bg-yellow-100 rounded-xl mb-3 icon-wrap relative"></div>
     <h3 class="font-extrabold text-lg mb-1">חומרי הסברה והדרכה — פליירים, כרטיסי ביקור, מעטפות וכו׳… (שנתי)</h3>
     <div class="body grow">
       <p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p>
@@ -252,18 +223,13 @@
     <div class="text-xl font-black price" dir="ltr">₪3,500</div>
   </div>
   <div class="p-4 pt-0 add-wrap mt-auto">
-    <button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add data-price="3500" onclick="window._addItem && window._addItem('חומרי הסברה והדרכה — פליירים, כרטיסי ביקור, מעטפות וכו׳… (שנתי)', 3500)" title="חומרי הסברה והדרכה — פליירים, כרטיסי ביקור, מעטפות וכו׳… (שנתי)" aria-label="הוספה לסל – ₪3,500">הוספה</button>
+    <button type="button" class="btn btn-primary" data-add data-price="3500" onclick="_addItem('חומרי הסברה והדרכה — פליירים, כרטיסי ביקור, מעטפות וכו׳… (שנתי)', 3500)" title="חומרי הסברה והדרכה — פליירים, כרטיסי ביקור, מעטפות וכו׳… (שנתי)" aria-label="הוספה לסל – ₪3,500">הוספה</button>
   </div>
 </div>
 
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-  <div class="p-4 border-b-2">
-    <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/puppy-food.json">
-      <span class="badge-urgent absolute right-2 top-2 z-10">נחוץ עכשיו</span>
-      <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-        <circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-      </svg>
-    </div>
+<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4">
+  <div class="p-4 head">
+    <div class="w-full aspect-[16/9] bg-yellow-100 rounded-xl mb-3 icon-wrap relative"></div>
     <h3 class="font-extrabold text-lg mb-1">מזון לכלב (לחודש)</h3>
     <div class="body grow">
       <p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p>
@@ -274,7 +240,7 @@
     <div class="text-xl font-black price" dir="ltr">₪450</div>
   </div>
   <div class="p-4 pt-0 add-wrap mt-auto">
-    <button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add data-price="450" onclick="window._addItem && window._addItem('מזון לכלב (לחודש)', 450)" title="מזון לכלב (לחודש)" aria-label="הוספה לסל – ₪450">הוספה</button>
+    <button type="button" class="btn btn-primary" data-add data-price="450" onclick="_addItem('מזון לכלב (לחודש)', 450)" title="מזון לכלב (לחודש)" aria-label="הוספה לסל – ₪450">הוספה</button>
   </div>
 </div>
 </div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2 z-20" id="slideNext" onclick="window._slide &amp;&amp; window._slide(&#39;next&#39;)" aria-label="הבא בסליידר">›</button></div>
@@ -400,6 +366,14 @@
 <span class="text-slate-500 text-sm">נשתמש בפרטים רק לצורך יצירת קשר.</span>
 </div>
 </div>
+</div>
+
+<!-- Theme Switcher -->
+<div id="themeSwitcher" class="fixed top-2 end-4 z-50 bg-white/90 backdrop-blur border border-slate-200 rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2 text-sm">
+  <span class="text-slate-700 hidden md:block">ערכת עיצוב:</span>
+  <button type="button" class="pill" data-theme="warm" aria-pressed="false" title="Warm Trust">Warm</button>
+  <button type="button" class="pill" data-theme="emerald" aria-pressed="false" title="Fresh Emerald">Emerald</button>
+  <button type="button" class="pill" data-theme="noir" aria-pressed="false" title="Noir Contrast">Noir</button>
 </div>
 
 </body></html>
