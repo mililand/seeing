@@ -59,7 +59,7 @@
 <span class="w-2 h-2 rounded-full bg-emerald-500"></span> ניתן לבטל בכל עת
             </span>
 </div>
-<div class="flex flex-wrap gap-2" id="amountPresets"><button class="pill" onclick="window._pickAmount && window._pickAmount(75, this)" type="button">₪75</button><button class="pill sel" onclick="window._pickAmount && window._pickAmount(180, this)" type="button">₪180</button><button class="pill" onclick="window._pickAmount && window._pickAmount(250, this)" type="button">₪250</button><button class="pill" onclick="window._pickAmount && window._pickAmount(360, this)" type="button">₪360</button><button class="pill" onclick="window._pickAmount && window._pickAmount(500, this)" type="button">₪500</button><button class="pill" onclick="window._pickAmount && window._pickAmount('other', this)" type="button">סכום אחר</button></div>
+<div class="flex flex-wrap gap-2" id="amountPresets"><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount(100, this)" type="button">₪100</button><button class="pill sel" onclick="window._pickAmount &amp;&amp; window._pickAmount(180, this)" type="button">₪180</button><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount(360, this)" type="button">₪360</button><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount(555, this)" type="button">₪555</button><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount(1000, this)" type="button">₪1000</button><button class="pill" onclick="window._pickAmount &amp;&amp; window._pickAmount(&#39;other&#39;, this)" type="button">סכום אחר</button></div>
 <div class="hidden" id="customWrap">
 <label class="block text-xs text-slate-500 mb-1">סכום (₪)</label>
 <input class="w-full rounded-2xl border-2 px-4 py-3 text-base" id="customAmount" min="10" placeholder="לדוגמה: 250" step="10" type="number">
@@ -72,8 +72,8 @@
 <div class="text-sm md:text-base text-slate-800 mt-1">ימי האכלה לכלב נחייה</div>
 </div>
 <div class="border-2 border-dashed rounded-2xl p-4 text-center bg-white">
-<div class="text-3xl font-black text-indigo-700 leading-none" id="ibTraining" aria-live="polite" aria-atomic="true" aria-label="שעות אימון שניתן לממן">0</div>
-<div class="text-sm md:text-base text-slate-800 mt-1">שעות אימון למודרך</div>
+<div class="text-3xl font-black text-indigo-700 leading-none" id="ibTraining" aria-live="polite" aria-atomic="true" aria-label="שבועות אימון שניתן לממן">0</div>
+<div class="text-sm md:text-base text-slate-800 mt-1">שבועות אימון למודרך</div>
 </div>
 <div class="border-2 border-dashed rounded-2xl p-4 text-center bg-white">
 <div class="text-3xl font-black text-indigo-700 leading-none" id="ibVet" aria-live="polite" aria-atomic="true" aria-label="ביקורי וטרינר שניתן לממן">0</div>
@@ -130,97 +130,161 @@
 <small class="text-slate-500">בחרו ונוסיף לסיכום התרומה</small>
 </div>
 <p class="explain-shopping text-slate-800 mb-6">כאן תוכלו לסגור לנו פינה — צרכים נקודתיים שהעמותה זקוקה להם. כל האפשרויות הן תרומה חד־פעמית, כמו רכישה של מוצר ספציפי ללא מחויבות.</p>
-<div class="relative" id="donation-slider" role="region" aria-label="סליידר בחירת תרומות" tabindex="0"><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -start-4 top-1/2 -translate-y-1/2 z-20" id="slidePrev" onclick="window._slide &amp;&amp; window._slide(&#39;prev&#39;)" aria-label="הקודם בסליידר">>‹</button><div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth" id="cardsTrack"><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
+<div class="relative" id="donation-slider" role="region" aria-label="סליידר בחירת תרומות" tabindex="0"><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -start-4 top-1/2 -translate-y-1/2 z-20" id="slidePrev" onclick="window._slide &amp;&amp; window._slide(&#39;prev&#39;)" aria-label="הקודם בסליידר">‹</button><div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth" id="cardsTrack"><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="5" data-usage="4" data-wear="3">
 <div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap data-lottie-path="assets/harness.json">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/puppy-food.json">
+<!-- SVG fallback -->
 <svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-<circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
+<circle cx="20" cy="26" r="6"></circle><circle cx="32" cy="22" r="6"></circle><circle cx="44" cy="26" r="6"></circle>
+<path d="M22 44c4-10 16-10 20 0-6 6-14 6-20 0z"></path>
 </svg>
-</div>
-<h3 class="font-extrabold text-lg mb-1">ריתמה</h3><div class="body grow">
-<p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div></div>
-<div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
-<div class="text-xl font-black">₪550</div>
-</div>
-<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="550" onclick="window._addItem && window._addItem('ריתמה'‏,‏ 550)" title="ריתמה" aria-label="הוספה לסל – ₪550">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-<div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap data-lottie-path="assets/leash.json">
-<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-<circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-</svg>
-</div>
-<h3 class="font-extrabold text-lg mb-1">רצועת הולכה לכלב נחייה</h3><div class="body grow">
-<p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div></div>
-<div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
-<div class="text-xl font-black">₪350</div>
-</div>
-<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="350" onclick="window._addItem && window._addItem('רצועת הולכה לכלב נחייה'‏,‏ 350)" title="רצועת הולכה לכלב נחייה" aria-label="הוספה לסל – ₪350">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-<div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap data-lottie-path="assets/gear-kit.json">
-<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-<circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-</svg>
-</div>
-<h3 class="font-extrabold text-lg mb-1">ערכת ציוד מלא לגור כולל רצועה‏,‏ קולר‏,‏ צלחת‏,‏ מלונה</h3><div class="body grow">
-<p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div></div>
-<div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
-<div class="text-xl font-black">₪2‏,‏200</div>
-</div>
-<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="2200" onclick="window._addItem && window._addItem('ערכת ציוד מלא לגור כולל רצועה‏,‏ קולר‏,‏ צלחת‏,‏ מלונה'‏,‏ 2200)" title="ערכת ציוד מלא לגור כולל רצועה‏,‏ קולר‏,‏ צלחת‏,‏ מלונה" aria-label="הוספה לסל – ₪2‏,‏200">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-<div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap data-lottie-path="assets/kennel.json">
-<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-<circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-</svg>
-</div>
-<h3 class="font-extrabold text-lg mb-1">מלונה</h3><div class="body grow">
-<p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div></div>
-<div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
-<div class="text-xl font-black">₪1‏,‏200</div>
-</div>
-<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="1200" onclick="window._addItem && window._addItem('מלונה'‏,‏ 1200)" title="מלונה" aria-label="הוספה לסל – ₪1‏,‏200">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-<div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap data-lottie-path="assets/outreach-doc.json">
-<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-<circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-</svg>
-</div>
-<h3 class="font-extrabold text-lg mb-1">חומרי הסברה והדרכה — פליירים‏,‏ כרטיסי ביקור‏,‏ מעטפות וכו׳… (שנתי)</h3><div class="body grow">
-<p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
-</div></div>
-<div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
-<div class="text-xl font-black">₪3‏,‏500</div>
-</div>
-<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="3500" onclick="window._addItem && window._addItem('חומרי הסברה והדרכה — פליירים‏,‏ כרטיסי ביקור‏,‏ מעטפות וכו׳… (שנתי)'‏,‏ 3500)" title="חומרי הסברה והדרכה — פליירים‏,‏ כרטיסי ביקור‏,‏ מעטפות וכו׳… (שנתי)" aria-label="הוספה לסל – ₪3‏,‏500">הוספה</button></div>
-</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
-<div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative data-lottie-path="assets/puppy-food.json"><span class="badge-urgent absolute right-2 top-2 z-10">נחוץ עכשיו</span>
-<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
-<circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
-</svg>
-</div>
-<h3 class="font-extrabold text-lg mb-1">מזון לכלב (לחודש)</h3><div class="body grow">
-<p class="text-sm text-slate-800 leading-6">תרומה ממוקדת לשיפור איכות החיים והאימון.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+<span class="badge-urgent ms-2 absolute right-2 top-2 z-10">נחוץ עכשיו</span></div>
+<h3 class="font-extrabold text-lg mb-1">מזון לגורים (חודש)</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">מזון איכותי ומאוזן לתקופת הגדילה — בסיס לבריאות וחוסן.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
 </div></div>
 <div class="p-4 flex items-center justify-between">
 <div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
 <div class="text-xl font-black">₪450</div>
 </div>
-<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="450" onclick="window._addItem && window._addItem('מזון לכלב (לחודש)'‏,‏ 450)" title="מזון לכלב (לחודש)" aria-label="הוספה לסל – ₪450">הוספה</button></div>
-</div></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2 z-20" id="slideNext" onclick="window._slide &amp;&amp; window._slide(&#39;next&#39;)" aria-label="הבא בסליידר">>›</button></div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="450" onclick="window._addItem &amp;&amp; window._addItem(&#39;מזון לגורים (חודש)&#39;, 120)" title="מזון לגורים (חודש)" aria-label="הוספה לסל – ₪450">הוספה</button></div>
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="3">
+<div class="p-4 border-b-2">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/gear-kit.json">
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
+<path d="M12 28h40l-4 16H16l-4-16z"></path><path d="M18 28l4-12h20l4 12"></path><path d="M20 44v8M44 44v8"></path>
+</svg>
+</div>
+<h3 class="font-extrabold text-lg mb-1">ערכת ציוד</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">רתמות, רצועות וציוד בטיחות — יסודות להתניידות בטוחה.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
+<div class="p-4 flex items-center justify-between">
+<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
+<div class="text-xl font-black">₪2,200</div>
+</div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="2200" onclick="window._addItem &amp;&amp; window._addItem(&#39;ערכת ציוד&#39;, 250)" title="ערכת ציוד" aria-label="הוספה לסל – ₪2200">הוספה</button></div>
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="3" data-usage="5" data-wear="4">
+<div class="p-4 border-b-2">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/bowl.json">
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
+<path d="M10 36c2 12 14 20 22 20s20-8 22-20H10z"></path><path d="M6 36h52"></path>
+</svg>
+</div>
+<h3 class="font-extrabold text-lg mb-1">כלי אוכל + קערת מים</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">סט קערות איכותיות לשתייה ואוכל — עמיד ונוח לניקוי.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
+</div></div>
+<div class="p-4 flex items-center justify-between">
+<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
+<div class="text-xl font-black">₪80</div>
+</div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="80" onclick="window._addItem &amp;&amp; window._addItem(&#39;כלי אוכל + קערת מים&#39;, 80)" title="כלי אוכל + קערת מים" aria-label="הוספה לסל – ₪80">הוספה</button></div>
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="3" data-usage="3" data-wear="3">
+<div class="p-4 border-b-2">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/blanket.json">
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
+<rect height="36" rx="6" width="44" x="10" y="14"></rect>
+<path d="M22 14v36M42 14v36"></path>
+<path d="M10 26h44M10 38h44" stroke-dasharray="4 6"></path>
+</svg>
+</div>
+<h3 class="font-extrabold text-lg mb-1">שמיכה חמה לאימונים</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">שמיכה מחממת ומרופדת לשמירה על חום ונוחות.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
+<div class="p-4 flex items-center justify-between">
+<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
+<div class="text-xl font-black">₪100</div>
+</div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="100" onclick="window._addItem &amp;&amp; window._addItem(&#39;שמיכה חמה לאימונים&#39;, 100)" title="שמיכה חמה לאימונים" aria-label="הוספה לסל – ₪100">הוספה</button></div>
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="3" data-wear="2">
+<div class="p-4 border-b-2">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/kennel.json">
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
+<path d="M8 28 32 12l24 16v22H8V28z"></path><path d="M24 62V40a8 8 0 0 1 16 0v22"></path><circle cx="32" cy="44" r="3"></circle>
+</svg>
+</div>
+<h3 class="font-extrabold text-lg mb-1">מלונה לכלב מתאמן</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">מקום מוגן למנוחה והסתגלות בתהליכי האימון.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
+<div class="p-4 flex items-center justify-between">
+<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
+<div class="text-xl font-black">₪600</div>
+</div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="600" onclick="window._addItem &amp;&amp; window._addItem(&#39;מלונה לכלב מתאמן&#39;, 600)" title="מלונה לכלב מתאמן" aria-label="הוספה לסל – ₪600">הוספה</button></div>
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="5" data-usage="3" data-wear="2">
+<div class="p-4 border-b-2">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap relative" data-lottie-path="assets/stethoscope.json"><span class="badge-urgent absolute right-2 top-2 z-10">נחוץ עכשיו</span>
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
+<path d="M16 10v14a8 8 0 0 0 16 0V10"></path><path d="M32 24v8a12 12 0 0 0 24 0v-6"></path><circle cx="56" cy="20" r="4"></circle>
+</svg>
+</div>
+<h3 class="font-extrabold text-lg mb-1">ביקור וטרינר</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">בדיקות שוטפות וחיסונים — שמירה על בריאות מיטבית.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
+<div class="p-4 flex items-center justify-between">
+<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
+<div class="text-xl font-black">₪2,200</div>
+</div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="2200" onclick="window._addItem &amp;&amp; window._addItem(&#39;ביקור וטרינר&#39;, 250)" title="ביקור וטרינר" aria-label="הוספה לסל – ₪2200">הוספה</button></div>
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="4" data-wear="4">
+<div class="p-4 border-b-2">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/toys.json">
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
+<circle cx="24" cy="40" r="10"></circle><circle cx="44" cy="28" r="6"></circle><path d="M29 35l11-7"></path>
+</svg>
+</div>
+<h3 class="font-extrabold text-lg mb-1">ערכת צעצועים וחשיפה</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">כדורים, חבלים ומשחקים לפיתוח סקרנות וביטחון.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
+</div></div>
+<div class="p-4 flex items-center justify-between">
+<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
+<div class="text-xl font-black">₪150</div>
+</div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="150" onclick="window._addItem &amp;&amp; window._addItem(&#39;ערכת צעצועים וחשיפה&#39;, 150)" title="ערכת צעצועים וחשיפה" aria-label="הוספה לסל – ₪150">הוספה</button></div>
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="3" data-usage="5" data-wear="1">
+<div class="p-4 border-b-2">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/outreach-doc.json">
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
+<path d="M16 10h24l8 8v36H16z"></path><path d="M40 10v8h8"></path><path d="M22 30h20M22 38h20M22 46h14"></path>
+</svg>
+</div>
+<h3 class="font-extrabold text-lg mb-1">חומרי הסברה והדרכה</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">הדפסה והפצה של מדריכים ומודעות לציבור.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div></div>
+</div></div>
+<div class="p-4 flex items-center justify-between">
+<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
+<div class="text-xl font-black">₪200</div>
+</div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="200" onclick="window._addItem &amp;&amp; window._addItem(&#39;חומרי הסברה והדרכה&#39;, 200)" title="חומרי הסברה והדרכה" aria-label="הוספה לסל – ₪200">הוספה</button></div>
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="5" data-wear="4">
+<div class="p-4 border-b-2">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/harness.json">
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
+<path d="M12 28h40l-4 16H16l-4-16z"></path><path d="M18 28l4-12h20l4 12"></path><path d="M20 44v8M44 44v8"></path>
+</svg>
+</div>
+<h3 class="font-extrabold text-lg mb-1">רתמה מקצועית</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">רתמת עבודה תקנית לבטיחות ונוחות בהליכה מודרכת.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div></div>
+</div></div>
+<div class="p-4 flex items-center justify-between">
+<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
+<div class="text-xl font-black">₪420</div>
+</div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="420" onclick="window._addItem &amp;&amp; window._addItem(&#39;רתמה מקצועית&#39;, 420)" title="רתמה מקצועית" aria-label="הוספה לסל – ₪420">הוספה</button></div>
+</div><div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden flex-none w-[280px] sm:w-[320px] md:w-[360px] snap-start card flex flex-col h-full" data-need="4" data-usage="5" data-wear="5">
+<div class="p-4 border-b-2">
+<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3 icon-wrap" data-lottie-path="assets/leash.json">
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 64 64" width="64">
+<path d="M10 40c8-10 18-6 26-2s14 6 18-2"></path><circle cx="12" cy="42" r="6"></circle><path d="M50 22a6 6 0 1 1 0 12"></path>
+</svg>
+</div>
+<h3 class="font-extrabold text-lg mb-1">רצועת אימון חזקה</h3><div class="body grow">
+<p class="text-sm text-slate-800 leading-6">רצועה עמידה לאימונים בתנאי שטח ועיר.</p><div class="meters"><div class="meter" title="בלאי"><span>בלאי</span><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div></div>
+</div></div>
+<div class="p-4 flex items-center justify-between">
+<div class="text-sm text-slate-800">עזרה מיידית חד פעמית</div>
+<div class="text-xl font-black">₪90</div>
+</div>
+<div class="p-4 pt-0 add-wrap mt-auto"><button type="button" class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="90" onclick="window._addItem &amp;&amp; window._addItem(&#39;רצועת אימון חזקה&#39;, 90)" title="רצועת אימון חזקה" aria-label="הוספה לסל – ₪90">הוספה</button></div>
+</div></div><button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/90 border shadow absolute -end-4 top-1/2 -translate-y-1/2 z-20" id="slideNext" onclick="window._slide &amp;&amp; window._slide(&#39;next&#39;)" aria-label="הבא בסליידר">›</button></div>
 <!-- Summary -->
 <div class="max-w-md mt-6 rounded-2xl border-2 bg-white shadow-xl">
 <div class="p-4 border-b-2"><strong class="text-lg">הבחירות שלכם וסיכום התרומה</strong></div>
