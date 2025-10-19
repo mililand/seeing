@@ -1,1 +1,0 @@
-console.log('Donation page script loaded');
