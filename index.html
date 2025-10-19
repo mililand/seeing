@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-
-<html dir="rtl" lang="he">
+<html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>עמוד תרומה — עיניים מנחות לעיוור</title>
-<!-- Tailwind CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="./style.css" rel="stylesheet"/>
-<style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>עמוד תרומה — עיניים מנחות לעיוור</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./style.css" />
+  <style>
     html{scroll-behavior:smooth}
     .tooltip .tip{position:absolute;inset-inline-end:0;bottom:calc(100% + 10px);background:#111827;color:#fff;font-size:12px;padding:6px 8px;border-radius:8px;opacity:0;visibility:hidden;transition:.18s;white-space:nowrap;z-index:20}
     .tooltip .tip::after{content:"";position:absolute;inset-inline-end:12px;top:100%;border:6px solid transparent;border-top-color:#111827}
@@ -19,277 +18,297 @@
 </head>
 <body class="bg-slate-50 text-slate-900">
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
-<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-<div class="flex items-center gap-2 text-indigo-700 font-extrabold">
-<div class="w-9 h-9 rounded-full bg-slate-200"></div>
-<span>עיניים מנחות לעיוור</span>
-</div>
-<nav class="hidden md:flex gap-5 text-sm">
-<a class="hover:text-indigo-700" href="#about">מי אנחנו</a>
-<a class="hover:text-indigo-700" href="#supports">איך אפשר לעזור?</a>
-<a class="hover:text-indigo-700" href="#impact">השפעה</a>
-<a class="hover:text-indigo-700" href="#dedication">תרומה לזכרם</a>
-<a class="hover:text-indigo-700" href="#faq">שאלות</a>
-</nav>
-</div>
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2 text-indigo-700 font-extrabold">
+      <div class="w-9 h-9 rounded-full bg-slate-200"></div>
+      <span>עיניים מנחות לעיוור</span>
+    </div>
+    <nav class="hidden md:flex gap-5 text-sm">
+      <a href="#about" class="hover:text-indigo-700">מי אנחנו</a>
+      <a href="#supports" class="hover:text-indigo-700">איך אפשר לעזור?</a>
+      <a href="#impact" class="hover:text-indigo-700">השפעה</a>
+      <a href="#dedication" class="hover:text-indigo-700">תרומה לזכרם</a>
+      <a href="#faq" class="hover:text-indigo-700">שאלות</a>
+    </nav>
+  </div>
 </header>
+
 <main>
-<!-- HERO -->
-<section class="bg-white">
-<div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-start">
-<div>
-<h1 class="text-3xl md:text-5xl font-black text-indigo-700 leading-tight">תרומה שאפשר לראות את התוצאות שלה</h1>
-<p class="mt-3 text-lg">הביקוש לכלבי נחייה בישראל גבוה מההיצע. הכלבים ניתנים ללא עלות, והתרומה שלכם מקצרת זמני המתנה ומכשירה צוותים נוספים.</p>
-<ul class="mt-4 space-y-1 text-sm text-slate-700">
-<li>• כלבי נחייה ללא עלות למקבל/ת השירות</li>
-<li>• התאמה, הכשרה וליווי מתמשך</li>
-<li>• שקיפות מלאה וקבלות מס</li>
-</ul>
-</div>
-<!-- Donation Box -->
-<div class="rounded-2xl shadow-2xl bg-white border-2 border-slate-200">
-<div class="p-5 border-b-2 border-slate-200 flex items-center justify-between">
-<h2 class="text-xl md:text-2xl font-black text-indigo-700">בחרו את התרומה שלכם</h2>
-<span class="relative tooltip flex items-center gap-2">
-<span class="text-lg" title="מאובטח">🔒</span>
-<span class="tip">עיבוד תשלום מאובטח</span>
-</span>
-</div>
-<div class="p-5 space-y-5">
-<div class="flex items-center justify-between gap-3">
-<div class="inline-flex rounded-2xl border-2 overflow-hidden" id="freqToggle">
-<button class="px-4 py-2.5 text-sm md:text-base font-bold bg-indigo-700 text-white" data-freq="monthly">חודשית</button>
-<button class="px-4 py-2.5 text-sm md:text-base font-bold bg-white" data-freq="once">חד־פעמית</button>
-</div>
-<span class="inline-flex items-center gap-2 text-xs md:text-sm border rounded-full px-3 py-1.5">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span> ניתן לבטל בכל עת
+  <!-- HERO -->
+  <section class="bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-start">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-black text-indigo-700 leading-tight">תרומה שאפשר לראות את התוצאות שלה</h1>
+        <p class="mt-3 text-lg">הביקוש לכלבי נחייה בישראל גבוה מההיצע. הכלבים ניתנים ללא עלות, והתרומה שלכם מקצרת זמני המתנה ומכשירה צוותים נוספים.</p>
+        <ul class="mt-4 space-y-1 text-sm text-slate-700">
+          <li>• כלבי נחייה ללא עלות למקבל/ת השירות</li>
+          <li>• התאמה, הכשרה וליווי מתמשך</li>
+          <li>• שקיפות מלאה וקבלות מס</li>
+        </ul>
+      </div>
+
+      <!-- Donation Box -->
+      <div class="rounded-2xl shadow-2xl bg-white border-2 border-slate-200">
+        <div class="p-5 border-b-2 border-slate-200 flex items-center justify-between">
+          <h2 class="text-xl md:text-2xl font-black text-indigo-700">בחרו את התרומה שלכם</h2>
+          <span class="relative tooltip flex items-center gap-2">
+            <span title="מאובטח" class="text-lg">🔒</span>
+            <span class="tip">עיבוד תשלום מאובטח</span>
+          </span>
+        </div>
+        <div class="p-5 space-y-5">
+          <div class="flex items-center justify-between gap-3">
+            <div id="freqToggle" class="inline-flex rounded-2xl border-2 overflow-hidden">
+              <button data-freq="monthly" class="px-4 py-2.5 text-sm md:text-base font-bold bg-indigo-700 text-white">חודשית</button>
+              <button data-freq="once" class="px-4 py-2.5 text-sm md:text-base font-bold bg-white">חד־פעמית</button>
+            </div>
+            <span class="inline-flex items-center gap-2 text-xs md:text-sm border rounded-full px-3 py-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> ניתן לבטל בכל עת
             </span>
-</div>
-<div class="flex flex-wrap gap-2" id="amountPresets"></div>
-<div class="hidden" id="customWrap">
-<label class="block text-xs text-slate-500 mb-1">סכום (₪)</label>
-<input class="w-full rounded-2xl border-2 px-4 py-3 text-base" id="customAmount" min="10" placeholder="לדוגמה: 250" step="10" type="number"/>
-</div>
-<div>
-<h3 class="font-extrabold text-slate-900 mb-2">השפעת התרומה שלכם:</h3>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-<div class="border-2 border-dashed rounded-2xl p-4 text-center bg-white">
-<div class="text-3xl font-black text-indigo-700 leading-none" id="ibMeals">0</div>
-<div class="text-sm md:text-base text-slate-700 mt-1">מנות מזון לכלבי הנחייה</div>
-</div>
-<div class="border-2 border-dashed rounded-2xl p-4 text-center bg-white">
-<div class="text-3xl font-black text-indigo-700 leading-none" id="ibTraining">0</div>
-<div class="text-sm md:text-base text-slate-700 mt-1">שבועות אימון</div>
-</div>
-<div class="border-2 border-dashed rounded-2xl p-4 text-center bg-white">
-<div class="text-3xl font-black text-indigo-700 leading-none" id="ibVet">0</div>
-<div class="text-sm md:text-base text-slate-700 mt-1">ביקורי וטרינר</div>
-</div>
-</div>
-</div>
-<div class="grid gap-2">
-<button class="w-full bg-indigo-700 text-white rounded-2xl py-3.5 text-base font-extrabold shadow-lg hover:shadow-xl" id="donateNowTop">תרמו עכשיו</button>
-<button class="w-full bg-slate-100 rounded-2xl py-3.5 text-base font-bold border-2" id="moreWays">דרכי תרומה נוספות: העברה בנקאית, ביט או פייבוקס</button>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- About + Telemarketing -->
-<section class="bg-white border-t" id="about">
-<div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-10 gap-6 items-start">
-<div class="md:col-span-7">
-<h2 class="text-2xl font-black text-indigo-700 mb-2">מי אנחנו</h2>
-<p class="text-lg text-slate-700">
-<strong>עיניים מנחות לעיוור</strong> פועלת לקידום עצמאות ובטיחות לאנשים עם עיוורון באמצעות כלבי נחייה.
+          </div>
+
+          <div id="amountPresets" class="flex flex-wrap gap-2"></div>
+
+          <div id="customWrap" class="hidden">
+            <label class="block text-xs text-slate-500 mb-1">סכום (₪)</label>
+            <input id="customAmount" type="number" min="10" step="10" placeholder="לדוגמה: 250" class="w-full rounded-2xl border-2 px-4 py-3 text-base">
+          </div>
+
+          <div>
+            <h3 class="font-extrabold text-slate-900 mb-2">השפעת התרומה שלכם:</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="border-2 border-dashed rounded-2xl p-4 text-center bg-white">
+                <div id="ibMeals" class="text-3xl font-black text-indigo-700 leading-none">0</div>
+                <div class="text-sm md:text-base text-slate-700 mt-1">ימי האכלה לכלב נחייה</div>
+              </div>
+              <div class="border-2 border-dashed rounded-2xl p-4 text-center bg-white">
+                <div id="ibTraining" class="text-3xl font-black text-indigo-700 leading-none">0</div>
+                <div class="text-sm md:text-base text-slate-700 mt-1">שבועות אימון למודרך</div>
+              </div>
+              <div class="border-2 border-dashed rounded-2xl p-4 text-center bg-white">
+                <div id="ibVet" class="text-3xl font-black text-indigo-700 leading-none">0</div>
+                <div class="text-sm md:text-base text-slate-700 mt-1">ביקורי וטרינר</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid gap-2">
+            <button id="donateNowTop" class="w-full bg-indigo-700 text-white rounded-2xl py-3.5 text-base font-extrabold shadow-lg hover:shadow-xl">תרמו עכשיו</button>
+            <button id="moreWays" class="w-full bg-slate-100 rounded-2xl py-3.5 text-base font-bold border-2">דרכי תרומה נוספות: העברה בנקאית, ביט או פייבוקס</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About + Telemarketing -->
+  <section id="about" class="bg-white border-t">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-10 gap-6 items-start">
+      <div class="md:col-span-7">
+        <h2 class="text-2xl font-black text-indigo-700 mb-2">מי אנחנו</h2>
+        <p class="text-lg text-slate-700">
+          <strong>עיניים מנחות לעיוור</strong> פועלת לקידום עצמאות ובטיחות לאנשים עם עיוורון באמצעות כלבי נחייה.
           מרכז ההדרכה בגליל פועל מאז 1989 ומכשיר כלבים ומדריכים ברמה גבוהה. הכלבים ניתנים ללא עלות, ואנו מלווים בהתאמה,
           הכשרה ושילוב בקהילה.
         </p>
-</div>
-<aside class="md:col-span-3 rounded-2xl border-2 bg-white shadow-xl p-5">
-<div class="flex items-center justify-between mb-2">
-<h3 class="font-extrabold text-lg">קיבלתם שיחה מאיתנו?</h3>
-<span class="relative tooltip">
-<span class="text-lg" title="מוקד תרומות">🎧</span>
-<span class="tip">מוקד תרומות רשמי. זו אינה הונאה — אפשר להשלים תרומה בטלפון או כאן בעמוד המאובטח.</span>
-</span>
-</div>
-<p class="text-sm text-slate-700">המוקד שלנו פועל כחוק ובפיקוח העמותה. ניתן להשלים תרומה בטלפון או כאן בעמוד המאובטח.</p>
-<button class="mt-3 w-full bg-indigo-700 text-white rounded-2xl py-3 font-extrabold shadow-lg hover:shadow-xl" id="callMeBtn">חייגו אליי להשלמת התרומה בטלפון</button>
-</aside>
-</div>
-</section>
-<!-- Supports -->
-<section class="max-w-6xl mx-auto px-4 py-12" id="supports">
-<div class="flex items-end justify-between mb-5">
-<h2 class="text-2xl md:text-3xl font-black text-indigo-700">איך אפשר לעזור?</h2>
-<small class="text-slate-500">בחרו ונוסיף לסיכום התרומה</small>
-</div>
-<div class="grid md:grid-cols-4 gap-5">
-<!-- 120 -->
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden">
-<div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3"></div>
-<h3 class="font-extrabold text-lg mb-1">מזון לכלב לחודש</h3>
-<p class="text-sm text-slate-600 leading-6">מזון איכותי לכלב נחייה פעיל — תזונה מאוזנת לשמירה על בריאות וביצועים.</p>
-</div>
-<div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">לחודש</div>
-<div class="text-xl font-black">₪450</div>
-</div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="450" title="מזון לכלב נחייה">הוספה</button></div>
-</div>
-<!-- 180 -->
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden">
-<div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3"></div>
-<h3 class="font-extrabold text-lg mb-1">תרומה מוקדשת + תעודת הוקרה</h3>
-<p class="text-sm text-slate-600 leading-6">תרומה עם הקדשה אישית — נשלח תעודת הוקרה דיגיטלית (ואפשר גם הדפסה).</p>
-</div>
-<div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
-<div class="text-xl font-black">₪180</div>
-</div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabолд" data-add="" data-price="180" title="תרומה מוקדשת">הוספה</button></div>
-</div>
-<!-- 250 -->
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden">
-<div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3"></div>
-<h3 class="font-extrabold text-lg mb-1">ערכת ציוד</h3>
-<p class="text-sm text-slate-600 leading-6">רתמות, רצועות וציוד בטיחות — יסודות להתניידות בטוחה ונוחה.</p>
-</div>
-<div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">פעם אחת</div>
-<div class="text-xl font-black">₪2200</div>
-</div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="2200" title="ערכת ציוד">הוספה</button></div>
-</div>
-<!-- 360 -->
-<div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden">
-<div class="p-4 border-b-2">
-<div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3"></div>
-<h3 class="font-extrabold text-lg mb-1">אימוץ גור – תנו שם</h3>
-<p class="text-sm text-slate-600 leading-6">ליווי ועדכונים עד ההכשרה — שותפות בדרך לצוות נחייה עתידי.</p>
-</div>
-<div class="p-4 flex items-center justify-between">
-<div class="text-sm text-slate-600">לחודש</div>
-<div class="text-xl font-black">₪360</div>
-</div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add="" data-price="360" title="אימוץ גור">הוספה</button></div>
-</div>
-</div>
-<!-- Summary -->
-<div class="max-w-md mt-6 rounded-2xl border-2 bg-white shadow-xl">
-<div class="p-4 border-b-2"><strong class="text-lg">הבחירות שלכם וסיכום התרומה</strong></div>
-<div class="p-4">
-<ul class="space-y-2 text-sm" id="list"></ul>
-<div class="text-slate-500 text-sm" id="emptyList">לא נבחרו עדיין אפשרויות.</div>
-<div class="h-px bg-slate-200 my-3"></div>
-<div class="flex items-center justify-between font-black text-lg">
-<span>לתשלום</span><span id="sumTotal">₪0</span>
-</div>
-<button class="mt-3 w-full bg-indigo-700 text-white rounded-2xl py-3.5 text-base font-extrabold shadow-lg hover:shadow-xl" id="donateNowBottom">תרמו עכשיו</button>
-</div>
-</div>
-</section>
-<!-- Why -->
-<section class="bg-white border-t" id="why">
-<div class="max-w-6xl mx-auto px-4 py-10">
-<h2 class="text-2xl font-black text-indigo-700 mb-4">חשיבות התרומה שלכם:</h2>
-<div class="grid md:grid-cols-3 gap-4">
-<div class="rounded-xl border bg-white p-4 shadow">
-<div class="w-8 h-8 rounded-lg bg-indigo-50 grid place-content-center mb-1">👀</div>
-<h3 class="text-indigo-700 font-bold">תוצאה נראית</h3>
-<p>כל שקל מתורגם לשירותים מדידים — מזון, ציוד, אימון וביקורי וטרינר.</p>
-</div>
-<div class="rounded-xl border bg-white p-4 shadow">
-<div class="w-8 h-8 rounded-lg bg-indigo-50 grid place-content-center mb-1">🏠</div>
-<h3 class="text-indigo-700 font-bold">קהילה מקומית</h3>
-<p>מרכז ההדרכה בגליל מלווה מתאמנים לאורך חודשים ושנים — עד לעצמאות מלאה.</p>
-</div>
-<div class="rounded-xl border bg-white p-4 shadow">
-<div class="w-8 h-8 rounded-lg bg-indigo-50 grid place-content-center mb-1">✅</div>
-<h3 class="text-indigo-700 font-bold">שקיפות ואמון</h3>
-<p>קבלות מס, דוחות שנתיים וניהול תקין. תרומה בטוחה ומבוקרת.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Impact banner -->
-<section class="bg-indigo-700 text-white" id="impact">
-<div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-4 text-center">
-<div class="rounded-xl border border-white/30 bg-white/10 p-5"><div class="text-2xl font-black">5 צוותים</div><div>בוגרי קורס 2024</div></div>
-<div class="rounded-xl border border-white/30 bg-white/10 p-5"><div class="text-2xl font-black">27</div><div>כלבים בתהליך הכשרה</div></div>
-<div class="rounded-xl border border-white/30 bg-white/10 p-5"><div class="text-2xl font-black">+600</div><div>שעות אימון חודשיות</div></div>
-<div class="rounded-xl border border-white/30 bg-white/10 p-5"><div class="text-2xl font-black">+120</div><div>ביקורי בית שנתיים</div></div>
-</div>
-</section>
-<!-- Memorial donation -->
-<section class="max-w-6xl mx-auto px-4 py-12" id="dedication">
-<h2 class="text-2xl font-black text-indigo-700 mb-3">תרומה לזכרם</h2>
-<div class="grid md:grid-cols-2 gap-6">
-<div class="rounded-xl border bg-white shadow p-5 text-center">
-<div class="w-14 h-14 rounded-full bg-indigo-50 mx-auto mb-2"></div>
-<h4 class="font-bold">תעודת הוקרה</h4>
-<div class="h-px bg-slate-200 my-3"></div>
-<div class="text-xl font-black text-indigo-700" id="certName">לזכר/לע"נ: —</div>
-<p class="text-slate-500">בשם התורם/ת: <span id="certDonor">—</span></p>
-<div class="h-px bg-slate-200 my-3"></div>
-<small class="text-slate-500">עמותת עיניים מנחות לעיוור · תאריך: <span id="certDate"></span></small>
-</div>
-<div class="rounded-xl border bg-white shadow">
-<div class="p-4 border-b font-bold">מלאו פרטי הקדשה</div>
-<div class="p-4 grid md:grid-cols-2 gap-3">
-<div><label class="block text-xs text-slate-500 mb-1">שם המוקדש/ת</label><input class="w-full border rounded-xl px-3 py-2" id="dedName" placeholder="לדוגמה: יעל כהן"/></div>
-<div><label class="block text-xs text-slate-500 mb-1">שם התורם/ת</label><input class="w-full border rounded-xl px-3 py-2" id="dedDonor" placeholder="שמך המלא"/></div>
-<div><label class="block text-xs text-slate-500 mb-1">סוג ההקדשה</label>
-<select class="w-full border rounded-xl px-3 py-2" id="dedType">
-<option>לזכר/לע"נ</option><option>לרפואה שלמה</option><option>לכבוד</option>
-</select>
-</div>
-<div><label class="block text-xs text-slate-500 mb-1">הודעה קצרה (אופציונלי)</label><input class="w-full border rounded-xl px-3 py-2" id="dedMsg" placeholder="מילים לזכר/ברכה"/></div>
-</div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3" id="attachDed">צרפו את ההקדשה לתרומה</button></div>
-</div>
-</div>
-</section>
-<!-- FAQ -->
-<section class="max-w-6xl mx-auto px-4 py-10" id="faq">
-<h2 class="text-2xl font-black text-indigo-700 mb-3">שאלות נפוצות</h2>
-<div class="space-y-2">
-<details class="rounded-xl border bg-white p-4"><summary class="font-semibold">איך מתבצעת הגבייה?</summary><p class="mt-2 text-sm">התשלום מאובטח בכרטיס אשראי/ביט/פייבוקס. אפשר גם העברה בנקאית וקבלת קבלה.</p></details>
-<details class="rounded-xl border bg-white p-4"><summary class="font-semibold">אפשר לעצור תרומה חודשית?</summary><p class="mt-2 text-sm">כן, בכל עת דרך המייל המאשר או בפנייה לשירות התורמים.</p></details>
-<details class="rounded-xl border bg-white p-4"><summary class="font-semibold">נקבל עדכונים על גור מאומץ?</summary><p class="mt-2 text-sm">כן, בתמיכת "אימוץ גור" נשלחים עדכונים רבעוניים ותמונות.</p></details>
-</div>
-</section>
+      </div>
+      <aside class="md:col-span-3 rounded-2xl border-2 bg-white shadow-xl p-5">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="font-extrabold text-lg">קיבלתם שיחה מאיתנו?</h3>
+          <span class="relative tooltip">
+            <span title="מוקד תרומות" class="text-lg">🎧</span>
+            <span class="tip">מוקד תרומות רשמי. זו אינה הונאה — אפשר להשלים תרומה בטלפון או כאן בעמוד המאובטח.</span>
+          </span>
+        </div>
+        <p class="text-sm text-slate-700">המוקד שלנו פועל כחוק ובפיקוח העמותה. ניתן להשלים תרומה בטלפון או כאן בעמוד המאובטח.</p>
+        <button id="callMeBtn" class="mt-3 w-full bg-indigo-700 text-white rounded-2xl py-3 font-extrabold shadow-lg hover:shadow-xl">חייגו אליי להשלמת התרומה בטלפון</button>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Supports -->
+  <section id="supports" class="max-w-6xl mx-auto px-4 py-12">
+    <div class="flex items-end justify-between mb-5">
+      <h2 class="text-2xl md:text-3xl font-black text-indigo-700">איך אפשר לעזור?</h2>
+      <small class="text-slate-500">בחרו ונוסיף לסיכום התרומה</small>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-5">
+      <!-- 120 -->
+      <div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden">
+        <div class="p-4 border-b-2">
+          <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3"></div>
+          <h3 class="font-extrabold text-lg mb-1">מזון לכלב נחייה</h3>
+          <p class="text-sm text-slate-600 leading-6">מזון איכותי לכלב נחייה פעיל — תזונה מאוזנת לשמירה על בריאות וביצועים.</p>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <div class="text-sm text-slate-600">לחודש</div>
+          <div class="text-xl font-black">₪450</div>
+        </div>
+        <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add title="מזון לכלב נחייה" data-price="450">הוספה</button></div>
+      </div>
+
+      <!-- 180 -->
+      <div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden">
+        <div class="p-4 border-b-2">
+          <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3"></div>
+          <h3 class="font-extrabold text-lg mb-1">תרומה מוקדשת + תעודת הוקרה</h3>
+          <p class="text-sm text-slate-600 leading-6">תרומה עם הקדשה אישית — נשלח תעודת הוקרה דיגיטלית (ואפשר גם הדפסה).</p>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <div class="text-sm text-slate-600">פעם אחת</div>
+          <div class="text-xl font-black">₪180</div>
+        </div>
+        <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabолд" data-add title="תרומה מוקדשת" data-price="180">הוספה</button></div>
+      </div>
+
+      <!-- 250 -->
+      <div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden">
+        <div class="p-4 border-b-2">
+          <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3"></div>
+          <h3 class="font-extrabold text-lg mb-1">ערכת ציוד</h3>
+          <p class="text-sm text-slate-600 leading-6">רתמות, רצועות וציוד בטיחות — יסודות להתניידות בטוחה ונוחה.</p>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <div class="text-sm text-slate-600">פעם אחת</div>
+          <div class="text-xl font-black">₪2,200</div>
+        </div>
+        <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add title="ערכת ציוד" data-price="2200">הוספה</button></div>
+      </div>
+
+      <!-- 360 -->
+      <div class="rounded-2xl border-2 bg-white shadow-xl overflow-hidden">
+        <div class="p-4 border-b-2">
+          <div class="w-full aspect-[16/9] bg-indigo-50 rounded-xl mb-3"></div>
+          <h3 class="font-extrabold text-lg mb-1">אימוץ גור – תנו שם</h3>
+          <p class="text-sm text-slate-600 leading-6">ליווי ועדכונים עד ההכשרה — שותפות בדרך לצוות נחייה עתידי.</p>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <div class="text-sm text-slate-600">לחודש</div>
+          <div class="text-xl font-black">₪360</div>
+        </div>
+        <div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3 text-base font-extrabold" data-add title="אימוץ גור" data-price="360">הוספה</button></div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="max-w-md mt-6 rounded-2xl border-2 bg-white shadow-xl">
+      <div class="p-4 border-b-2"><strong class="text-lg">הבחירות שלכם וסיכום התרומה</strong></div>
+      <div class="p-4">
+        <ul id="list" class="space-y-2 text-sm"></ul>
+        <div id="emptyList" class="text-slate-500 text-sm">לא נבחרו עדיין אפשרויות.</div>
+        <div class="h-px bg-slate-200 my-3"></div>
+        <div class="flex items-center justify-between font-black text-lg">
+          <span>לתשלום</span><span id="sumTotal">₪0</span>
+        </div>
+        <button id="donateNowBottom" class="mt-3 w-full bg-indigo-700 text-white rounded-2xl py-3.5 text-base font-extrabold shadow-lg hover:shadow-xl">תרמו עכשיו</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section id="why" class="bg-white border-t">
+    <div class="max-w-6xl mx-auto px-4 py-10">
+      <h2 class="text-2xl font-black text-indigo-700 mb-4">חשיבות התרומה שלכם:</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="rounded-xl border bg-white p-4 shadow">
+          <div class="w-8 h-8 rounded-lg bg-indigo-50 grid place-content-center mb-1">👀</div>
+          <h3 class="text-indigo-700 font-bold">תוצאה נראית</h3>
+          <p>כל שקל מתורגם לשירותים מדידים — מזון, ציוד, אימון וביקורי וטרינר.</p>
+        </div>
+        <div class="rounded-xl border bg-white p-4 shadow">
+          <div class="w-8 h-8 rounded-lg bg-indigo-50 grid place-content-center mb-1">🏠</div>
+          <h3 class="text-indigo-700 font-bold">קהילה מקומית</h3>
+          <p>מרכז ההדרכה בגליל מלווה מתאמנים לאורך חודשים ושנים — עד לעצמאות מלאה.</p>
+        </div>
+        <div class="rounded-xl border bg-white p-4 shadow">
+          <div class="w-8 h-8 rounded-lg bg-indigo-50 grid place-content-center mb-1">✅</div>
+          <h3 class="text-indigo-700 font-bold">שקיפות ואמון</h3>
+          <p>קבלות מס, דוחות שנתיים וניהול תקין. תרומה בטוחה ומבוקרת.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact banner -->
+  <section id="impact" class="bg-indigo-700 text-white">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-4 text-center">
+      <div class="rounded-xl border border-white/30 bg-white/10 p-5"><div class="text-2xl font-black">5 צוותים</div><div>בוגרי קורס 2024</div></div>
+      <div class="rounded-xl border border-white/30 bg-white/10 p-5"><div class="text-2xl font-black">27</div><div>כלבים בתהליך הכשרה</div></div>
+      <div class="rounded-xl border border-white/30 bg-white/10 p-5"><div class="text-2xl font-black">+600</div><div>שעות אימון חודשיות</div></div>
+      <div class="rounded-xl border border-white/30 bg-white/10 p-5"><div class="text-2xl font-black">+120</div><div>ביקורי בית שנתיים</div></div>
+    </div>
+  </section>
+
+  <!-- Memorial donation -->
+  <section id="dedication" class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-2xl font-black text-indigo-700 mb-3">תרומה לזכרם</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="rounded-xl border bg-white shadow p-5 text-center">
+        <div class="w-14 h-14 rounded-full bg-indigo-50 mx-auto mb-2"></div>
+        <h4 class="font-bold">תעודת הוקרה</h4>
+        <div class="h-px bg-slate-200 my-3"></div>
+        <div class="text-xl font-black text-indigo-700" id="certName">לזכר/לע"נ: —</div>
+        <p class="text-slate-500">בשם התורם/ת: <span id="certDonor">—</span></p>
+        <div class="h-px bg-slate-200 my-3"></div>
+        <small class="text-slate-500">עמותת עיניים מנחות לעיוור · תאריך: <span id="certDate"></span></small>
+      </div>
+      <div class="rounded-xl border bg-white shadow">
+        <div class="p-4 border-b font-bold">מלאו פרטי הקדשה</div>
+        <div class="p-4 grid md:grid-cols-2 gap-3">
+          <div><label class="block text-xs text-slate-500 mb-1">שם המוקדש/ת</label><input id="dedName" class="w-full border rounded-xl px-3 py-2" placeholder="לדוגמה: יעל כהן"></div>
+          <div><label class="block text-xs text-slate-500 mb-1">שם התורם/ת</label><input id="dedDonor" class="w-full border rounded-xl px-3 py-2" placeholder="שמך המלא"></div>
+          <div><label class="block text-xs text-slate-500 mb-1">סוג ההקדשה</label>
+            <select id="dedType" class="w-full border rounded-xl px-3 py-2">
+              <option>לזכר/לע"נ</option><option>לרפואה שלמה</option><option>לכבוד</option>
+            </select>
+          </div>
+          <div><label class="block text-xs text-slate-500 mb-1">הודעה קצרה (אופציונלי)</label><input id="dedMsg" class="w-full border rounded-xl px-3 py-2" placeholder="מילים לזכר/ברכה"></div>
+        </div>
+        <div class="p-4 pt-0"><button id="attachDed" class="w-full bg-indigo-700 text-white rounded-2xl py-3">צרפו את ההקדשה לתרומה</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-6xl mx-auto px-4 py-10">
+    <h2 class="text-2xl font-black text-indigo-700 mb-3">שאלות נפוצות</h2>
+    <div class="space-y-2">
+      <details class="rounded-xl border bg-white p-4"><summary class="font-semibold">איך מתבצעת הגבייה?</summary><p class="mt-2 text-sm">התשלום מאובטח בכרטיס אשראי/ביט/פייבוקס. אפשר גם העברה בנקאית וקבלת קבלה.</p></details>
+      <details class="rounded-xl border bg-white p-4"><summary class="font-semibold">אפשר לעצור תרומה חודשית?</summary><p class="mt-2 text-sm">כן, בכל עת דרך המייל המאשר או בפנייה לשירות התורמים.</p></details>
+      <details class="rounded-xl border bg-white p-4"><summary class="font-semibold">נקבל עדכונים על גור מאומץ?</summary><p class="mt-2 text-sm">כן, בתמיכת "אימוץ גור" נשלחים עדכונים רבעוניים ותמונות.</p></details>
+    </div>
+  </section>
 </main>
+
 <footer class="bg-white border-t">
-<div class="max-w-6xl mx-auto px-4 py-6 text-center text-slate-500 text-sm">© 2025 עיניים מנחות לעיוור · כל הזכויות שמורות</div>
+  <div class="max-w-6xl mx-auto px-4 py-6 text-center text-slate-500 text-sm">© 2025 עיניים מנחות לעיוור · כל הזכויות שמורות</div>
 </footer>
+
 <!-- Callback modal -->
-<div aria-modal="true" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4" id="callModal" role="dialog">
-<div class="bg-white rounded-2xl shadow-xl w-full max-w-md" id="callDialog">
-<div class="p-4 border-b flex items-center justify-between">
-<strong>השארת פרטים לשיחה חוזרת</strong>
-<button aria-label="סגירה" class="text-2xl" id="callClose">×</button>
+<div class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4" id="callModal" role="dialog" aria-modal="true">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-md" id="callDialog">
+    <div class="p-4 border-b flex items-center justify-between">
+      <strong>השארת פרטים לשיחה חוזרת</strong>
+      <button class="text-2xl" id="callClose" aria-label="סגירה">×</button>
+    </div>
+    <div class="p-4 space-y-3">
+      <div class="grid md:grid-cols-2 gap-3">
+        <div><label class="block text-xs text-slate-500 mb-1">שם מלא</label><input id="cbName" class="w-full border rounded-xl px-3 py-2" placeholder="שם התורם/ת"></div>
+        <div><label class="block text-xs text-slate-500 mb-1">מספר טלפון</label><input id="cbPhone" class="w-full border rounded-xl px-3 py-2" placeholder="05X-XXXXXXX"></div>
+      </div>
+      <label class="flex items-center gap-2 text-sm">
+        <input type="checkbox" id="cbPolicy"> קראתי ואני מאשר/ת את
+        <a href="/privacy" target="_blank" class="underline">מדיניות הפרטיות</a>
+      </label>
+    </div>
+    <div class="p-4 border-t flex items-center gap-3">
+      <button class="rounded-2xl px-4 py-2 bg-indigo-700 text-white" id="cbSubmit">שלחו לי שיחה להשלמת התרומה</button>
+      <span class="text-slate-500 text-sm">נשתמש בפרטים רק לצורך יצירת קשר.</span>
+    </div>
+  </div>
 </div>
-<div class="p-4 space-y-3">
-<div class="grid md:grid-cols-2 gap-3">
-<div><label class="block text-xs text-slate-500 mb-1">שם מלא</label><input class="w-full border rounded-xl px-3 py-2" id="cbName" placeholder="שם התורם/ת"/></div>
-<div><label class="block text-xs text-slate-500 mb-1">מספר טלפון</label><input class="w-full border rounded-xl px-3 py-2" id="cbPhone" placeholder="05X-XXXXXXX"/></div>
-</div>
-<label class="flex items-center gap-2 text-sm">
-<input id="cbPolicy" type="checkbox"/> קראתי ואני מאשר/ת את
-        <a class="underline" href="/privacy" target="_blank">מדיניות הפרטיות</a>
-</label>
-</div>
-<div class="p-4 border-t flex items-center gap-3">
-<button class="rounded-2xl px-4 py-2 bg-indigo-700 text-white" id="cbSubmit">שלחו לי שיחה להשלמת התרומה</button>
-<span class="text-slate-500 text-sm">נשתמש בפרטים רק לצורך יצירת קשר.</span>
-</div>
-</div>
-</div>
+
 <script src="script.js"></script>
 </body>
 </html>
