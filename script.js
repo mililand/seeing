@@ -1,10 +1,184 @@
-/* script.js — Seeing Eyes donation page
-   - Renders amount presets 
-   - Updates impact counters
-   - Handles "call me" modal with validation
+/* script.js — Seeing Eyes donation page (clean build)
+   - Top donation box (BASE) is independent from slider selections (EXTRAS)
+   - Impact counters use BASE only: meals=₪20, hours=₪300, vet=₪500
+   - Bottom summary totals EXTRAS only
+   - Circular slider, a11y helpers, and Hebrew date preserved
 */
-// ---- slider controls
-  function initSlider() {
+
+// ------------------------------
+// Tiny helpers
+// ------------------------------
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => '₪' + (Number(n)||0).toLocaleString('he-IL');
+
+// ------------------------------
+/** App state */
+// ------------------------------
+const state = {
+  freq: 'monthly',                 // or 'once' (UI only)
+  amount: 180,                     // base donation (top box)
+  custom: 0,                       // custom when 'סכום אחר'
+  selections: [],                  // slider "purchases" (extras)
+};
+
+// ------------------------------
+/** Impact calculation — BASE ONLY */
+// ------------------------------
+function impactFrom(base) {
+  return {
+    meals: Math.floor(base / 20),
+    hours: Math.floor(base / 300),
+    vet:   Math.floor(base / 500),
+  };
+}
+
+// ------------------------------
+/** Render impact counters + bottom total (EXTRAS ONLY) */
+// ------------------------------
+function recalc() {
+  const base = (state.amount === 'סכום אחר') ? Number(state.custom||0) : Number(state.amount||0);
+  const extras = state.selections.reduce((s, it) => s + Number(it.price||0), 0);
+
+  const imp = impactFrom(base);
+  const ibMeals = $('ibMeals');
+  const ibTraining = $('ibTraining');
+  const ibVet = $('ibVet');
+  if (ibMeals)    ibMeals.textContent    = (imp.meals > 0 ? imp.meals.toLocaleString('he-IL') : '0') + '+';
+  if (ibTraining) ibTraining.textContent = imp.hours;
+  if (ibVet)      ibVet.textContent      = imp.vet;
+
+  const sumEl = $('sumTotal');
+  if (sumEl) sumEl.textContent = fmt(extras);
+}
+
+// Public fallback for legacy inline calls
+window._recalc = function(){
+  recalc();
+};
+
+// ------------------------------
+/** Donation amount (top) controls */
+// ------------------------------
+window._setFreq = function(freq) {
+  state.freq = (freq === 'once') ? 'once' : 'monthly';
+  // Toggle UI classes
+  const wrap = $('freqToggle');
+  if (!wrap) return;
+  for (const btn of wrap.querySelectorAll('button[data-freq]')) {
+    const is = btn.getAttribute('data-freq') === state.freq;
+    btn.setAttribute('aria-pressed', is ? 'true' : 'false');
+    btn.classList.toggle('bg-indigo-700', is);
+    btn.classList.toggle('text-white', is);
+    btn.classList.toggle('bg-white', !is);
+  }
+};
+
+window._pickAmount = function(val, btn) {
+  if (val === 'סכום אחר') {
+    state.amount = 'סכום אחר';
+    const wrap = $('customWrap');
+    if (wrap) wrap.classList.remove('hidden');
+    const input = $('customAmount');
+    if (input) { input.focus(); }
+  } else {
+    state.amount = Number(val)||0;
+    const wrap = $('customWrap');
+    if (wrap) wrap.classList.add('hidden');
+  }
+  // UI select
+  const group = $('amountPresets');
+  if (group) {
+    group.querySelectorAll('.pill').forEach(p => p.classList.remove('sel'));
+    if (btn) btn.classList.add('sel');
+  }
+  recalc();
+};
+
+// Custom input
+document.addEventListener('input', (e) => {
+  const target = e.target;
+  if (target && target.id === 'customAmount') {
+    state.custom = Number(target.value||0);
+    if (state.amount === 'סכום אחר') recalc();
+  }
+});
+
+// ------------------------------
+/** Slider selections (EXTRAS) */
+// ------------------------------
+window._addItem = function(title, price) {
+  const p = Number(price)||0;
+  state.selections.push({ title: String(title||'פריט'), price: p, id: Date.now() + Math.random().toString(36).slice(2) });
+  renderList();
+  recalc();
+};
+
+function removeItem(id) {
+  state.selections = state.selections.filter(i => i.id !== id);
+  renderList();
+  recalc();
+}
+
+function renderList() {
+  const ul = $('list');
+  const empty = $('emptyList');
+  if (!ul) return;
+  ul.innerHTML = '';
+  if (!state.selections.length) {
+    if (empty) empty.style.display = '';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+  for (const it of state.selections) {
+    const li = document.createElement('li');
+    li.className = 'flex items-center justify-between gap-3 border rounded-xl p-3';
+    li.innerHTML = `
+      <span class="text-slate-700">${it.title}</span>
+      <span class="ms-2 font-bold">${fmt(it.price)}</span>
+      <button class="text-sm underline" type="button" aria-label="הסרה" data-remove="${it.id}">הסרה</button>
+    `;
+    ul.appendChild(li);
+  }
+}
+
+// Handle remove clicks
+document.addEventListener('click', (e) => {
+  const t = e.target;
+  if (t && t.matches('button[data-remove]')) {
+    const id = t.getAttribute('data-remove');
+    removeItem(id);
+  }
+});
+
+// ------------------------------
+/** CTAs — fully decoupled */
+// ------------------------------
+function initCTAs() {
+  const topBtn = $('donateNowTop');
+  const bottomBtn = $('donateNowBottom');
+  const moreWays = $('moreWays');
+
+  if (topBtn) topBtn.addEventListener('click', () => {
+    const base = (state.amount === 'סכום אחר') ? Number(state.custom||0) : Number(state.amount||0);
+    if (!base) { alert('נא לבחור סכום לתרומה (מעל 0)'); return; }
+    alert('דמו: תרומה על הסכום הנבחר בתיבה העליונה: ' + fmt(base));
+  });
+
+  if (bottomBtn) bottomBtn.addEventListener('click', () => {
+    const extras = state.selections.reduce((s, it) => s + Number(it.price||0), 0);
+    if (!extras) { alert('נא לבחור פריט אחד לפחות מהרשימה'); return; }
+    alert('דמו: תרומה עבור הפריטים שנבחרו בסליידר: ' + fmt(extras));
+  });
+
+  if (moreWays) moreWays.addEventListener('click', () => {
+    alert('דמו: העברה בנקאית, ביט/פייבוקס, צ׳ק.');
+  });
+}
+
+// ------------------------------
+/** Circular slider */
+// ------------------------------
+function initSlider() {
   const track = document.getElementById('cardsTrack');
   if (!track) return;
   const prev = document.getElementById('slidePrev');
@@ -43,40 +217,37 @@
   if (next) next.addEventListener('click', () => slide('next'));
   window._slide = slide;
 }
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.meters').forEach(m => {
-    m.querySelectorAll('.meter').forEach(mt => {
-      const t = (mt.getAttribute('title') || '').trim();
-      if (t !== 'בלאי') mt.remove();
-    });
-  });
-});
-document.addEventListener('DOMContentLoaded', async () => {
+
+// ------------------------------
+/** Hebrew date for certificate (kept) */
+// ------------------------------
+async function setHebrewDate() {
   try {
     const d = new Date();
     const gy = d.getFullYear();
     const gm = d.getMonth() + 1;
     const gd = d.getDate();
     const g = `${String(gd).padStart(2,'0')}.${String(gm).padStart(2,'0')}.${gy}`;
-    const gEl = document.getElementById('certDate');
+    const gEl = $('certDate');
     if (gEl) gEl.textContent = g;
     const url = `https://www.hebcal.com/converter?cfg=json&gy=${gy}&gm=${gm}&gd=${gd}&g2h=1&strict=1`;
     const res = await fetch(url);
     if (!res.ok) throw new Error('Hebcal fetch failed');
     const j = await res.json();
     const heb = j.hebrew || '';
-    const hEl = document.getElementById('certDateHebrew');
+    const hEl = $('certDateHebrew');
     if (hEl) hEl.textContent = heb;
   } catch (e) {
-    console.warn('Hebrew date lookup failed', e);
-    const hEl = document.getElementById('certDateHebrew');
+    const hEl = $('certDateHebrew');
     if (hEl) hEl.textContent = '';
+    console.warn('Hebrew date lookup failed', e);
   }
-});
+}
 
-
-// === Accessibility additions (2025-10-19 15:38) ===
-(function(){ 
+// ------------------------------
+/** A11y improvements (kept) */
+// ------------------------------
+function initA11y() {
   try {
     var slider = document.getElementById('donation-slider');
     var prevBtn = document.getElementById('slidePrev');
@@ -99,4 +270,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
   } catch(e){ console && console.warn && console.warn('a11y init', e); }
-})();
+}
+
+// ------------------------------
+/** Boot */
+// ------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Default UI state
+  window._setFreq(state.freq);
+  // Ensure top default is 180 (selected pill already has .sel in HTML)
+  recalc();
+  renderList();
+  initCTAs();
+  initSlider();
+  initA11y();
+  setHebrewDate();
+});
