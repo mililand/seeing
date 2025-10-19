@@ -111,32 +111,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- impact + total
   function recalc() {
-    const base = state.amount === 'סכום אחר' ? Number(state.custom || 0) : Number(state.amount || 0);
-    const extras = state.selections.reduce((s, it) => s + Number(it.price || 0), 0);
-    const total = base + extras;
+  const $ = (id) => document.getElementById(id);
+  const base = state.amount === 'סכום אחר' ? Number(state.custom || 0) : Number(state.amount || 0);
+  const extras = state.selections.reduce((s, it) => s + Number(it.price || 0), 0);
 
-    // impact: simple heuristics
-    const meals = Math.floor(total / 20);
-    const hours = Math.floor(total / 300);
-    const vet = Math.floor(total / 500);
+  // Impact counters — BASE only
+  const meals = Math.floor(base / 20);
+  const hours = Math.floor(base / 300);
+  const vet   = Math.floor(base / 500);
+  const ibMeals = $('ibMeals');
+  const ibTraining = $('ibTraining');
+  const ibVet = $('ibVet');
+  if (ibMeals)    ibMeals.textContent    = (meals > 0 ? meals.toLocaleString('he-IL') : '0') + '+';
+  if (ibTraining) ibTraining.textContent = hours;
+  if (ibVet)      ibVet.textContent      = vet;
 
-    const sumEl = $('sumTotal');
-    if (sumEl) sumEl.textContent = fmt(total);
-
-    const ibMeals = $('ibMeals');
-    const ibTraining = $('ibTraining');
-    const ibVet = $('ibVet');
-    if (ibMeals) ibMeals.textContent = (meals > 0 ? meals.toLocaleString('he-IL') : '0') + '+';
-    if (ibTraining) ibTraining.textContent = hours;
-    if (ibVet) ibVet.textContent = vet;
-  }
+  // Bottom summary total — EXTRAS only
+  const sumEl = $('sumTotal');
+  if (sumEl) sumEl.textContent = '₪' + (extras || 0).toLocaleString('he-IL');
+}
 
   // ---- CTAs (demo)
   function initCTAs() {
-    const topBtn = $('donateNowTop');
-    const bottomBtn = $('donateNowBottom');
-    const moreWays = $('moreWays');
-    if (topBtn && bottomBtn) topBtn.addEventListener('click', () => bottomBtn.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+  const $ = (id) => document.getElementById(id);
+  const topBtn = $('donateNowTop');
+  const bottomBtn = $('donateNowBottom');
+  const moreWays = $('moreWays');
+
+  if (topBtn) topBtn.addEventListener('click', () => {
+    const base = state.amount === 'סכום אחר' ? Number(state.custom || 0) : Number(state.amount || 0);
+    if (!base) { alert('נא לבחור סכום לתרומה (מעל 0)'); return; }
+    alert('דמו: תרומה על הסכום הנבחר בתיבה העליונה: ₪' + base.toLocaleString('he-IL'));
+  });
+
+  if (bottomBtn) bottomBtn.addEventListener('click', () => {
+    const extras = state.selections.reduce((s, it) => s + Number(it.price || 0), 0);
+    if (!extras) { alert('נא לבחור פריט אחד לפחות מהרשימה'); return; }
+    alert('דמו: תרומה עבור הפריטים שנבחרו בסליידר: ₪' + extras.toLocaleString('he-IL'));
+  });
+
+  if (moreWays) moreWays.addEventListener('click', () => alert('דמו: העברה בנקאית, ביט/פייבוקס, צ׳ק.'));
+}));
     if (bottomBtn) bottomBtn.addEventListener('click', () => alert('דמו: כאן ישתלב טופס סליקה מאובטח.'));
     if (moreWays) moreWays.addEventListener('click', () => alert('דמו: העברה בנקאית, ביט/פייבוקס, צ׳ק.'));
   }
@@ -319,10 +334,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window._recalc = function(){
-    var sum = (Number(window.__ui.amount)||0) + window.__ui.selections.reduce(function(s,it){return s + (Number(it.price)||0)},0);
-    var sumEl = $('sumTotal'); if(sumEl) sumEl.textContent = fmt(sum);
-    _impact(sum);
-  };
+  function $(id){return document.getElementById(id)}
+  var base = (window.__ui.amount === 'סכום אחר' ? Number(window.__ui.custom)||0 : Number(window.__ui.amount)||0);
+  var extras = window.__ui.selections.reduce(function(s,it){return s + (Number(it.price)||0)},0);
+  var sumEl = $('sumTotal'); if(sumEl) sumEl.textContent = '₪' + (extras||0).toLocaleString('he-IL');
+  _impact(base);
+};
 
   window._openM = function(){
     try{ var m=$('callModal'); if(!m) return; m.classList.remove('hidden'); m.classList.add('flex'); }catch(e){ console.error(e); }
