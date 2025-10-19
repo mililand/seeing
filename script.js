@@ -1,5 +1,5 @@
 /* script.js — Seeing Eyes donation page
-   - Renders amount presets
+   - Renders amount presets 
    - Updates impact counters
    - Handles "call me" modal with validation
 */
