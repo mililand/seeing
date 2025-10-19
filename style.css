@@ -1,4 +1,4 @@
-/* Optional extra tweaks */ 
+/* Optional extra tweaks */
 .btn{background:#4338ca;color:#fff}
 
 
@@ -80,30 +80,109 @@ main { position: relative; z-index: 0; }
 }
 
 
-/* === Visual refresh: warm palette & typography === */
+/* === Visual Refresh v4 — Stronger, unmistakable styling === */
 :root{
-  --brand-1:#4338ca; /* indigo-700 */
+  --brand-1:#4f46e5; /* indigo-600 */
   --brand-2:#16a34a; /* green-600 */
   --brand-3:#f59e0b; /* amber-500 */
-  --bg-1:#fffdf7;    /* warm paper */
-  --bg-2:#f5f3ff;    /* indigo-50 tint */
+  --bg-1:#fffaf0;    /* warm background */
+  --bg-2:#eef2ff;    /* indigo-50 */
   --ink-1:#0f172a;   /* slate-900 */
   --ink-2:#334155;   /* slate-700 */
+  --ring:#4338ca;    /* focus ring */
 }
+
+html, body{ height:100%; }
+
+/* Big, clear, warm background with vignette */
 body{
-  background: radial-gradient(1200px 800px at 70% -10%, var(--bg-2), transparent 40%),
-              linear-gradient(180deg, var(--bg-1), #ffffff);
+  background:
+    radial-gradient(1100px 700px at 80% -10%, rgba(238,242,255,.85), transparent 45%),
+    linear-gradient(180deg, var(--bg-1) 0%, #ffffff 60%);
   color:var(--ink-1);
 }
-h1,h2,h3{letter-spacing:-0.01em}
-h1{text-shadow:0 1px 0 rgba(255,255,255,.6)}
-section > .max-w-6xl{scroll-margin-top:80px}
-.bg-indigo-700{background-image:linear-gradient(180deg,#5b4ce7,var(--brand-1))}
-.bg-indigo-700:hover{filter:brightness(1.03);box-shadow:0 10px 24px rgba(67,56,202,.22)}
-.card,.rounded-xl,.rounded-2xl{border-color:#e9e9f0}
-.card:hover{box-shadow:0 16px 36px rgba(2,6,23,.12);transform:translateY(-1px)}
-.card .price{white-space:nowrap;direction:ltr}
-.text-slate-800{color:var(--ink-2)}
-.pill.sel{background:var(--brand-1);border-color:var(--brand-1);color:#fff}
-#slidePrev,#slideNext{box-shadow:0 6px 18px rgba(2,6,23,.15)}
-header,.border-b-2{border-color:#e9e9f0}
+
+/* Global typography polish */
+h1,h2,h3{ letter-spacing:-0.015em; }
+h1{ font-weight:900; }
+h2{ font-weight:800; }
+h3{ font-weight:800; }
+p,li{ line-height:1.7; }
+
+/* Primary CTA buttons */
+.bg-indigo-700,
+button.bg-indigo-700{
+  background-image: linear-gradient(180deg, #6d63f1, var(--brand-1));
+  border: 1px solid rgba(79,70,229,.35);
+  box-shadow: 0 12px 28px rgba(79,70,229,.25);
+  transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
+}
+.bg-indigo-700:hover{
+  filter: brightness(1.03);
+  box-shadow: 0 20px 38px rgba(79,70,229,.28);
+  transform: translateY(-1px);
+}
+
+/* Secondary / light buttons */
+button.bg-white{
+  border:1px solid #e5e7eb;
+  transition: background .15s ease, border-color .15s ease, transform .12s ease;
+}
+button.bg-white:hover{
+  background:#f8fafc;
+  border-color:#e2e8f0;
+  transform: translateY(-1px);
+}
+
+/* Amount pills — selected is bolder */
+.pill{
+  border-radius: 14px;
+  padding:.6rem .85rem;
+  font-weight:800;
+}
+.pill.sel{
+  background: var(--brand-1);
+  border-color: var(--brand-1);
+  color:#fff;
+  box-shadow: 0 8px 22px rgba(79,70,229,.25);
+}
+
+/* Cards styling — clearer elevation + paddings */
+.card{
+  border-color:#e6e6f3;
+  box-shadow: 0 8px 20px rgba(2,6,23,.08);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(2,6,23,.14);
+}
+.card .price{ white-space:nowrap; direction:ltr; font-weight:900; }
+
+/* Section dividers & subtle borders */
+.border-b-2{ border-color:#ececf6; }
+.border{ border-color:#ececf6; }
+
+/* Slider nav buttons */
+#slidePrev, #slideNext{
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+  width:2.5rem; height:2.5rem; border-radius:9999px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:1.25rem;
+  box-shadow: 0 8px 18px rgba(2,6,23,.14);
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+#slidePrev:hover, #slideNext:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(2,6,23,.18);
+}
+
+/* Inputs & focus visibility */
+:where(a, button, [role="button"], input, select, textarea):focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+
+/* Headline zone spacing */
+#hero, header, main section{ scroll-margin-top: 96px; }
