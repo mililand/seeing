@@ -116,9 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const total = base + extras;
 
     // impact: simple heuristics
-    const meals = Math.floor(total / 20);
-    const weeks = Math.floor(total / (2500*7));
-    const vet = Math.floor(total / 1600);
+    const meals = Math.floor(total / 25) * 10;
+    const weeks = Math.floor(total / 360);
+    const vet = Math.floor(total / 250);
 
     const sumEl = $('sumTotal');
     if (sumEl) sumEl.textContent = fmt(total);
