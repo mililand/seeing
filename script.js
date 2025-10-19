@@ -2,7 +2,7 @@
    - Renders amount presets
    - Updates impact counters
    - Handles "call me" modal with validation
-*/
+*/ 
 document.addEventListener('DOMContentLoaded', () => {
   // ---- tiny helpers
   const $ = (id) => document.getElementById(id);
