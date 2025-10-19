@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- state
   const state = {
     freq: 'monthly',
-    amountPresets: [50, 100, 180, 360, 1000, 'סכום אחר'],
+    amountPresets: [75, 180, 250, 360, 500, 'סכום אחר'],
     amount: 180,
     custom: 0,
     selections: []
@@ -117,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // impact: simple heuristics
     const meals = Math.floor(total / 20);
-    const weeks = Math.floor(total / 3000);
-    const vet = Math.floor(total / 1600);
+    const hours = Math.floor(total / 300);
+    const vet = Math.floor(total / 500);
 
     const sumEl = $('sumTotal');
     if (sumEl) sumEl.textContent = fmt(total);
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ibTraining = $('ibTraining');
     const ibVet = $('ibVet');
     if (ibMeals) ibMeals.textContent = (meals > 0 ? meals.toLocaleString('he-IL') : '0') + '+';
-    if (ibTraining) ibTraining.textContent = weeks;
+    if (ibTraining) ibTraining.textContent = hours;
     if (ibVet) ibVet.textContent = vet;
   }
 
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el && el.classList.add('sel');
       }
       var customWrap = $('customWrap');
-      if(val === 'other'){
+      if(val === 'סכום אחר'){
         if(customWrap) customWrap.classList.remove('hidden');
         window.__ui.amount = window.__ui.custom || 0;
       }else{
@@ -310,11 +310,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function _impact(total){
     var meals = Math.floor(total / 20);
-    var weeks = Math.floor(total / 3000);
-    var vet = Math.floor(total / 1600);
+    var hours = Math.floor(total / 300);
+    var vet = Math.floor(total / 500);
     var ibMeals = $('ibMeals'); var ibTraining = $('ibTraining'); var ibVet = $('ibVet');
     if(ibMeals) ibMeals.textContent = (meals>0 ? meals.toLocaleString('he-IL') : '0') + '+';
-    if(ibTraining) ibTraining.textContent = weeks;
+    if(ibTraining) ibTraining.textContent = hours;
     if(ibVet) ibVet.textContent = vet;
   }
 
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- state
   const state = {
     freq: 'monthly',
-    amountPresets: [100, 180, 360, 555, 1000, 'סכום אחר'],
+    amountPresets: [75, 180, 250, 360, 500, 'סכום אחר'],
     amount: 180,
     custom: 0,
     selections: []
@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pills = Array.from(wrap.querySelectorAll('button.pill'));
     if (pills.length) {
       // Ensure labels map to values:
-      const map = {'₪100':100,'₪180':180,'₪360':360,'₪555':555,'₪1000':1000,'סכום אחר':'סכום אחר'};
+      const map = {'₪75':75,'₪180':180,'₪250':250,'₪360':360,'₪500':500,'סכום אחר':'סכום אחר'};
       // Default selection: 180
       let defaultSet = false;
       pills.forEach((b) => {
@@ -490,8 +490,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // impact: simple heuristics
     const meals = Math.floor(total / 20);
-    const weeks = Math.floor(total / 3000);
-    const vet = Math.floor(total / 1600);
+    const hours = Math.floor(total / 300);
+    const vet = Math.floor(total / 500);
 
     const sumEl = $('sumTotal');
     if (sumEl) sumEl.textContent = fmt(total);
@@ -500,7 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ibTraining = $('ibTraining');
     const ibVet = $('ibVet');
     if (ibMeals) ibMeals.textContent = (meals > 0 ? meals.toLocaleString('he-IL') : '0') + '+';
-    if (ibTraining) ibTraining.textContent = weeks;
+    if (ibTraining) ibTraining.textContent = hours;
     if (ibVet) ibVet.textContent = vet;
   }
 
