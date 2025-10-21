@@ -242,3 +242,27 @@ h1,h2,h3{letter-spacing:-0.01em}
   color: #111827 !important;      /* slate-900 for contrast */
   border-color: #fbbf24 !important; /* amber-300 */
 }
+
+
+/* === Slider add button: small & subtle === */
+.add-wrap .btn,
+.add-wrap .btn.btn-primary{
+  font-weight: 800;
+  font-size: 0.875rem;      /* text-sm */
+  padding: 0.5rem 0.75rem;  /* py-2 px-3 */
+  border-radius: 0.75rem;   /* rounded-xl */
+  background: #ffffff !important;
+  color: #111827 !important;      /* slate-900 */
+  border: 1px solid #e5e7eb !important; /* slate-200 */
+  box-shadow: none !important;
+}
+.add-wrap .btn:hover,
+.add-wrap .btn.btn-primary:hover{
+  background: #facc15 !important; /* amber-400 */
+  color: #111827 !important;
+  border-color: #fbbf24 !important; /* amber-300 */
+}
+.add-wrap .btn:focus-visible{
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
