@@ -102,12 +102,7 @@ body{
 }
 
 /* כותרת עליונה עם קו מותג */
-header{ background:rgba(255,255,255,.96); border-bottom:3px solid var(--brand) }
-
-/* כפתור ראשי – צהוב בטוח */
-.btn,
-.bg-indigo-700{
-  background: var(--brand) !important;
+header{ background:rgba(255,255,255,.96); border-bottom: 0;
   color: var(--brand-ink) !important;
   border:1px solid #ffcc00;
   box-shadow: 0 14px 30px rgba(255,209,26,.35);
@@ -181,12 +176,7 @@ body{
 }
 
 /* Header with brand underline */
-header{ background:rgba(255,255,255,.96); border-bottom:3px solid var(--brand) }
-
-/* Primary buttons: warm gold, accessible focus */
-.btn,
-.bg-indigo-700{
-  background: var(--brand) !important;
+header{ background:rgba(255,255,255,.96); border-bottom: 0;
   color: var(--brand-ink) !important;
   border:1px solid #ffcc00;
   box-shadow: 0 14px 30px rgba(255,209,26,.35);
