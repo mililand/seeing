@@ -1,5 +1,5 @@
 console.log('seeing boot');
-/* script.js — Seeing Eyes donation page (clean build)
+/* script.js - Seeing Eyes donation page (clean build)
    - Top donation box (BASE) is independent from slider selections (EXTRAS)
    - Impact counters use BASE only: meals=₪20, hours=₪300, vet=₪500
    - Bottom summary totals EXTRAS only
@@ -23,7 +23,7 @@ const state = {
 };
 
 // ------------------------------
-/** Impact calculation — BASE ONLY */
+/** Impact calculation - BASE ONLY */
 // ------------------------------
 function impactFrom(base) {
   return {
@@ -153,7 +153,7 @@ document.addEventListener('click', (e) => {
 });
 
 // ------------------------------
-/** CTAs — fully decoupled */
+/** CTAs - fully decoupled */
 // ------------------------------
 function initCTAs() {
   const topBtn = $('donateNowTop');
