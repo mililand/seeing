@@ -1,290 +1,223 @@
-console.log('seeing boot');
-/* script.js — Seeing Eyes donation page (clean build)
-   - Top donation box (BASE) is independent from slider selections (EXTRAS)
-   - Impact counters use BASE only: meals=₪20, hours=₪300, vet=₪500
-   - Bottom summary totals EXTRAS only
-   - Circular slider, a11y helpers, and Hebrew date preserved
+/* script.js — Seeing Eyes donation page
+   - Renders amount presets
+   - Updates impact counters
+   - Handles "call me" modal with validation
 */
+document.addEventListener('DOMContentLoaded', () => {
+  // ---- tiny helpers
+  const $ = (id) => document.getElementById(id);
+  const fmt = (n) => '₪' + (Number(n) || 0).toLocaleString('he-IL');
 
-// ------------------------------
-// Tiny helpers
-// ------------------------------
-const $ = (id) => document.getElementById(id);
-const fmt = (n) => '₪' + (Number(n)||0).toLocaleString('he-IL');
-
-// ------------------------------
-/** App state */
-// ------------------------------
-const state = {
-  freq: 'monthly',                 // or 'once' (UI only)
-  amount: 180,                     // base donation (top box)
-  custom: 0,                       // custom when 'סכום אחר'
-  selections: [],                  // slider "purchases" (extras)
-};
-
-// ------------------------------
-/** Impact calculation — BASE ONLY */
-// ------------------------------
-function impactFrom(base) {
-  return {
-    meals: Math.floor(base / 20),
-    hours: Math.floor(base / 300),
-    vet:   Math.floor(base / 500),
+  // ---- state
+  const state = {
+    freq: 'monthly',
+    amountPresets: [50, 100, 180, 360, 1000, 'סכום אחר'],
+    amount: 180,
+    custom: 0,
+    selections: []
   };
-}
 
-// ------------------------------
-/** Render impact counters + bottom total (EXTRAS ONLY) */
-// ------------------------------
-function recalc() {
-  const base = (state.amount === 'סכום אחר') ? Number(state.custom||0) : Number(state.amount||0);
-  const extras = state.selections.reduce((s, it) => s + Number(it.price||0), 0);
+  // ---- build amount pills
+  function buildPresets() {
+    const wrap = $('amountPresets');
+    if (!wrap) return;
 
-  // Impact from BASE only
-  const meals = Math.floor(base / 20);
-  const hours = Math.floor(base / 300);
-  const vet   = Math.floor(base / 500);
-  const ibMeals = $('ibMeals'), ibTraining = $('ibTraining'), ibVet = $('ibVet');
-  if (ibMeals)    ibMeals.textContent    = (meals > 0 ? meals.toLocaleString('he-IL') : '0') + '+';
-  if (ibTraining) ibTraining.textContent = hours;
-  if (ibVet)      ibVet.textContent      = vet;
+    wrap.innerHTML = ''; // clear if re-run
+    state.amountPresets.forEach((a) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pill' + (a === state.amount ? ' sel' : '');
+      b.textContent = typeof a === 'number' ? '₪' + a.toLocaleString('he-IL') : a;
 
-  // Bottom total = EXTRAS only
-  const sumEl = $('sumTotal');
-  if (sumEl) sumEl.textContent = '₪' + (extras||0).toLocaleString('he-IL');
-}
-// Public fallback for legacy inline calls
-window._recalc = function(){
-  recalc();
-};
+      b.onclick = () => {
+        state.amount = a;
+        wrap.querySelectorAll('.pill').forEach((p) => p.classList.remove('sel'));
+        b.classList.add('sel');
+        const customWrap = $('customWrap');
+        if (customWrap) customWrap.classList.toggle('hidden', a !== 'סכום אחר');
+        recalc();
+      };
 
-// ------------------------------
-/** Donation amount (top) controls */
-// ------------------------------
-window._setFreq = function(freq) {
-  state.freq = (freq === 'once') ? 'once' : 'monthly';
-  // Toggle UI classes
-  const wrap = $('freqToggle');
-  if (!wrap) return;
-  for (const btn of wrap.querySelectorAll('button[data-freq]')) {
-    const is = btn.getAttribute('data-freq') === state.freq;
-    btn.setAttribute('aria-pressed', is ? 'true' : 'false');
-    btn.classList.toggle('bg-indigo-700', is);
-    btn.classList.toggle('text-white', is);
-    btn.classList.toggle('bg-white', !is);
+      wrap.appendChild(b);
+    });
   }
-};
 
-window._pickAmount = function(val, btn) {
-  if (val === 'סכום אחר') {
-    state.amount = 'סכום אחר';
-    const wrap = $('customWrap');
-    if (wrap) wrap.classList.remove('hidden');
+  // ---- freq toggle
+  function initFreqToggle() {
+    const toggle = $('freqToggle');
+    if (!toggle) return;
+    toggle.querySelectorAll('button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        toggle.querySelectorAll('button').forEach((b) => b.classList.remove('bg-indigo-700', 'text-white'));
+        btn.classList.add('bg-indigo-700', 'text-white');
+        state.freq = btn.dataset.freq || 'monthly';
+      });
+    });
+  }
+
+  // ---- custom amount
+  function initCustom() {
     const input = $('customAmount');
-    if (input) { input.focus(); }
-  } else {
-    state.amount = Number(val)||0;
-    const wrap = $('customWrap');
-    if (wrap) wrap.classList.add('hidden');
-  }
-  // UI select
-  const group = $('amountPresets');
-  if (group) {
-    group.querySelectorAll('.pill').forEach(p => p.classList.remove('sel'));
-    if (btn) btn.classList.add('sel');
-  }
-  recalc();
-};
-
-// Custom input
-document.addEventListener('input', (e) => {
-  const target = e.target;
-  if (target && target.id === 'customAmount') {
-    state.custom = Number(target.value||0);
-    if (state.amount === 'סכום אחר') recalc();
-  }
-});
-
-// ------------------------------
-/** Slider selections (EXTRAS) */
-// ------------------------------
-window._addItem = function(title, price) {
-  const p = Number(price)||0;
-  state.selections.push({ title: String(title||'פריט'), price: p, id: Date.now() + Math.random().toString(36).slice(2) });
-  renderList();
-  recalc();
-};
-
-function removeItem(id) {
-  state.selections = state.selections.filter(i => i.id !== id);
-  renderList();
-  recalc();
-}
-
-function renderList() {
-  const ul = $('list');
-  const empty = $('emptyList');
-  if (!ul) return;
-  ul.innerHTML = '';
-  if (!state.selections.length) {
-    if (empty) empty.style.display = '';
-    return;
-  }
-  if (empty) empty.style.display = 'none';
-  for (const it of state.selections) {
-    const li = document.createElement('li');
-    li.className = 'flex items-center justify-between gap-3 border rounded-xl p-3';
-    li.innerHTML = `
-      <span class="text-slate-700">${it.title}</span>
-      <span class="ms-2 font-bold">${fmt(it.price)}</span>
-      <button class="text-sm underline" type="button" aria-label="הסרה" data-remove="${it.id}">הסרה</button>
-    `;
-    ul.appendChild(li);
-  }
-}
-
-// Handle remove clicks
-document.addEventListener('click', (e) => {
-  const t = e.target;
-  if (t && t.matches('button[data-remove]')) {
-    const id = t.getAttribute('data-remove');
-    removeItem(id);
-  }
-});
-
-// ------------------------------
-/** CTAs — fully decoupled */
-// ------------------------------
-function initCTAs() {
-  const topBtn = $('donateNowTop');
-  const bottomBtn = $('donateNowBottom');
-  const moreWays = $('moreWays');
-
-  if (topBtn) topBtn.addEventListener('click', () => {
-    const base = (state.amount === 'סכום אחר') ? Number(state.custom||0) : Number(state.amount||0);
-    if (!base) { alert('נא לבחור סכום לתרומה (מעל 0)'); return; }
-    alert('דמו: תרומה על הסכום הנבחר בתיבה העליונה: ' + fmt(base));
-  });
-
-  if (bottomBtn) bottomBtn.addEventListener('click', () => {
-    const extras = state.selections.reduce((s, it) => s + Number(it.price||0), 0);
-    if (!extras) { alert('נא לבחור פריט אחד לפחות מהרשימה'); return; }
-    alert('דמו: תרומה עבור הפריטים שנבחרו בסליידר: ' + fmt(extras));
-  });
-
-  if (moreWays) moreWays.addEventListener('click', () => {
-    alert('דמו: העברה בנקאית, ביט/פייבוקס, צ׳ק.');
-  });
-}
-
-// ------------------------------
-/** Circular slider */
-// ------------------------------
-function initSlider() {
-  const track = document.getElementById('cardsTrack');
-  if (!track) return;
-  const prev = document.getElementById('slidePrev');
-  const next = document.getElementById('slideNext');
-
-  function gapPx() {
-    const st = getComputedStyle(track);
-    const raw = (st.gap || st.columnGap || '0').replace('px','').trim();
-    return parseInt(raw || '0', 10);
-  }
-  function cardWidth() {
-    const c = track.querySelector('.card');
-    if (!c) return 340;
-    const rect = c.getBoundingClientRect();
-    return Math.round(rect.width + gapPx());
-  }
-
-  function slide(dir) {
-    const w = cardWidth();
-    if (dir === 'next') {
-      track.scrollBy({ left: w, behavior: 'smooth' });
-      setTimeout(() => {
-        if (track.firstElementChild) track.appendChild(track.firstElementChild);
-        track.scrollLeft -= w;
-      }, 260);
-    } else {
-      if (track.lastElementChild) {
-        track.insertBefore(track.lastElementChild, track.firstElementChild);
-        track.scrollLeft += w;
-      }
-      track.scrollBy({ left: -w, behavior: 'smooth' });
-    }
-  }
-
-  if (prev) prev.addEventListener('click', () => slide('prev'));
-  if (next) next.addEventListener('click', () => slide('next'));
-  window._slide = slide;
-}
-
-// ------------------------------
-/** Hebrew date for certificate (kept) */
-// ------------------------------
-async function setHebrewDate() {
-  try {
-    const d = new Date();
-    const gy = d.getFullYear();
-    const gm = d.getMonth() + 1;
-    const gd = d.getDate();
-    const g = `${String(gd).padStart(2,'0')}.${String(gm).padStart(2,'0')}.${gy}`;
-    const gEl = $('certDate');
-    if (gEl) gEl.textContent = g;
-    const url = `https://www.hebcal.com/converter?cfg=json&gy=${gy}&gm=${gm}&gd=${gd}&g2h=1&strict=1`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error('Hebcal fetch failed');
-    const j = await res.json();
-    const heb = j.hebrew || '';
-    const hEl = $('certDateHebrew');
-    if (hEl) hEl.textContent = heb;
-  } catch (e) {
-    const hEl = $('certDateHebrew');
-    if (hEl) hEl.textContent = '';
-    console.warn('Hebrew date lookup failed', e);
-  }
-}
-
-// ------------------------------
-/** A11y improvements (kept) */
-// ------------------------------
-function initA11y() {
-  try {
-    var slider = document.getElementById('donation-slider');
-    var prevBtn = document.getElementById('slidePrev');
-    var nextBtn = document.getElementById('slideNext');
-    if (slider && prevBtn && nextBtn) {
-      slider.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowRight') { nextBtn.click(); e.preventDefault(); }
-        if (e.key === 'ArrowLeft')  { prevBtn.click(); e.preventDefault(); }
+    if (input) {
+      input.addEventListener('input', (e) => {
+        state.custom = e.target.value;
+        recalc();
       });
     }
-    var priceBtns = document.querySelectorAll('button[data-price]');
-    priceBtns.forEach(function(btn){
-      var p = btn.getAttribute('data-price');
-      if (p && !btn.hasAttribute('aria-label')) {
-        var amt = Number(p).toLocaleString('he-IL');
-        btn.setAttribute('aria-label', 'הוספה לסל – ₪' + amt);
-      }
-      if (!btn.hasAttribute('type')) {
-        btn.setAttribute('type','button');
-      }
-    });
-  } catch(e){ console && console.warn && console.warn('a11y init', e); }
-}
+  }
 
-// ------------------------------
-/** Boot */
-// ------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-  // Default UI state
-  window._setFreq(state.freq);
-  // Ensure top default is 180 (selected pill already has .sel in HTML)
-  recalc();
-  renderList();
+  // ---- supports add buttons
+  function initSupportButtons() {
+    document.querySelectorAll('[data-add]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        state.selections.push({
+          title: btn.getAttribute('title'),
+          price: Number(btn.getAttribute('data-price'))
+        });
+        renderSelections();
+        recalc();
+      });
+    });
+  }
+
+  function renderSelections() {
+    const list = $('list');
+    const empty = $('emptyList');
+    if (!list || !empty) return;
+
+    list.innerHTML = '';
+    empty.classList.toggle('hidden', !!state.selections.length);
+
+    state.selections.forEach((it, i) => {
+      const li = document.createElement('li');
+      li.className = 'flex items-center justify-between';
+      li.innerHTML = `
+        <span>${it.title}</span>
+        <span>${fmt(it.price)}
+          <button data-rm="${i}" class="bg-white border rounded-xl px-2 py-1 text-xs">הסרה</button>
+        </span>`;
+      list.appendChild(li);
+    });
+
+    list.querySelectorAll('[data-rm]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const i = Number(b.getAttribute('data-rm'));
+        state.selections.splice(i, 1);
+        renderSelections();
+        recalc();
+      })
+    );
+  }
+
+  // ---- impact + total
+  function recalc() {
+    const base = state.amount === 'סכום אחר' ? Number(state.custom || 0) : Number(state.amount || 0);
+    const extras = state.selections.reduce((s, it) => s + Number(it.price || 0), 0);
+    const total = base + extras;
+
+    // impact: simple heuristics
+    const meals = Math.floor(total / 25) * 10;
+    const weeks = Math.floor(total / 360);
+    const vet = Math.floor(total / 250);
+
+    const sumEl = $('sumTotal');
+    if (sumEl) sumEl.textContent = fmt(total);
+
+    const ibMeals = $('ibMeals');
+    const ibTraining = $('ibTraining');
+    const ibVet = $('ibVet');
+    if (ibMeals) ibMeals.textContent = (meals > 0 ? meals.toLocaleString('he-IL') : '0') + '+';
+    if (ibTraining) ibTraining.textContent = weeks;
+    if (ibVet) ibVet.textContent = vet;
+  }
+
+  // ---- CTAs (demo)
+  function initCTAs() {
+    const topBtn = $('donateNowTop');
+    const bottomBtn = $('donateNowBottom');
+    const moreWays = $('moreWays');
+    if (topBtn && bottomBtn) topBtn.addEventListener('click', () => bottomBtn.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    if (bottomBtn) bottomBtn.addEventListener('click', () => alert('דמו: כאן ישתלב טופס סליקה מאובטח.'));
+    if (moreWays) moreWays.addEventListener('click', () => alert('דמו: העברה בנקאית, ביט/פייבוקס, צ׳ק.'));
+  }
+
+  // ---- dedication preview
+  function initDedication() {
+    const certDate = $('certDate');
+    if (certDate) {
+      const d = new Date();
+      const dd = String(d.getDate()).padStart(2, '0');
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const yy = d.getFullYear();
+      certDate.textContent = `${dd}.${mm}.${yy}`;
+    }
+    const dn = $('dedName');
+    const ddn = $('dedDonor');
+    const dt = $('dedType');
+    const cn = $('certName');
+    const cd = $('certDonor');
+
+    function upd() {
+      const name = dn ? dn.value.trim() : '';
+      const donor = ddn ? ddn.value.trim() : '';
+      const type = dt ? dt.value : 'לזכר/לע"נ';
+      if (cn) cn.textContent = 'ל' + type + ': ' + (name || '—');
+      if (cd) cd.textContent = donor || '—';
+    }
+    if (dn) dn.addEventListener('input', upd);
+    if (ddn) ddn.addEventListener('input', upd);
+    if (dt) dt.addEventListener('change', upd);
+
+    const att = document.getElementById('attachDed');
+    if (att) att.addEventListener('click', () => alert('ההקדשה תצורף לתרומה (דמו).'));
+  }
+
+  // ---- modal (call me)
+  function initModal() {
+    const callModal = $('callModal');
+    const callBtn = $('callMeBtn');
+    const closeBtn = $('callClose');
+    const cbName = $('cbName');
+    const cbPhone = $('cbPhone');
+    const cbPolicy = $('cbPolicy');
+    const cbSubmit = $('cbSubmit');
+
+    function openM() { if (callModal) callModal.classList.remove('hidden'); }
+    function closeM() { if (callModal) callModal.classList.add('hidden'); }
+
+    if (callBtn) callBtn.addEventListener('click', openM);
+    if (closeBtn) closeBtn.addEventListener('click', closeM);
+
+    if (callModal) {
+      callModal.addEventListener('click', (e) => { if (e.target === callModal) closeM(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeM(); });
+    }
+
+    function validPhone(p) { return /^0\d{8,10}$/.test(String(p).replace(/\D/g, '')); }
+
+    if (cbSubmit) {
+      cbSubmit.addEventListener('click', () => {
+        const name = (cbName && cbName.value.trim()) || '';
+        const phone = (cbPhone && cbPhone.value.trim()) || '';
+        if (!name) { alert('נא למלא שם מלא'); cbName && cbName.focus(); return; }
+        if (!validPhone(phone)) { alert('נא למלא מספר טלפון תקין'); cbPhone && cbPhone.focus(); return; }
+        if (!cbPolicy || !cbPolicy.checked) { alert('נא לאשר את מדיניות הפרטיות'); return; }
+        alert('תודה! נחזור אליך להשלמת התרומה.');
+        closeM();
+        if (cbName) cbName.value = '';
+        if (cbPhone) cbPhone.value = '';
+        if (cbPolicy) cbPolicy.checked = false;
+      });
+    }
+  }
+
+  // ---- boot
+  buildPresets();
+  initFreqToggle();
+  initCustom();
+  initSupportButtons();
   initCTAs();
-  initSlider();
-  initA11y();
-  setHebrewDate();
+  initDedication();
+  initModal();
+  recalc(); // initial render
 });
