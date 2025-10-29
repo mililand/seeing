@@ -23,7 +23,7 @@ main { position: relative; z-index: 0; }
 
 /* Slider polish */
 #cardsTrack { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
-#cardsTrack > .card { scroll-snap-align: center; transition: transform .25s ease, box-shadow .25s ease; transform-origin: center bottom; }
+#cardsTrack > .card { scroll-snap-align: center; transition: transform .25s ease, transform-origin: center bottom; }
 #cardsTrack > .card.is-active { transform: scale(1.02); }
 #cardsDots .dot { width:10px; height:10px; border-radius:9999px; background:#0d0c22; display:inline-block; }
 #cardsDots .dot.active { background:#a4b6fd; }
@@ -112,7 +112,7 @@ header{ background:rgba(255,255,255,.96); border-bottom:0px solid var(--brand) }
   border:1px solid #ffcc00;
 }
 .btn:hover,
-.bg-indigo-700:hover{ transform: translateY(-1px); filter: brightness(1.02); box-shadow:0 20px 40px rgba(255,209,26,.42) }
+.bg-indigo-700:hover{ transform: translateY(-1px); filter: brightness(1.02); }
 
 /* קפסולות סכומים */
 .pill{ border:2px solid var(--line); border-radius:14px; padding:.6rem .85rem; font-weight:800; background:#f6f6f6 }
@@ -120,7 +120,7 @@ header{ background:rgba(255,255,255,.96); border-bottom:0px solid var(--brand) }
 
 /* כרטיסי הסליידר */
 .card{ border:2px solid var(--line); border-radius:20px; background:#f6f6f6; }
-.card:hover{ transform:translateY(-2px); box-shadow:0 16px 40px rgba(2,6,23,.14) }
+.card:hover{ transform:translateY(-2px); }
 .card .head{ border-bottom:2px solid var(--line) }
 .card .icon-wrap{ background: var(--tint) }
 .card .price{ white-space:nowrap; direction:ltr; font-weight:900; color:#0d0c22 }
@@ -130,7 +130,6 @@ header{ background:rgba(255,255,255,.96); border-bottom:0px solid var(--brand) }
   background:#f6f6f6; border:1px solid var(--line);
   width:2.5rem; height:2.5rem; border-radius:9999px;
   display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.25rem; color:#0d0c22;
-  box-shadow:0 10px 24px rgba(2,6,23,.12);
 }
 
 /* שמירות פונקציונליות קיימות (כבר אצלך): */
@@ -149,11 +148,10 @@ section > .max-w-6xl{scroll-margin-top:80px}
 .bg-indigo-700{background-image:linear-gradient(180deg,#5b4ce7,var(--brand-1))}
 .bg-indigo-700:hover{filter:brightness(1.03);}
 .card,.rounded-xl,.rounded-2xl{border-color:#e9e9f0}
-.card:hover{box-shadow:0 16px 36px rgba(2,6,23,.12);transform:translateY(-1px)}
+.card:hover{transform:translateY(-1px)}
 .card .price{white-space:nowrap;direction:ltr}
 .text-slate-800{color:var(--ink-2)}
 .pill.sel{background:var(--brand-1);border-color:var(--brand-1);color:#f6f6f6}
-#slidePrev,#slideNext{box-shadow:0 6px 18px rgba(2,6,23,.15)}
 header,.border-b-2{border-color:#e9e9f0; border-width:1px;}
 
 /* === APPENDED: Warm, Trustworthy Premium Theme (2025-10-19) === */
@@ -188,7 +186,6 @@ header{ background:#fff; border-bottom:0px solid var(--brand) }
   background: var(--brand) !important;
   color: var(--brand-ink) !important;
   border:0px solid #ffcc00;
-  box-shadow: 0 14px 30px rgba(255,209,26,.35);
 }
 .btn:hover,
 .bg-indigo-700:hover{ transform: translateY(-1px); filter: brightness(1.02); }
@@ -204,7 +201,7 @@ header{ background:#fff; border-bottom:0px solid var(--brand) }
 
 /* Cards (slider) */
 .card{ border:2px solid var(--line); border-radius:20px; background:#f6f6f6; }
-.card:hover{ transform:translateY(-2px); box-shadow:0 16px 40px rgba(2,6,23,.14) }
+.card:hover{ transform:translateY(-2px); }
 .card .head{ border-bottom:2px solid var(--line) }
 .card .icon-wrap{ background: var(--tint) }
 .card .price{ white-space:nowrap; direction:ltr; font-weight:900; color:#0d0c22 }
@@ -214,7 +211,6 @@ header{ background:#fff; border-bottom:0px solid var(--brand) }
   background:#f6f6f6; border:1px solid var(--line);
   width:2.5rem; height:2.5rem; border-radius:9999px;
   display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.25rem; color:#0d0c22;
-  box-shadow:0 10px 24px rgba(2,6,23,.12);
 }
 
 /* Section rhythm & minor polish */
@@ -253,7 +249,6 @@ h1,h2,h3{letter-spacing:-0.01em}
   background: #f6f6f6 !important;
   color: #0d0c22 !important;      /* slate-900 */
   border: 1px solid #0d0c22 !important; /* slate-200 */
-  box-shadow: none !important;
 }
 .add-wrap .btn:hover,
 .add-wrap .btn.btn-primary:hover{
@@ -338,7 +333,6 @@ input, select, textarea{
   background: var(--color-bg-main) !important;
   color: var(--color-text) !important;
   border-color: var(--color-text) !important;
-  box-shadow: none !important;
 }
 
 /* Header/footer banners */
