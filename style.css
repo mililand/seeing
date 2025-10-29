@@ -24,7 +24,7 @@ main { position: relative; z-index: 0; }
 /* Slider polish */
 #cardsTrack { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
 #cardsTrack > .card { scroll-snap-align: center; transition: transform .25s ease, box-shadow .25s ease; transform-origin: center bottom; }
-#cardsTrack > .card.is-active { transform: scale(1.02); box-shadow: 0 12px 30px rgba(2,6,23,.15); }
+#cardsTrack > .card.is-active { transform: scale(1.02); }
 #cardsDots .dot { width:10px; height:10px; border-radius:9999px; background:#0d0c22; display:inline-block; }
 #cardsDots .dot.active { background:#a4b6fd; }
 /* Edge fade (desktop) */
@@ -116,10 +116,10 @@ header{ background:rgba(255,255,255,.96); border-bottom:0px solid var(--brand) }
 
 /* קפסולות סכומים */
 .pill{ border:2px solid var(--line); border-radius:14px; padding:.6rem .85rem; font-weight:800; background:#f6f6f6 }
-.pill.sel{ background:#FFD11A !important; color:var(--brand-ink); border-color:#ffcc00; box-shadow:0 8px 22px rgba(255,209,26,.25) }
+.pill.sel{ background:#FFD11A !important; color:var(--brand-ink); border-color:#ffcc00; }
 
 /* כרטיסי הסליידר */
-.card{ border:2px solid var(--line); border-radius:20px; background:#f6f6f6; box-shadow:0 8px 24px rgba(2,6,23,.08) }
+.card{ border:2px solid var(--line); border-radius:20px; background:#f6f6f6; }
 .card:hover{ transform:translateY(-2px); box-shadow:0 16px 40px rgba(2,6,23,.14) }
 .card .head{ border-bottom:2px solid var(--line) }
 .card .icon-wrap{ background: var(--tint) }
@@ -147,7 +147,7 @@ h1,h2,h3{letter-spacing:-0.01em}
 h1{text-shadow:0 1px 0 rgba(255,255,255,.6)}
 section > .max-w-6xl{scroll-margin-top:80px}
 .bg-indigo-700{background-image:linear-gradient(180deg,#5b4ce7,var(--brand-1))}
-.bg-indigo-700:hover{filter:brightness(1.03);box-shadow:0 10px 24px rgba(67,56,202,.22)}
+.bg-indigo-700:hover{filter:brightness(1.03);}
 .card,.rounded-xl,.rounded-2xl{border-color:#e9e9f0}
 .card:hover{box-shadow:0 16px 36px rgba(2,6,23,.12);transform:translateY(-1px)}
 .card .price{white-space:nowrap;direction:ltr}
@@ -200,10 +200,10 @@ header{ background:#fff; border-bottom:0px solid var(--brand) }
 
 /* Amount capsules */
 .pill{ border:2px solid var(--line); border-radius:14px; padding:.6rem .85rem; font-weight:800; background:#f6f6f6 }
-.pill.sel{ background:var(--brand); color:var(--brand-ink); border-color:#ffcc00; box-shadow:0 8px 22px rgba(255,209,26,.25) }
+.pill.sel{ background:var(--brand); color:var(--brand-ink); border-color:#ffcc00; }
 
 /* Cards (slider) */
-.card{ border:2px solid var(--line); border-radius:20px; background:#f6f6f6; box-shadow:0 8px 24px rgba(2,6,23,.08) }
+.card{ border:2px solid var(--line); border-radius:20px; background:#f6f6f6; }
 .card:hover{ transform:translateY(-2px); box-shadow:0 16px 40px rgba(2,6,23,.14) }
 .card .head{ border-bottom:2px solid var(--line) }
 .card .icon-wrap{ background: var(--tint) }
