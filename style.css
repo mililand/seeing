@@ -102,7 +102,7 @@ body{
 }
 
 /* כותרת עליונה עם קו מותג */
-header{ background:rgba(255,255,255,.96); border-bottom:3px solid var(--brand) }
+header{ background:rgba(255,255,255,.96); border-bottom:0px solid var(--brand) }
 
 /* כפתור ראשי – צהוב בטוח */
 .btn,
@@ -292,7 +292,6 @@ button,
 .pill:hover{
   background: #fff;
   color: var(--color-text) !important;
-  border-color: var(--color-text) !important;
 }
 
 .btn:hover,
@@ -345,7 +344,7 @@ input, select, textarea{
 
 /* Header/footer banners */
 header, footer{
-  background: var(--color-bg-second) !important;
+
   color: var(--color-text) !important;
 }
 
