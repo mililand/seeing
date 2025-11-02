@@ -233,9 +233,9 @@ h1,h2,h3{letter-spacing:-0.01em}
 /* === Hover: add button turns yellow background (per request) === */
 .add-wrap .btn:hover,
 .add-wrap .btn.btn-primary:hover {
-  background: #ffda79 !important; /* amber-400 */
+  background: #FFC800 !important; /* amber-400 */
   color: #0d0c22 !important;      /* slate-900 for contrast */
-  border-color: #ffda79 !important; /* amber-300 */
+  border-color: #FFC800 !important; /* amber-300 */
 }
 
 
@@ -252,9 +252,9 @@ h1,h2,h3{letter-spacing:-0.01em}
 }
 .add-wrap .btn:hover,
 .add-wrap .btn.btn-primary:hover{
-  background: #ffda79 !important; /* amber-400 */
+  background: #FFC800 !important; /* amber-400 */
   color: #0d0c22 !important;
-  border-color: #ffda79 !important; /* amber-300 */
+  border-color: #FFC800 !important; /* amber-300 */
 }
 .add-wrap .btn:focus-visible{
   outline: 2px solid #0d0c22;
@@ -262,10 +262,10 @@ h1,h2,h3{letter-spacing:-0.01em}
 }
 
 
-/* === Palette Override (Locallista) — {'bg_main': '#f6f6f6', 'bg_second': '#ffda79', 'text': '#0d0c22', 'accent': '#a4b6fd'} === */
+/* === Palette Override (Locallista) — {'bg_main': '#f6f6f6', 'bg_second': '#FFC800', 'text': '#0d0c22', 'accent': '#a4b6fd'} === */
 :root{
   --color-bg-main: #f6f6f6;
-  --color-bg-second: #ffda79;
+  --color-bg-second: #FFC800;
   --color-text: #0d0c22;
   --color-accent: #a4b6fd;
   --color-border: #0d0c221F; /* ~12% alpha if supported */
@@ -346,3 +346,28 @@ header, footer{
   outline: 2px solid var(--color-text) !important;
   outline-offset: 2px !important;
 }
+
+
+/* === OVERRIDES: Remove all shadows globally === */
+.shadow, .shadow-lg, .shadow-xl, .shadow-2xl, .hover\:shadow-xl:hover,
+.card, .rounded-xl, .rounded-2xl, .rounded-lg, .panel, .price-card,
+button, .btn, .pill, header, footer, .tooltip .tip {
+  box-shadow: none !important;
+}
+* { --tw-shadow: 0 0 #0000 !important; --tw-ring-shadow: 0 0 #0000 !important; }
+h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
+
+
+/* === OVERRIDES: Orange primary buttons text color === */
+.btn,
+.bg-indigo-700 {
+  color: #ebe4d7 !important;
+}
+
+
+/* === OVERRIDES: Donation box container outer line/shadow removed === */
+#donation, #donationBox, .donation, .donation-box, .price-card.donation, .panel.donation {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
