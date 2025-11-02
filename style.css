@@ -371,3 +371,32 @@ h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
   box-shadow: none !important;
 }
 
+
+
+/* === OVERRIDES: Pill non-selected === */
+.pill {
+  border: none !important;
+  background: #FFC800 !important;
+  color: #ebe4d7 !important;
+}
+.pill:hover {
+  background: #FF5F00 !important;
+  color: #ebe4d7 !important;
+  border: none !important;
+}
+
+
+/* === OVERRIDES: Pill selected / hover === */
+.pill.sel,
+.pill:active,
+.pill:hover.sel {
+  border: none !important;
+  color: #ebe4d7 !important;
+}
+
+
+/* === OVERRIDES: Remove border color for rounded-2xl shadow-2xl bg-white border-2 border-slate-200 === */
+.rounded-2xl.shadow-2xl.bg-white.border-2.border-slate-200 {
+  border-color: transparent !important;
+}
+
