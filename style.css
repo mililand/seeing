@@ -343,8 +343,7 @@ header, footer{
 
 /* Focus ring (keep visible, use text color) */
 :focus-visible{
-  outline: 2px solid var(--color-text) !important;
-  outline-offset: 2px !important;
+ 
 }
 
 
