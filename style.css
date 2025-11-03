@@ -152,7 +152,7 @@ section > .max-w-6xl{scroll-margin-top:80px}
 .card .price{white-space:nowrap;direction:ltr}
 .text-slate-800{color:var(--ink-2)}
 .pill.sel{background:var(--brand-1);border-color:var(--brand-1);color:#f6f6f6}
-header,.border-b-2{border-color:#e9e9f0; border-width:1px;}
+header,.border-b-2{border-bottom:1px solid #ebe4d7;}
 
 /* === APPENDED: Warm, Trustworthy Premium Theme (2025-10-19) === */
 /* Keeps Tailwind + existing helpers intact, only refines look & feel. */
