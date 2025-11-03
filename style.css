@@ -500,4 +500,18 @@ footer {
   background-color: #00A165 !important;
   color: #fefbec !important;
 }
+/* FAQ individual question background */
+#faq details {
+  background-color: #FFC800;
+  border-radius: 12px;       /* keeps the rounded look */
+  padding: 1rem;             /* some inner spacing */
+  margin-bottom: 1rem;       /* space between questions */
+}
+
+/* Optional: style summary text inside */
+#faq details summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+
 
