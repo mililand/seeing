@@ -486,4 +486,10 @@ h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
   display: block;
   border-radius: 1rem;            /* match wrapper rounding */
 }
-
+.font-extrabold.text-lg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
