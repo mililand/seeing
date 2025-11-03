@@ -200,9 +200,9 @@ header{ background:#fefbec; border-bottom:0px solid var(--brand) }
 .pill.sel{ background:var(--brand); color:var(--brand-ink); border-color:#ffcc00; }
 
 /* Cards (slider) */
-.card{ border:2px solid var(--line); border-radius:20px; background:#f6f6f6; }
+.card{ border:0px solid var(--line); border-radius:20px; background:#f6f6f6; }
 .card:hover{ transform:translateY(-2px); }
-.card .head{ border-bottom:2px solid var(--line) }
+.card .head{ border-bottom:2px solid #ebe4d7 }
 .card .icon-wrap{ background: var(--tint) }
 .card .price{ white-space:nowrap; direction:ltr; font-weight:900; color:#1a370b }
 
