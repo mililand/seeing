@@ -445,3 +445,10 @@ h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
 .rounded-xl img {
 	border-radius:20px;
 }
+.illustration {
+  aspect-ratio: 4 / 3;
+  background: #ebe4d7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
