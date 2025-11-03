@@ -442,4 +442,6 @@ h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
 .tooltip.secure .tip::after {
   border-top-color: #00A165 !important;
 }
-
+.rounded-xl img {
+	border-radius:20px;
+}
