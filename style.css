@@ -493,3 +493,11 @@ h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
   text-align: center;
   height: 100%;
 }
+#faq {
+  background-color: #fefbec;
+}
+footer {
+  background-color: #00A165;
+  color: #ffffff; /* keep text readable */
+}
+
