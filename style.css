@@ -498,6 +498,6 @@ h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
 }
 footer {
   background-color: #00A165 !important;
-  color: #fefbec;
+  color: #fefbec !important;
 }
 
