@@ -253,11 +253,11 @@ h1,h2,h3{letter-spacing:-0.01em}
 .add-wrap .btn:hover,
 .add-wrap .btn.btn-primary:hover{
   background: #FF5F00 !important; /* amber-400 */
-  color: #1a370b !important;
+  color: #fefbec !important;
 }
 .add-wrap .btn:focus-visible{
-  outline: 2px solid #1a370b;
-  outline-offset: 2px;
+  outline: 0px solid #1a370b;
+  outline-offset: 0px;
 }
 
 
