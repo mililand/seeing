@@ -496,7 +496,7 @@ h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
 #faq {
   background-color: #fefbec;
 }
-footer .bg-white border-t {
+footer {
   background-color: #00A165 !important;
   color: #fefbec;
 }
