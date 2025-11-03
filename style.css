@@ -208,9 +208,9 @@ header{ background:#fefbec; border-bottom:0px solid var(--brand) }
 
 /* Slider arrows */
 #slidePrev,#slideNext{
-  background:#f6f6f6; border:1px solid var(--line);
-  width:2.5rem; height:2.5rem; border-radius:9999px;
-  display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.25rem; color:#1a370b;
+  background:transparent;
+  width:1rem; height:2.5rem; border-radius:9999px;
+  display:flex; align-items:center; justify-content:center; font-weight:900; font-size:4.25rem; color:#0369D8 !important;
 }
 
 /* Section rhythm & minor polish */
