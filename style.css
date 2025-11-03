@@ -246,15 +246,14 @@ h1,h2,h3{letter-spacing:-0.01em}
   font-size: 0.875rem;      /* text-sm */
   padding: 0.5rem 0.75rem;  /* py-2 px-3 */
   border-radius: 0.75rem;   /* rounded-xl */
-  background: #f6f6f6 !important;
+  background: #ffcc00 !important;
   color: #1a370b !important;      /* slate-900 */
-  border: 1px solid #1a370b !important; /* slate-200 */
+  border: 0px solid #1a370b !important; /* slate-200 */
 }
 .add-wrap .btn:hover,
 .add-wrap .btn.btn-primary:hover{
-  background: #FFC800 !important; /* amber-400 */
+  background: #FF5F00 !important; /* amber-400 */
   color: #1a370b !important;
-  border-color: #FFC800 !important; /* amber-300 */
 }
 .add-wrap .btn:focus-visible{
   outline: 2px solid #1a370b;
@@ -330,9 +329,8 @@ input, select, textarea{
 .card,
 .price-card,
 .panel{
-  background: var(--color-bg-main) !important;
+  background: #fefbec;
   color: var(--color-text) !important;
-  border-color: var(--color-text) !important;
 }
 
 /* Header/footer banners */
