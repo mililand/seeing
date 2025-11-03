@@ -448,7 +448,6 @@ h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
 /* --- Fix illustration scaling inside "why" section --- */
 .illustration {
   position: relative;
-  overflow: hidden;
 }
 
 .illustration img {
@@ -456,14 +455,12 @@ h1, h2, h3, h4, h5, h6 { text-shadow: none !important; }
   width: 100%;
   height: auto;
   object-fit: contain !important; /* keep full image visible */
-  border-radius: 1rem;            /* match parent rounding */
   display: block;
   margin: 0 auto;
 }
 
 .illustration {
   aspect-ratio: 4 / 3;
-  background: #ebe4d7;
   display: flex;
   align-items: center;
   justify-content: center;
