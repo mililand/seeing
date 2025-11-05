@@ -51,7 +51,7 @@ main { position: relative; z-index: 0; }
 
 /* FAQ video embed fallback when Tailwind isn't present */
 .faq-video-card {
-  border:4px solid #FF5F00;
+  border:12px solid #FF5F00;
   border-radius:12px;
   overflow:hidden;
   background:#000;
@@ -91,9 +91,7 @@ main { position: relative; z-index: 0; }
   justify-content:center;
   gap:0.35rem;
 }
-#certificatePreview .certificate-frame::before,
-#certificatePreview .certificate-frame::after {
-  content:"•";
+.certificate-corner {
   position:absolute;
   width:14px;
   height:14px;
@@ -101,16 +99,14 @@ main { position: relative; z-index: 0; }
   color:#0369D8;
   border:2px solid #0369D8;
   line-height:12px;
-  bottom:-2px;
   text-align:center;
   background:#fffef9;
+  display:block;
 }
-#certificatePreview .certificate-frame::before {
-  left:-2px;
-}
-#certificatePreview .certificate-frame::after {
-  right:-2px;
-}
+.corner-tl { top:-2px; left:-2px; }
+.corner-tr { top:-2px; right:-2px; }
+.corner-bl { bottom:-2px; left:-2px; }
+.corner-br { bottom:-2px; right:-2px; }
 .certificate-logo {
   width:140px;
   max-width:65%;
