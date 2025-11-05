@@ -76,7 +76,7 @@ function updateCertificatePreview() {
 function setCertificateTemplate(key) {
   if (!certificateTemplates[key]) return;
   state.certificateTemplate = key;
-  document.querySelectorAll('.cert-tab[data-cert-template]').forEach((btn) => {
+  document.querySelectorAll('.cert-tab-pill[data-cert-template]').forEach((btn) => {
     const isActive = btn.getAttribute('data-cert-template') === key;
     btn.classList.toggle('active', isActive);
     btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
@@ -85,7 +85,7 @@ function setCertificateTemplate(key) {
 }
 
 function initCertificateTabs() {
-  document.querySelectorAll('.cert-tab[data-cert-template]').forEach((btn) => {
+  document.querySelectorAll('.cert-tab-pill[data-cert-template]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const template = btn.getAttribute('data-cert-template');
       setCertificateTemplate(template);
