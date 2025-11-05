@@ -23,6 +23,23 @@ const state = {
 };
 
 // ------------------------------
+/** Modal helpers (callback request) */
+// ------------------------------
+function toggleModal(shouldShow) {
+  const modal = $('callModal');
+  if (!modal) return;
+  if (shouldShow) {
+    modal.classList.add('flex');
+    modal.classList.remove('hidden');
+  } else {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+}
+window._openM = () => toggleModal(true);
+window._closeM = () => toggleModal(false);
+
+// ------------------------------
 /** Impact calculation - BASE ONLY */
 // ------------------------------
 function impactFrom(base) {
@@ -275,6 +292,68 @@ function initA11y() {
 }
 
 // ------------------------------
+/** Modal + dedication preview init */
+// ------------------------------
+function initModalControls() {
+  const trigger = $('callMeBtn');
+  const closeBtn = $('callClose');
+  if (trigger) {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      window._openM();
+    });
+  }
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window._closeM();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') window._closeM();
+  });
+}
+
+function initDedicationPreview() {
+  const nameInput = $('dedName');
+  const donorInput = $('dedDonor');
+  const msgInput = $('dedMsg');
+  const typeSelect = $('dedType');
+  const certName = $('certName');
+  const certDonor = $('certDonor');
+  if (!nameInput && !donorInput && !msgInput && !typeSelect) return;
+
+  const baseNameLabel = certName ? (certName.textContent.split(':')[0] || 'שם המוקדש/ת') : 'שם המוקדש/ת';
+
+  const sync = () => {
+    const name = nameInput ? nameInput.value.trim() : '';
+    const donor = donorInput ? donorInput.value.trim() : '';
+    const type = typeSelect ? typeSelect.value.trim() : '';
+    if (certName) {
+      const suffix = type ? ` (${type})` : '';
+      certName.textContent = `${baseNameLabel}${suffix}: ${name || '-'}`;
+    }
+    if (certDonor) {
+      certDonor.textContent = donor || '-';
+    }
+    const certMsg = $('certMsg');
+    if (certMsg && msgInput) {
+      certMsg.textContent = msgInput.value.trim() || '';
+    }
+  };
+
+  [nameInput, donorInput, msgInput].forEach((el) => {
+    if (el) el.addEventListener('input', sync);
+  });
+  if (typeSelect) typeSelect.addEventListener('change', sync);
+  const attachBtn = $('attachDed');
+  if (attachBtn) {
+    attachBtn.addEventListener('click', sync);
+  }
+  sync();
+}
+
+// ------------------------------
 /** Boot */
 // ------------------------------
 document.addEventListener('DOMContentLoaded', () => {
@@ -287,4 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSlider();
   initA11y();
   setHebrewDate();
+  initModalControls();
+  initDedicationPreview();
 });
