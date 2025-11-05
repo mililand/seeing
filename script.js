@@ -22,6 +22,7 @@ const state = {
   selections: [],                  // slider "purchases" (extras)
   certificateTemplate: 'honor',
   certificateAmount: 350,
+  showCertificateAmount: true,
 };
 
 const certificateTemplates = {
@@ -97,9 +98,13 @@ function initCertificateTabs() {
 function updateCertificateAmountDisplay() {
   const display = $('certAmountPreview');
   const value = Math.max(Number(state.certificateAmount) || 0, 350);
-  if (display) {
-    display.textContent = 'סכום התרומה: ' + fmt(value) + '+';
+  if (!display) return;
+  if (!state.showCertificateAmount) {
+    display.textContent = '';
+    return;
   }
+  const localized = value.toLocaleString('he-IL');
+  display.textContent = `תרומה על סך ${localized} ש״ח`;
 }
 
 function initCertificateAmount() {
@@ -113,11 +118,22 @@ function initCertificateAmount() {
     } else {
       state.certificateAmount = val;
     }
+    input.value = state.certificateAmount;
     updateCertificateAmountDisplay();
   };
   input.addEventListener('input', handle);
   input.addEventListener('change', handle);
   handle();
+}
+
+function initCertificateAmountToggle() {
+  const checkbox = $('certShowAmount');
+  if (!checkbox) return;
+  checkbox.checked = state.showCertificateAmount;
+  checkbox.addEventListener('change', () => {
+    state.showCertificateAmount = checkbox.checked;
+    updateCertificateAmountDisplay();
+  });
 }
 
 // ------------------------------
@@ -449,6 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setHebrewDate();
   initCertificateTabs();
   initCertificateAmount();
+  initCertificateAmountToggle();
   initModalControls();
   initDedicationPreview();
 });

@@ -332,18 +332,24 @@
 <!-- Memorial donation -->
 <section class="bg-slate-100" id="dedication"><div class="max-w-6xl mx-auto px-4 py-12">
 <h2 class="text-2xl font-black text-indigo-700 mb-3">תרומה לזכרם</h2>
-<div class="grid md:grid-cols-2 gap-6">
-<div class="rounded-xl border bg-white shadow flex flex-col" id="certificateControls">
-<div class="p-4 border-b font-bold">בחרו סוג תעודה</div>
-<div class="p-4 space-y-4">
-<div class="flex flex-wrap gap-3 cert-tabs" role="tablist" aria-label="סוגי תעודות">
+<div class="cert-tabs-wrapper mb-6">
+<p class="text-sm text-slate-600 mb-2 font-semibold">בחרו סוג תעודה</p>
+<div class="flex flex-wrap gap-4 cert-tabs" role="tablist" aria-label="סוגי תעודות">
 <button type="button" class="cert-tab active" data-cert-template="honor" aria-selected="true">תעודת הוקרה</button>
 <button type="button" class="cert-tab" data-cert-template="memorial" aria-selected="false">תרומה לזכר</button>
 </div>
+</div>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="rounded-xl border bg-white shadow flex flex-col" id="certificateControls">
+<div class="p-4 space-y-5">
 <p class="text-sm text-slate-600" id="certTemplateDescription">תעודה חגיגית המעידה על תרומה המשנה חיים ומעניקה תמיכה מיידית להכשרת כלבי נחייה.</p>
 <div>
 <label class="block text-xs text-slate-500 mb-1" for="certAmountInput">סכום התרומה (מינימום 350 ₪)</label>
 <input class="w-full border rounded-xl px-3 py-2" type="number" min="350" step="10" id="certAmountInput" placeholder="350" value="350">
+<label class="flex items-center gap-2 text-sm text-slate-600 mt-2">
+<input type="checkbox" id="certShowAmount" class="rounded border-slate-400" checked>
+הצג את סכום התרומה בתעודה
+</label>
 <p class="text-xs text-slate-500 mt-1">הסכום נדרש להפקת התעודה ולהמשך הכשרת הכלבים והמתנדבים.</p>
 </div>
 </div>
@@ -378,7 +384,7 @@
 <p class="text-slate-500">בשם התורם/ת: <span id="certDonor">-</span></p>
 <p class="text-slate-500 text-sm certificate-message" id="certMsg"></p>
 <div class="h-px bg-slate-200 my-3"></div>
-<div class="text-sm text-slate-600" id="certAmountPreview" dir="ltr">סכום התרומה: ₪350+</div>
+<p class="text-sm text-slate-600 certificate-amount" id="certAmountPreview"></p>
 </div>
 </div>
 </div>
