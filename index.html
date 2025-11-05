@@ -333,23 +333,21 @@
 <section class="bg-slate-100" id="dedication"><div class="max-w-6xl mx-auto px-4 py-12">
 <h2 class="text-2xl font-black text-indigo-700 mb-3">תרומה לזכרם</h2>
 <div class="grid md:grid-cols-2 gap-6">
-<div class="border bg-white shadow p-5 text-center" id="certificatePreview">
-<div class="certificate-frame">
-<span aria-hidden="true" class="certificate-corner corner-tl">•</span>
-<span aria-hidden="true" class="certificate-corner corner-tr">•</span>
-<span aria-hidden="true" class="certificate-corner corner-bl">•</span>
-<span aria-hidden="true" class="certificate-corner corner-br">•</span>
-<div class="text-xs text-slate-500">תאריך: <span id="certDate">19.10.2025</span><span> · </span><span id="certDateHebrew">כ״ז בְּתִשְׁרֵי תשפ״ו</span></div>
-<img src="https://www.dropbox.com/scl/fi/vxfgbs8v70cgwtruapxe0/Screenshot-2025-10-21-at-11.57.08.png?rlkey=royokgukfq0zltds3tmog0swn&dl=1" alt="לוגו עיניים מנחות לעיוור" class="certificate-logo mx-auto">
-<h4 class="font-bold">תעודת הוקרה</h4><p class="text-slate-800 text-sm mt-1">תודה על תרומתכם - בזכותכם עוד אדם זוכה לביטחון ועצמאות.</p>
-<div class="h-px bg-slate-200 my-3"></div>
-<div class="text-xl font-black text-indigo-700" id="certName">שם המוקדש/ת: -</div>
-<p class="text-slate-500">בשם התורם/ת: <span id="certDonor">-</span></p>
-<div class="h-px bg-slate-200 my-3"></div>
+<div class="rounded-xl border bg-white shadow flex flex-col" id="certificateControls">
+<div class="p-4 border-b font-bold">בחרו סוג תעודה</div>
+<div class="p-4 space-y-4">
+<div class="flex flex-wrap gap-3 cert-tabs" role="tablist" aria-label="סוגי תעודות">
+<button type="button" class="cert-tab active" data-cert-template="honor" aria-selected="true">תעודת הוקרה</button>
+<button type="button" class="cert-tab" data-cert-template="memorial" aria-selected="false">תרומה לזכר</button>
+</div>
+<p class="text-sm text-slate-600" id="certTemplateDescription">תעודה חגיגית המעידה על תרומה המשנה חיים ומעניקה תמיכה מיידית להכשרת כלבי נחייה.</p>
+<div>
+<label class="block text-xs text-slate-500 mb-1" for="certAmountInput">סכום התרומה (מינימום 350 ₪)</label>
+<input class="w-full border rounded-xl px-3 py-2" type="number" min="350" step="10" id="certAmountInput" placeholder="350" value="350">
+<p class="text-xs text-slate-500 mt-1">הסכום נדרש להפקת התעודה ולהמשך הכשרת הכלבים והמתנדבים.</p>
 </div>
 </div>
-<div class="rounded-xl border bg-white shadow">
-<div class="p-4 border-b font-bold">מלאו פרטי הקדשה</div>
+<div class="p-4 border-t font-bold">מלאו פרטי הקדשה</div>
 <div class="p-4 grid md:grid-cols-2 gap-3">
 <div><label class="block text-xs text-slate-500 mb-1">שם המוקדש/ת</label><input class="w-full border rounded-xl px-3 py-2" id="dedName" placeholder="לדוגמה: יעל כהן"></div>
 <div><label class="block text-xs text-slate-500 mb-1">שם התורם/ת</label><input class="w-full border rounded-xl px-3 py-2" id="dedDonor" placeholder="שמך המלא"></div>
@@ -360,7 +358,29 @@
 </div>
 <div><label class="block text-xs text-slate-500 mb-1">הודעה קצרה (אופציונלי)</label><input class="w-full border rounded-xl px-3 py-2" id="dedMsg" placeholder="מילים לזכר/ברכה"></div>
 </div>
-<div class="p-4 pt-0"><button class="w-full bg-indigo-700 text-white rounded-2xl py-3" id="attachDed">צרפו את ההקדשה לתרומה</button></div>
+<div class="p-4 border-t">
+<button class="w-full bg-indigo-700 text-white rounded-2xl py-3" id="attachDed">צרפו את ההקדשה לתרומה</button>
+</div>
+</div>
+<div class="border bg-white shadow p-5 text-center" id="certificatePreview" data-template="honor">
+<div class="certificate-frame">
+<span aria-hidden="true" class="certificate-corner corner-tl">•</span>
+<span aria-hidden="true" class="certificate-corner corner-tr">•</span>
+<span aria-hidden="true" class="certificate-corner corner-bl">•</span>
+<span aria-hidden="true" class="certificate-corner corner-br">•</span>
+<div class="certificate-inner">
+<div class="text-xs text-slate-500">תאריך: <span id="certDate">19.10.2025</span><span> · </span><span id="certDateHebrew">כ״ז בְּתִשְׁרֵי תשפ״ו</span></div>
+<img src="https://www.dropbox.com/scl/fi/vxfgbs8v70cgwtruapxe0/Screenshot-2025-10-21-at-11.57.08.png?rlkey=royokgukfq0zltds3tmog0swn&dl=1" alt="לוגו עיניים מנחות לעיוור" class="certificate-logo mx-auto">
+<h4 class="font-bold text-2xl" id="certTitle">תעודת הוקרה</h4>
+<p class="text-slate-800 text-sm mt-1" id="certSubtitle">תודה על תרומתכם - בזכותכם עוד אדם זוכה לביטחון ועצמאות.</p>
+<div class="h-px bg-slate-200 my-3"></div>
+<div class="text-xl font-black text-indigo-700" id="certName">שם המוקדש/ת: -</div>
+<p class="text-slate-500">בשם התורם/ת: <span id="certDonor">-</span></p>
+<p class="text-slate-500 text-sm certificate-message" id="certMsg"></p>
+<div class="h-px bg-slate-200 my-3"></div>
+<div class="text-sm text-slate-600" id="certAmountPreview" dir="ltr">סכום התרומה: ₪350+</div>
+</div>
+</div>
 </div>
 </div>
 </div></section>
@@ -399,7 +419,7 @@
 </section>
 </main>
 <footer class="border-t">
-<div class="max-w-6xl mx-auto px-4 py-6 text-center text-sm">© 2025 עיניים מנחות לעיוור · כל הזכויות שמורות</div>
+<div class="max-w-6xl mx-auto px-4 py-12 text-center text-sm">© 2025 עיניים מנחות לעיוור · כל הזכויות שמורות</div>
 </footer>
 <!-- Callback modal -->
 <div aria-modal="true" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4" id="callModal" onclick="if(event.target===this){ window._closeM &amp;&amp; window._closeM(); }" role="dialog">

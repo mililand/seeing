@@ -20,6 +20,23 @@ const state = {
   amount: 180,                     // base donation (top box)
   custom: 0,                       // custom when 'סכום אחר'
   selections: [],                  // slider "purchases" (extras)
+  certificateTemplate: 'honor',
+  certificateAmount: 350,
+};
+
+const certificateTemplates = {
+  honor: {
+    key: 'honor',
+    title: 'תעודת הוקרה',
+    subtitle: 'תודה על תרומתכם - בזכותכם עוד אדם זוכה לביטחון ועצמאות.',
+    description: 'תעודה חגיגית המעידה על תרומה המשנה חיים ומעניקה תמיכה מיידית להכשרת כלבי נחייה.'
+  },
+  memorial: {
+    key: 'memorial',
+    title: 'תרומה לזכר',
+    subtitle: 'תעודה אישית המנציחה את יקיריכם וממשיכה את דרכם באור ובאהבה.',
+    description: 'תעודה מעוצבת שמעניקה רגע של זיכרון טוב ומשקפת את התרומה שניתנה לזכר יקיר לבכם.'
+  }
 };
 
 // ------------------------------
@@ -38,6 +55,70 @@ function toggleModal(shouldShow) {
 }
 window._openM = () => toggleModal(true);
 window._closeM = () => toggleModal(false);
+
+// ------------------------------
+/** Certificate tabs + preview */
+// ------------------------------
+function updateCertificatePreview() {
+  const tmpl = certificateTemplates[state.certificateTemplate] || certificateTemplates.honor;
+  const titleEl = $('certTitle');
+  const subtitleEl = $('certSubtitle');
+  const descEl = $('certTemplateDescription');
+  const preview = $('certificatePreview');
+  if (titleEl) titleEl.textContent = tmpl.title;
+  if (subtitleEl) subtitleEl.textContent = tmpl.subtitle;
+  if (descEl) descEl.textContent = tmpl.description;
+  if (preview) preview.setAttribute('data-template', tmpl.key);
+  updateCertificateAmountDisplay();
+}
+
+function setCertificateTemplate(key) {
+  if (!certificateTemplates[key]) return;
+  state.certificateTemplate = key;
+  document.querySelectorAll('.cert-tab[data-cert-template]').forEach((btn) => {
+    const isActive = btn.getAttribute('data-cert-template') === key;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+  updateCertificatePreview();
+}
+
+function initCertificateTabs() {
+  document.querySelectorAll('.cert-tab[data-cert-template]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const template = btn.getAttribute('data-cert-template');
+      setCertificateTemplate(template);
+    });
+  });
+  // ensure UI reflects default
+  setCertificateTemplate(state.certificateTemplate);
+}
+
+function updateCertificateAmountDisplay() {
+  const display = $('certAmountPreview');
+  const value = Math.max(Number(state.certificateAmount) || 0, 350);
+  if (display) {
+    display.textContent = 'סכום התרומה: ' + fmt(value) + '+';
+  }
+}
+
+function initCertificateAmount() {
+  const input = $('certAmountInput');
+  if (!input) return;
+  input.value = state.certificateAmount;
+  const handle = () => {
+    let val = Number(input.value);
+    if (!Number.isFinite(val) || val < 350) {
+      state.certificateAmount = 350;
+    } else {
+      state.certificateAmount = val;
+    }
+    updateCertificateAmountDisplay();
+  };
+  input.addEventListener('input', handle);
+  input.addEventListener('change', handle);
+  handle();
+}
 
 // ------------------------------
 /** Impact calculation - BASE ONLY */
@@ -323,7 +404,7 @@ function initDedicationPreview() {
   const certDonor = $('certDonor');
   if (!nameInput && !donorInput && !msgInput && !typeSelect) return;
 
-  const baseNameLabel = certName ? (certName.textContent.split(':')[0] || 'שם המוקדש/ת') : 'שם המוקדש/ת';
+  const baseNameLabel = 'שם המוקדש/ת';
 
   const sync = () => {
     const name = nameInput ? nameInput.value.trim() : '';
@@ -366,6 +447,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initSlider();
   initA11y();
   setHebrewDate();
+  initCertificateTabs();
+  initCertificateAmount();
   initModalControls();
   initDedicationPreview();
 });
