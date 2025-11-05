@@ -50,11 +50,16 @@ main { position: relative; z-index: 0; }
 .slider-fade { display:none !important; }
 
 /* FAQ video embed fallback when Tailwind isn't present */
+.faq-video-card {
+  border:4px solid #FF5F00;
+  border-radius:1.5rem;
+  overflow:hidden;
+  background:#000;
+}
 .faq-video {
   position: relative;
   width: 100%;
   padding-top: 56.25%;
-  background: #000;
 }
 .faq-video iframe {
   position: absolute;
@@ -70,7 +75,7 @@ main { position: relative; z-index: 0; }
   aspect-ratio: 210 / 297;
   background:#ffffff;
   border-radius:0;
-  border:12px solid #f0ebe0;
+  border:14px solid #f6efe2;
   padding:0;
 }
 #certificatePreview::before,
@@ -81,17 +86,18 @@ main { position: relative; z-index: 0; }
 }
 #certificatePreview::before {
   inset:18px;
-  border:4px double #5b4ce7;
+  border:6px double #0369D8;
+  box-shadow:0 0 0 4px rgba(3,105,216,0.15);
 }
 #certificatePreview::after {
   inset:32px;
-  border:1px solid rgba(91,76,231,0.35);
+  border:1px solid rgba(3,105,216,0.25);
 }
 #certificatePreview .certificate-frame {
   position:relative;
   z-index:1;
   height:100%;
-  padding:1.1rem 2rem 1.75rem;
+  padding:0.75rem 2rem 1.5rem;
   display:flex;
   flex-direction:column;
   justify-content:center;
