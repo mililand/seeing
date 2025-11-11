@@ -415,20 +415,17 @@ function initDedicationPreview() {
   const nameInput = $('dedName');
   const donorInput = $('dedDonor');
   const msgInput = $('dedMsg');
-  const typeSelect = $('dedType');
   const certName = $('certName');
   const certDonor = $('certDonor');
-  if (!nameInput && !donorInput && !msgInput && !typeSelect) return;
+  if (!nameInput && !donorInput && !msgInput) return;
 
   const baseNameLabel = 'שם המוקדש/ת';
 
   const sync = () => {
     const name = nameInput ? nameInput.value.trim() : '';
     const donor = donorInput ? donorInput.value.trim() : '';
-    const type = typeSelect ? typeSelect.value.trim() : '';
     if (certName) {
-      const suffix = type ? ` (${type})` : '';
-      certName.textContent = `${baseNameLabel}${suffix}: ${name || '-'}`;
+      certName.textContent = `${baseNameLabel}: ${name || '-'}`;
     }
     if (certDonor) {
       certDonor.textContent = donor || '-';
@@ -442,7 +439,6 @@ function initDedicationPreview() {
   [nameInput, donorInput, msgInput].forEach((el) => {
     if (el) el.addEventListener('input', sync);
   });
-  if (typeSelect) typeSelect.addEventListener('change', sync);
   const attachBtn = $('attachDed');
   if (attachBtn) {
     attachBtn.addEventListener('click', sync);
