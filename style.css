@@ -143,9 +143,11 @@ main { position: relative; z-index: 0; }
   display:flex;
   flex-wrap:wrap;
   gap:0.35rem;
-  padding-bottom:0.35rem;
-  margin-bottom:1rem;
   background:transparent;
+}
+#certControlsTabs {
+  background:#ebe4d7;
+  padding-right:0;
 }
 .cert-tab-pill {
   position:relative;
