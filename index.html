@@ -357,8 +357,22 @@
 </div>
 <div class="p-4 border-t font-bold">מלאו פרטי הקדשה</div>
 <div class="p-4 grid md:grid-cols-2 gap-3">
-<div><label class="block text-xs text-slate-500 mb-1">הקדשה על שם:</label><input class="w-full border rounded-xl px-3 py-2" id="dedName" placeholder="לדוגמה: יעל כהן"></div>
-<div><label class="block text-xs text-slate-500 mb-1">נתרם על ידי:</label><input class="w-full border rounded-xl px-3 py-2" id="dedDonor" placeholder="שמך המלא"></div>
+<div>
+<label class="block text-xs text-slate-500 mb-1">הקדשה על שם:</label>
+<input class="w-full border rounded-xl px-3 py-2" id="dedName" placeholder="לדוגמה: יעל כהן">
+<label class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+<input type="checkbox" id="dedNameHide" class="rounded border-slate-400">
+להסתיר שם זה בתעודה
+</label>
+</div>
+<div>
+<label class="block text-xs text-slate-500 mb-1">נתרם על ידי:</label>
+<input class="w-full border rounded-xl px-3 py-2" id="dedDonor" placeholder="שמך המלא">
+<label class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+<input type="checkbox" id="dedDonorHide" class="rounded border-slate-400">
+להסתיר את שם התורם בתעודה
+</label>
+</div>
 <div class="md:col-span-2"><label class="block text-xs text-slate-500 mb-1">הוסיפו הקדשה אישית משלכם:</label><textarea class="w-full border rounded-xl px-3 py-3 leading-relaxed" id="dedMsg" placeholder="מסר אישי משלכם" rows="4"></textarea></div>
 </div>
 <div class="p-4 border-t">
@@ -377,13 +391,13 @@
 <img src="https://www.dropbox.com/scl/fi/vxfgbs8v70cgwtruapxe0/Screenshot-2025-10-21-at-11.57.08.png?rlkey=royokgukfq0zltds3tmog0swn&dl=1" alt="לוגו עיניים מנחות לעיוור" class="certificate-logo mx-auto">
 <h4 class="font-bold text-2xl" id="certTitle">תעודת הוקרה</h4>
 <div class="text-xl font-black text-indigo-700" id="certName">יעל כהן</div>
-<p class="text-slate-800 text-sm mt-1" id="certSubtitle">תודה על תרומתך</p>
+<p class="text-slate-800 text-sm mt-1" id="certSubtitle">תודה על תרומתך!</p>
+<p class="text-slate-800 text-base certificate-amount" id="certAmountPreview"></p>
 <p class="text-slate-500 text-base" id="certSubline">בזכותך עוד אדם זוכה לביטחון ועצמאות.</p>
 <div class="h-px bg-slate-200 my-3"></div>
-<p class="text-slate-500">נתרם על ידי: <span id="certDonor">-</span></p>
+<p class="text-slate-500">נתרם על ידי: <span id="certDonor">ישראל ישראלי</span></p>
 <p class="text-slate-500 text-sm certificate-message" id="certMsg"></p>
 <div class="h-px bg-slate-200 my-3"></div>
-<p class="text-sm text-slate-600 certificate-amount" id="certAmountPreview"></p>
 </div>
 </div>
 </div>

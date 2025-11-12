@@ -29,7 +29,7 @@ const certificateTemplates = {
   honor: {
     key: 'honor',
     title: 'תעודת הוקרה',
-    subtitle: 'תודה על תרומתך',
+    subtitle: 'תודה על תרומתך!',
     subline: 'בזכותך עוד אדם זוכה לביטחון ועצמאות.',
     description: 'תעודה הוקרה אישית להדפסה בתודה על תרומתכם תשלח אליכם במייל.'
   },
@@ -108,7 +108,7 @@ function updateCertificateAmountDisplay() {
     return;
   }
   const localized = value.toLocaleString('he-IL');
-  display.textContent = `תרומה על סך ${localized} ש״ח`;
+  display.textContent = `בסך ${localized}₪`;
 }
 
 function initCertificateAmount() {
@@ -421,18 +421,25 @@ function initDedicationPreview() {
   const msgInput = $('dedMsg');
   const certName = $('certName');
   const certDonor = $('certDonor');
+  const hideName = $('dedNameHide');
+  const hideDonor = $('dedDonorHide');
   if (!nameInput && !donorInput && !msgInput) return;
 
   const namePlaceholder = 'יעל כהן';
+  const donorPlaceholder = 'ישראל ישראלי';
 
   const sync = () => {
     const name = nameInput ? nameInput.value.trim() : '';
     const donor = donorInput ? donorInput.value.trim() : '';
+    const hideNameVal = hideName ? hideName.checked : false;
+    const hideDonorVal = hideDonor ? hideDonor.checked : false;
     if (certName) {
-      certName.textContent = name || namePlaceholder;
+      certName.textContent = hideNameVal ? '' : (name || namePlaceholder);
+      certName.classList.toggle('opacity-0', hideNameVal);
     }
     if (certDonor) {
-      certDonor.textContent = donor || '-';
+      certDonor.textContent = hideDonorVal ? '' : (donor || donorPlaceholder);
+      certDonor.parentElement?.classList.toggle('opacity-50', hideDonorVal);
     }
     const certMsg = $('certMsg');
     if (certMsg && msgInput) {
@@ -440,7 +447,7 @@ function initDedicationPreview() {
     }
   };
 
-  [nameInput, donorInput, msgInput].forEach((el) => {
+  [nameInput, donorInput, msgInput, hideName, hideDonor].forEach((el) => {
     if (el) el.addEventListener('input', sync);
   });
   const attachBtn = $('attachDed');

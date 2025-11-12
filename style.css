@@ -73,6 +73,8 @@ main { position: relative; z-index: 0; }
 #certificatePreview {
   position: relative;
   aspect-ratio: 210 / 297;
+  width:100%;
+  max-width:420px;
   background:#ffffff;
   border-radius:0;
   border:14px solid #00A165;
@@ -95,7 +97,7 @@ main { position: relative; z-index: 0; }
   margin:1rem;
   padding:1.25rem;
   border:2px solid #00A165;
-  background:#fffef9;
+  background:#ffffff;
 }
 .certificate-inner {
   position:relative;
@@ -119,7 +121,7 @@ main { position: relative; z-index: 0; }
   border:2px solid #00A165;
   line-height:12px;
   text-align:center;
-  background:#fffef9;
+  background:#ffffff;
   display:block;
 }
 .corner-tl { top:-2px; left:-2px; }
@@ -162,12 +164,16 @@ main { position: relative; z-index: 0; }
   color:#475569;
   text-align:center;
 }
+#certificatePreview .text-slate-500 {
+  color:#000000 !important;
+}
 .certificate-message {
   min-height:1.5rem;
 }
 .certificate-amount {
   min-height:1.25rem;
   font-weight:600;
+  text-align:center;
 }
 .cert-tab-pills {
   display:flex;
