@@ -116,8 +116,17 @@ main { position: relative; z-index: 0; }
   display:flex;
   flex-direction:column;
   gap:0.75rem;
-  background:#ffffff;
+  background:transparent;
   flex:1;
+  min-height:0;
+}
+#certificatePreview .certificate-frame {
+  display:flex;
+  flex-direction:column;
+}
+.certificate-footer-logo {
+  margin-top:auto;
+  padding-bottom:0.5rem;
 }
 #certificatePreview[data-template="memorial"] .certificate-inner {
   background:#ffffff;
@@ -175,7 +184,6 @@ main { position: relative; z-index: 0; }
   font-weight:700;
   text-align:center;
   white-space:pre-line;
-  margin-bottom:35px;
 }
 #certificatePreview .text-slate-500 {
   color:#000000 !important;
@@ -192,9 +200,14 @@ main { position: relative; z-index: 0; }
 .certificate-footer-logo {
   width:220px;
   max-width:80%;
-  margin:0 auto;
   display:block;
   background:transparent;
+}
+.certificate-footer {
+  margin-top:auto;
+  padding:0 2rem 0.5rem;
+  display:flex;
+  justify-content:center;
 }
 .cert-tab-pills {
   display:flex;

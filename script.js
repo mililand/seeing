@@ -432,8 +432,13 @@ function initDedicationPreview() {
     if (certName) {
       const displayName = name || namePlaceholder;
       const prefix = state.certificateTemplate === 'memorial' ? 'לזכר ' : '';
-      certName.textContent = hideNameVal ? '' : `${prefix}${displayName}`;
-      certName.classList.toggle('opacity-0', hideNameVal);
+      if (hideNameVal) {
+        certName.textContent = '';
+        certName.classList.add('hidden');
+      } else {
+        certName.textContent = `${prefix}${displayName}`;
+        certName.classList.remove('hidden');
+      }
     }
     if (certDonor) {
       certDonor.textContent = hideDonorVal ? '' : (donor || donorPlaceholder);
