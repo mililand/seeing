@@ -180,11 +180,23 @@ main { position: relative; z-index: 0; }
   border-radius:14px;
   padding:0.85rem 1rem;
   font-weight:600;
-  color:#6b3f1d;
-  box-shadow:inset 0 0 0 1px rgba(251,191,36,0.35);
+  color:#0369d8;
+}
+#certControlsMain .cert-amount-row {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-start;
+  gap:0.75rem;
+  flex-direction:row-reverse;
+}
+#certControlsMain .cert-amount-row label {
+  font-size:0.85rem;
+  font-weight:700;
+  color:#475569;
 }
 #certAmountInput {
-  background:#ffc800;
+  background:#ffc800 !important;
   color:#1e1b4b;
   border:none;
   border-radius:9999px;
@@ -194,7 +206,6 @@ main { position: relative; z-index: 0; }
   min-width:8ch;
   max-width:200px;
   padding:0.75rem 1.5rem;
-  box-shadow:0 8px 18px rgba(251,191,36,0.35);
 }
 #certAmountInput::placeholder {
   color:#1e1b4b;
@@ -203,7 +214,7 @@ main { position: relative; z-index: 0; }
 #certControlsMain input,
 #certControlsMain select,
 #certControlsMain textarea {
-  background:#ffffff;
+  background:#ffffff !important;
 }
 #dedMsg {
   min-height:140px;
