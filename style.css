@@ -100,15 +100,15 @@ main { position: relative; z-index: 0; }
 .certificate-inner {
   position:relative;
   padding:2rem;
-  min-height:100%;
+  height:100%;
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  gap:0.5rem;
-  background:#fffdf6;
+  justify-content:flex-start;
+  gap:0.75rem;
+  background:#ffffff;
 }
 #certificatePreview[data-template="memorial"] .certificate-inner {
-  background:#fff8ef;
+  background:#ffffff;
 }
 .certificate-corner {
   position:absolute;
@@ -131,6 +131,36 @@ main { position: relative; z-index: 0; }
   max-width:65%;
   display:block;
   margin:0 auto 0.25rem;
+}
+.certificate-date {
+  display:flex;
+  justify-content:center;
+  gap:0.35rem;
+  font-size:0.85rem;
+  color:#475569;
+}
+#certTitle {
+  font-size:2.5rem;
+  color:#0369D8;
+  line-height:1.1;
+  margin:0.25rem 0;
+}
+#certName {
+  font-size:1.75rem;
+  font-weight:800;
+  color:#111827;
+  text-align:center;
+}
+#certSubtitle {
+  font-size:1.35rem;
+  font-weight:700;
+  color:#111827;
+  text-align:center;
+}
+#certSubline {
+  font-size:1rem;
+  color:#475569;
+  text-align:center;
 }
 .certificate-message {
   min-height:1.5rem;

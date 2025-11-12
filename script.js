@@ -29,13 +29,15 @@ const certificateTemplates = {
   honor: {
     key: 'honor',
     title: 'תעודת הוקרה',
-    subtitle: 'תודה על תרומתכם - בזכותכם עוד אדם זוכה לביטחון ועצמאות.',
+    subtitle: 'תודה על תרומתך',
+    subline: 'בזכותך עוד אדם זוכה לביטחון ועצמאות.',
     description: 'תעודה הוקרה אישית להדפסה בתודה על תרומתכם תשלח אליכם במייל.'
   },
   memorial: {
     key: 'memorial',
     title: 'תרומה לזכר',
-    subtitle: 'תעודה אישית המנציחה את יקיריכם וממשיכה את דרכם באור ובאהבה.',
+    subtitle: 'תודה על תרומתכם לזכר יקירכם',
+    subline: 'במתנתכם אתם מנציחים באור ומעניקים עצמאות לאנשים עם עיוורון.',
     description: 'תעודה מעוצבת שמעניקה רגע של זיכרון טוב ומשקפת את התרומה שניתנה לזכר יקיר לבכם.'
   }
 };
@@ -65,10 +67,12 @@ function updateCertificatePreview() {
   const titleEl = $('certTitle');
   const subtitleEl = $('certSubtitle');
   const descEl = $('certTemplateDescription');
+  const sublineEl = $('certSubline');
   const preview = $('certificatePreview');
   if (titleEl) titleEl.textContent = tmpl.title;
   if (subtitleEl) subtitleEl.textContent = tmpl.subtitle;
   if (descEl) descEl.textContent = tmpl.description;
+  if (sublineEl) sublineEl.textContent = tmpl.subline || '';
   if (preview) preview.setAttribute('data-template', tmpl.key);
   updateCertificateAmountDisplay();
 }
@@ -419,13 +423,13 @@ function initDedicationPreview() {
   const certDonor = $('certDonor');
   if (!nameInput && !donorInput && !msgInput) return;
 
-  const baseNameLabel = 'שם המוקדש/ת';
+  const namePlaceholder = 'יעל כהן';
 
   const sync = () => {
     const name = nameInput ? nameInput.value.trim() : '';
     const donor = donorInput ? donorInput.value.trim() : '';
     if (certName) {
-      certName.textContent = `${baseNameLabel}: ${name || '-'}`;
+      certName.textContent = name || namePlaceholder;
     }
     if (certDonor) {
       certDonor.textContent = donor || '-';
