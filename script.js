@@ -36,8 +36,8 @@ const certificateTemplates = {
   memorial: {
     key: 'memorial',
     title: 'תרומה לזכר',
-    subtitle: 'תודה על תרומתכם לזכר יקירכם',
-    subline: 'במתנתכם אתם מנציחים באור ומעניקים עצמאות לאנשים עם עיוורון.',
+    subtitle: 'תודה על תרומתכם לזכר היקרים לכם!',
+    subline: 'במתנתכם אתם מנציחים את הטוב ומעניקים עצמאות לאנשים עם עיוורון.',
     description: 'תעודה מעוצבת שמעניקה רגע של זיכרון טוב ומשקפת את התרומה שניתנה לזכר יקיר לבכם.'
   }
 };
@@ -421,6 +421,7 @@ function initDedicationPreview() {
   const msgInput = $('dedMsg');
   const certName = $('certName');
   const certDonor = $('certDonor');
+  const certDonorLine = $('certDonorLine');
   const hideName = $('dedNameHide');
   const hideDonor = $('dedDonorHide');
   if (!nameInput && !donorInput && !msgInput) return;
@@ -439,7 +440,9 @@ function initDedicationPreview() {
     }
     if (certDonor) {
       certDonor.textContent = hideDonorVal ? '' : (donor || donorPlaceholder);
-      certDonor.parentElement?.classList.toggle('opacity-50', hideDonorVal);
+    }
+    if (certDonorLine) {
+      certDonorLine.classList.toggle('hidden', hideDonorVal);
     }
     const certMsg = $('certMsg');
     if (certMsg && msgInput) {
