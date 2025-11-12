@@ -36,8 +36,8 @@ const certificateTemplates = {
   memorial: {
     key: 'memorial',
     title: 'תעודת הוקרה',
-    subtitle: 'תודה על תרומתכם לזכר היקרים לכם!',
-    subline: 'לזכרון, באהבה ובחסד. \nתודה על לב רואה ויד מושיטה.',
+    subtitle: '',
+    subline: 'לזכרון, באהבה ובחסד.\nתודה על לב רואה ויד מושיטה.',
     description: 'תעודה מעוצבת שמעניקה רגע של זיכרון טוב ומשקפת את התרומה שניתנה לזכר יקיר לבכם.'
   }
 };
@@ -131,13 +131,8 @@ function initCertificateAmount() {
 }
 
 function initCertificateAmountToggle() {
-  const checkbox = $('certShowAmount');
-  if (!checkbox) return;
-  checkbox.checked = state.showCertificateAmount;
-  checkbox.addEventListener('change', () => {
-    state.showCertificateAmount = checkbox.checked;
-    updateCertificateAmountDisplay();
-  });
+  state.showCertificateAmount = false;
+  updateCertificateAmountDisplay();
 }
 
 // ------------------------------
