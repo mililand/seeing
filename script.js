@@ -35,9 +35,9 @@ const certificateTemplates = {
   },
   memorial: {
     key: 'memorial',
-    title: 'תרומה לזכר',
+    title: 'תעודת הוקרה',
     subtitle: 'תודה על תרומתכם לזכר היקרים לכם!',
-    subline: 'במתנתכם אתם מנציחים את הטוב ומעניקים עצמאות לאנשים עם עיוורון.',
+    subline: 'לזכרון, באהבה ובחסד. \nתודה על לב רואה ויד מושיטה.',
     description: 'תעודה מעוצבת שמעניקה רגע של זיכרון טוב ומשקפת את התרומה שניתנה לזכר יקיר לבכם.'
   }
 };
@@ -108,7 +108,7 @@ function updateCertificateAmountDisplay() {
     return;
   }
   const localized = value.toLocaleString('he-IL');
-  display.textContent = `בסך ${localized}₪`;
+  display.textContent = `בסך ${localized} ₪`;
 }
 
 function initCertificateAmount() {
@@ -435,7 +435,9 @@ function initDedicationPreview() {
     const hideNameVal = hideName ? hideName.checked : false;
     const hideDonorVal = hideDonor ? hideDonor.checked : false;
     if (certName) {
-      certName.textContent = hideNameVal ? '' : (name || namePlaceholder);
+      const displayName = name || namePlaceholder;
+      const prefix = state.certificateTemplate === 'memorial' ? 'לזכר ' : '';
+      certName.textContent = hideNameVal ? '' : `${prefix}${displayName}`;
       certName.classList.toggle('opacity-0', hideNameVal);
     }
     if (certDonor) {
